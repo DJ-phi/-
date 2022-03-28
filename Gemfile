@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec-rails"
   gem "factory_bot_rails"
+  #保留  追加するとruby version 3.1が見つかんねええよと怒られる
+  # gem 'rubocop-airbnb'
 end
 
 group :development do
