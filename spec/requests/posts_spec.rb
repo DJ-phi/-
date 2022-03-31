@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
+  let(:post) { create(:post) }
+
   before do
     # get "/posts/index"
     get postos_path(post.id)
@@ -19,23 +21,20 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "GET /show" do
-    it "使ったお金が取得されている" do
-    end
-
     it "食事代が取得されていること" do
-
+      expect(response.body).to include post.food
     end
 
     it "交通費が取得されていること" do
-
+      expect(response.body).to include post.traffic
     end
 
     it "合計金額が取得されていること" do
-
+      expect(response.body).to include posu.count_price
     end
 
     it "使った日時が取得できていること" do
-      
+      expect(response.body).to include posu.use_day
     end
 
     it "レスポンスステータスコードが200であること" do
@@ -44,23 +43,20 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "GET /edit" do
-    it "使ったお金が取得されている" do
-    end
-
     it "食事代が取得されていること" do
-
+      expect(response.body).to include post.food
     end
 
     it "交通費が取得されていること" do
-
+      expect(response.body).to include post.traffic
     end
 
     it "合計金額が取得されていること" do
-
+      expect(response.body).to include posu.count_price
     end
 
     it "使った日時が取得できていること" do
-      
+      expect(response.body).to include posu.use_day
     end
 
     it "レスポンスステータスコードが200であること" do
