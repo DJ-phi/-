@@ -1,0 +1,42 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">新規ユーザー登録</div>
+    <div class="form users-form">
+      <div class="form-body">
+      <% if false %>
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="form-error">
+          <%= message %>
+        </div>
+      <% end %>
+      <% end %>
+        <% 
+=begin
+        <%= form_with model: @room do |f| %>
+          <%= f.label :name ,"ユーザー名" %><br>
+          <%= f.text_field :name %><br>
+          <%= f.label :email ,"メールアドレス" %><br>
+          <%= f.text_field :email %><br>
+          <%= f.label :password ,"パスワード" %><br>
+          <%= f.text_field :password %><br>
+          <div>
+            <%= f.submit "登録" %>
+          </div>
+        <% end %>
+          <%
+=end
+%>
+        <%= form_tag("/users/create") do %>
+          <p>ユーザー名</p>
+          <input name="name" value = "<%= @user.name%>">
+          <p>メールアドレス</p>
+          <input name="email" value = "<%= @user.email%>">
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @user.password %>">
+          <input type="submit" value="新規登録">
+          <p><%= link_to("ユーザー一覧に戻る" , users_path)%></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
