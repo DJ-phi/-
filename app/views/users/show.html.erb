@@ -5,11 +5,7 @@
       <p><%= @user.email %></p>
       <p><%= @user.password%></p>
       <%= link_to "編集", "/users/#{@user.id}/edit" %>
-      <%= link_to "削除", "/users/#{@user.id}/destroy", {method:"user"} %>
       <%= link_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？?" } %>
-      <%if false %>
-      <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか？" } %>
-      <% end %>
     </div>
   </div>
 </div>

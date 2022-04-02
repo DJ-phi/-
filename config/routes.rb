@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   # get 'users/index'
-  post "users/:id/destroy" => "users#destroy"
+  # post "users/:id/destroy" => "users#destroy"
   post "users/create" => "users#create"
   resources:users
 end
