@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     @user = User.new(params.require(:user).permit(:name, :email, :password))
     if @user.save
       flash[:notice] = "ユーザー登録が完了しました"
-      redirect_to("users/#{@user.id}")
+      redirect_to user_path
     else
-      render "new"
+      render new_user_path
     end
   end
 
@@ -30,9 +30,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(params.require(:user).permit(:name, :email, :password))
       flash[:notice] = "更新しました"
-      redirect_to("/users/#{@user.id}")
+      redirect_to user_path
     else
-      render("users/edit")
+      render edit_user_path
     end
   end
 
@@ -40,6 +40,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "ユーザーを削除しました"
-    redirect_to("/users")
+    redirect_to users_path
   end
 end
