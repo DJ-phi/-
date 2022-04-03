@@ -3,12 +3,8 @@
     <div class="form-heading">ユーザー情報の編集</div>
     <div class="form users-form">
       <div class="form-body">
-        <% @user.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
-        <% end %>
-          <%= form_with model: @user do |f| %>
+        <% render "error_message" %>
+        <%= form_with model: @user do |f| %>
           <%= f.label :name ,"ユーザー名" %><br>
           <%= f.text_field :name %><br>
           <% if false %>
