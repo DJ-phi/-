@@ -5,11 +5,11 @@ RSpec.describe "Users", type: :request do
   let!(:post) { create(:post) }
   
   before do
-    # get users_path(user.id)
+    # get users_path(user.id) 使うかもしれないからとりあえず保留
     get users_path
     get new_user_path
     get users_path
-    # get edit_user_path
+    # get edit_user_path こいつ入れるとActionController::UrlGenerationError:が出てくる
   end
 
   describe "GET /index" do
