@@ -35,6 +35,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'faker'
   gem 'pry-rails'
+  gem 'net-smtp', require: false
   #保留  追加するとruby version 3.1が見つかんねええよと怒られる
   # gem 'rubocop-airbnb'
 end
