@@ -4,19 +4,7 @@
     <div class="form users-form">
       <div class="form-body">
         <% render "error_message" %>
-        <%= form_with model: @user do |f| %>
-          <%= f.label :name ,"ユーザー名" %><br>
-          <%= f.text_field :name %><br>
-          <% if false %>
-          <%= f.label :image ,"画像" %><br>
-          <%= f.file_field :image %><br>
-          <% end %>
-          <%= f.label :email ,"メールアドレス" %><br>
-          <%= f.text_field :email %><br>
-          <%= f.label :password ,"パスワード" %><br>
-          <%= f.text_field :password %>
-          <%= f.submit "編集する"%>
-        <% end %>
+        <%= render "form", user: @user %>
       </div>
     </div>
   </div>
