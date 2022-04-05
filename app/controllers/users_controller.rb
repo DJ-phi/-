@@ -11,9 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(params.require(:user).permit(:name, :email, :password))
     if @user.save
       flash[:notice] = "ユーザー登録が完了しました"
-      redirect_to user_path
+      redirect_to user_path(@user.id)
     else
-      render new_user_path
+      render :new
     end
   end
 
@@ -29,9 +29,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(params.require(:user).permit(:name, :email, :password))
       flash[:notice] = "更新しました"
-      redirect_to user_path
+      redirect_to user_path(@user.id)
     else
-      render edit_user_path
+      render :edit
     end
   end
 
