@@ -29,8 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    
-    if @user.update(params.require(:user).permit(:name, :email, :password))
+    if @user.update(user_params)
       flash[:notice] = "更新しました"
       redirect_to user_path(@user.id)
     else
@@ -49,5 +48,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
   end
 end
