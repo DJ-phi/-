@@ -5,14 +5,14 @@ RSpec.describe "Users", type: :request do
   let!(:post) { create(:post) }
   
   before do
-    # get users_path(user.id) 使うかもしれないからとりあえず保留
+    get users_path #２つ入れると何故かテストが通る
     get users_path
     get new_user_path
-    get users_path
+    # get users_path(user.id) 使うかもしれないからとりあえず保留
     # get edit_user_path こいつ入れるとActionController::UrlGenerationError:が出てくる
   end
 
-  describe "GET /index" do
+  describe "#index" do
     # it "食事代が取得されていること" do
     #   expect(response.body).to include post.food
     # end
@@ -38,17 +38,21 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "GET /new" do
+  describe "#new" do
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /show" do
+  describe "#create" do
+
+  end
+
+  describe "#show" do
     it "名前が取得できていること" do
       expect(response.body).to include user.name
     end
-
+binding.pry
     it "emailが取得されていること" do
       expect(response.body).to include user.email
     end
@@ -62,7 +66,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # describe "GET /edit" do
+  # describe "#edit" do
   #   it "名前が取得できていること" do
   #     expect(response.body).to include user.name
   #   end
@@ -79,4 +83,12 @@ RSpec.describe "Users", type: :request do
   #     expect(response).to have_http_status(:success)
   #   end
   # end
+
+  describe "#update" do
+
+  end
+
+  describe "#destroy" do
+    
+  end
 end
