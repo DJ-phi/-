@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:name, :email, :password))
+    @user = User.new(user_params)
     if @user.save
       flash[:notice] = "ユーザー登録が完了しました"
       redirect_to user_path(@user.id)
