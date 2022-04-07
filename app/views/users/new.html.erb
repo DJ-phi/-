@@ -3,7 +3,7 @@
     <div class="form-heading">新規ユーザー登録</div>
     <div class="form users-form">
       <div class="form-body">
-        <%= render "layouts/error_message" %>
+        <%= render "layouts/error_message", user: @user %>
         <%= render "form", user: @user %>
       </div>
     </div>
