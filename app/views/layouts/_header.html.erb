@@ -1,0 +1,27 @@
+<header>
+  <div class="header-logo">
+    <h1>(▽◕ ᴥ ◕▽)○柴～。ねえ、知ってる？家計簿アプリ</h1>
+  </div>
+  <ul class="header-menus">
+  <% # TODO: 後ほどつける予定 %>
+  <% if false %>
+    <li>
+      <%= link_to "家計簿アプリとは", about_path %>
+    </li>
+    <li>
+      <%= link_to "一覧", posts_path %>
+    </li>
+  <% end %>
+    <li>
+      <%= link_to "新規作成", new_user_path %>
+    </li>
+    <li>
+      <%= link_to "ユーザー一覧", users_path %>
+    </li>
+  </ul>
+</header>
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
