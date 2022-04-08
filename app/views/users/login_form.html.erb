@@ -1,0 +1,21 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
+        <%= form_with model: @user do |f| %>
+          <%= f.label :email ,"メールアドレス" %><br>
+          <%= f.text_field :email %><br>
+          <%= f.label :password ,"パスワード" %><br>
+          <%= f.text_field :password %><br>
+          <%= f.submit "ログインする" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
