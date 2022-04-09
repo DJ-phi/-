@@ -59,14 +59,14 @@ class UsersController < ApplicationController
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       @email = params[:email]
-      render("users/login_form")
+      render :login_form
     end
   end
 
   def logout
     session[:user_id] = nil
     flash[:notice] = "ログアウトしました"
-    redirect_to("/login")
+    redirect_to login_path
   end
 
   private
