@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_user
+  before_action :authenticate_user, only: [:index, :show, :edit, :update]
+  before_action :forbid_login_user, only: [:new, :create, :login_form, :login]
 
   def index
     @users = User.all
@@ -77,9 +78,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password)
-  end
-
-  def set_current_user
-    @current_user = User.find_by(id: session[:user_id])
   end
 end
