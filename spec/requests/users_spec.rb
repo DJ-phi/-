@@ -3,30 +3,25 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
   let!(:new_post) { create(:post) }
-  
+  let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
+  let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
+
   before do
-    # get users_path 
+    # get users_path
     # get new_user_path
     # get users_path(user.id) 
     # @user = FactoryBot.create(:user)
-    # session_params = { session: { email: user.email, password: user.password } }
-      # post "/login", params: session_params
-      # binding.pry
   end
 
   describe "#index" do
 
     before do
-      # post "/login", params: session_params
-      # get users_path 
-      # binding.pry
+      login_params = { email: user.email, password: user.password }
+      post login_path, params: login_params
+      get users_path
     end
 
     it "ユーザーの名前が取得できていること" do
-      session_params = { session: { email: user.email, password: user.password } }
-        post "/login", params: session_params
-      get users_path 
-      binding.pry
       expect(response.body).to include user.name
     end
 
@@ -63,12 +58,20 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#create" do
-
+    context "有効なパラメーターの場合" do
+      it "データが作成されること" do
+        expect {
+          post users_path, params: { user: valid_attributes  } #paramsはフォームで送られている情報
+        }.to change(User, :count).by(1)
+      end
+    end
   end
 
   describe "#show" do
 
     before do
+      login_params = { email: user.email, password: user.password }
+      post login_path, params: login_params
       get users_path(user.id) 
     end
 
@@ -80,9 +83,9 @@ RSpec.describe "Users", type: :request do
       expect(response.body).to include user.email
     end
 
-    # it "パスワードが取得できていること" do
-    #   expect(response.body).to include user.password.to_s
-    # end
+    it "パスワードが取得できていること" do
+      expect(response.body).to include user.password.to_s
+    end
 
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
@@ -92,7 +95,9 @@ RSpec.describe "Users", type: :request do
   describe "#edit" do
 
     before do
-      get users_path(user.id) 
+      login_params = { email: user.email, password: user.password }
+      post login_path, params: login_params
+      get edit_user_path(user.id) 
     end
 
     it "名前が取得できていること" do
@@ -103,9 +108,9 @@ RSpec.describe "Users", type: :request do
     expect(response.body).to include user.email
   end
 
-    # it "パスワードが取得できていること" do
-    #   expect(response.body).to include user.password.to_s
-    # end
+    it "パスワードが取得できていること" do
+      expect(response.body).to include user.password.to_s
+    end
 
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
@@ -113,10 +118,43 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#update" do
+    context "有効なパラメーターの場合" do
 
-  end
+      before do
+        login_params = { email: user.email, password: user.password }
+        post login_path, params: login_params
+      end
+  
+        it "データが更新されること" do
+          patch user_url(user), params: { user: new_valid_attributes }
+          expect(user.reload.name).to eq new_valid_attributes[:name]
+        end
+
+        it "更新したデータのshowにリダイレクトされること" do
+          patch user_url(user), params: { user: new_valid_attributes }
+          user.reload
+          expect(response).to redirect_to(user_url(user))
+        end
+      end
+
+      context "無効なパラメーターの場合" do
+        it "レスポンスが422であること" do
+          patch user_url(user), params: { user: valid_attributes }
+          expect(response.status).to eq 302
+        end
+      end
+    end
 
   describe "#destroy" do
-    
+    it "データが削除されること" do
+      expect {
+        delete user_url(user)
+      }.to change(User, :count).by(-1)
+    end
+
+    it "indexにリダイレクトされること" do
+      delete user_url(user)
+      expect(response).to redirect_to(users_url)
+    end
   end
 end
