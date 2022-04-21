@@ -22,5 +22,11 @@ FactoryBot.define do
       password { 1234 }
       email { Faker::Internet.free_email }
     end
+
+    trait :for_update2 do
+      name { Faker::Name.initials(number: 2) }
+      password { 1 }
+      email { Faker::Internet.free_email }
+    end
   end
 end

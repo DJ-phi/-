@@ -22,6 +22,13 @@ RSpec.describe User, type: :model do
     expect(@user.valid?).to eq(false)
   end
 
+  it "emailが重複しているとNG" do
+    @user.save
+    @user2 = build(:user)
+    @user2.email = @user.email
+    expect(@user2.valid?).to eq(false)
+  end
+
   it "passwordが空だとNG" do
     @user.password = ""
     expect(@user.valid?).to eq(false)

@@ -5,16 +5,9 @@ RSpec.describe "Users", type: :request do
   let!(:new_post) { create(:post) }
   let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
-
-  before do
-    # get users_path
-    # get new_user_path
-    # get users_path(user.id) 
-    # @user = FactoryBot.create(:user)
-  end
+  let!(:unvalid_attributes) { attributes_for(:user, :for_update2) }
 
   describe "#index" do
-
     before do
       login_params = { email: user.email, password: user.password }
       post login_path, params: login_params
@@ -47,7 +40,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#new" do
-
     before do
       get new_user_path
     end
@@ -68,11 +60,10 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#show" do
-
     before do
       login_params = { email: user.email, password: user.password }
       post login_path, params: login_params
-      get users_path(user.id) 
+      get user_path(user.id) 
     end
 
     it "名前が取得できていること" do
@@ -93,7 +84,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#edit" do
-
     before do
       login_params = { email: user.email, password: user.password }
       post login_path, params: login_params
@@ -118,43 +108,42 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#update" do
+    before do
+      login_params = { email: user.email, password: user.password }
+      post login_path, params: login_params
+    end
+
     context "有効なパラメーターの場合" do
-
-      before do
-        login_params = { email: user.email, password: user.password }
-        post login_path, params: login_params
-      end
-  
-        it "データが更新されること" do
-          patch user_url(user), params: { user: new_valid_attributes }
-          expect(user.reload.name).to eq new_valid_attributes[:name]
-        end
-
-        it "更新したデータのshowにリダイレクトされること" do
-          patch user_url(user), params: { user: new_valid_attributes }
-          user.reload
-          expect(response).to redirect_to(user_url(user))
-        end
+      it "データが更新されること" do
+        patch user_path(user), params: { user: new_valid_attributes }
+        expect(user.reload.name).to eq new_valid_attributes[:name]
       end
 
-      context "無効なパラメーターの場合" do
-        it "レスポンスが422であること" do
-          patch user_url(user), params: { user: valid_attributes }
-          expect(response.status).to eq 302
-        end
+      it "更新したデータのshowにリダイレクトされること" do
+        patch user_path(user), params: { user: new_valid_attributes }
+        user.reload
+        expect(response).to redirect_to(user_path(user))
       end
     end
+
+    context "無効なパラメーターの場合" do
+      it "レスポンスが200であること" do
+        patch user_path(user), params: { user: unvalid_attributes }
+        expect(response.status).to eq 200
+      end
+    end
+  end
 
   describe "#destroy" do
     it "データが削除されること" do
       expect {
-        delete user_url(user)
+        delete user_path(user)
       }.to change(User, :count).by(-1)
     end
 
     it "indexにリダイレクトされること" do
-      delete user_url(user)
-      expect(response).to redirect_to(users_url)
+      delete user_path(user)
+      expect(response).to redirect_to(users_path)
     end
   end
 end
