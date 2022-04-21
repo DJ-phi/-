@@ -9,8 +9,7 @@ RSpec.describe "Users", type: :request do
 
   describe "#index" do
     before do
-      login_params = { email: user.email, password: user.password }
-      post login_path, params: login_params
+      login
       get users_path
     end
 
@@ -61,8 +60,7 @@ RSpec.describe "Users", type: :request do
 
   describe "#show" do
     before do
-      login_params = { email: user.email, password: user.password }
-      post login_path, params: login_params
+      login
       get user_path(user.id) 
     end
 
@@ -85,8 +83,7 @@ RSpec.describe "Users", type: :request do
 
   describe "#edit" do
     before do
-      login_params = { email: user.email, password: user.password }
-      post login_path, params: login_params
+      login
       get edit_user_path(user.id) 
     end
 
@@ -109,8 +106,7 @@ RSpec.describe "Users", type: :request do
 
   describe "#update" do
     before do
-      login_params = { email: user.email, password: user.password }
-      post login_path, params: login_params
+      login
     end
 
     context "有効なパラメーターの場合" do
