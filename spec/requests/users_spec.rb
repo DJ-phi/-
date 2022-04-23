@@ -159,12 +159,22 @@ RSpec.describe "Users", type: :request do
         get new_user_path
         expect(response).to_not have_http_status(:success)
       end
+
+      it "アクセス制限された場合一覧ページにリダイレクトされていること" do
+        get new_user_path
+        expect(response).to redirect_to(users_path)
+      end
     end
 
     context"ログインしていない場合" do
-      it "indexにいけないようになっていること" do
+      it "一覧ページにいけないようになっていること" do
         get users_path
         expect(response).to_not have_http_status(:success)
+      end
+
+      it "一覧ページにいくとログインページにリダイレクトされること" do
+        get users_path
+        expect(response).to redirect_to(login_path)
       end
     end
   end
