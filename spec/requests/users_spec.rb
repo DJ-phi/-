@@ -21,6 +21,12 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(:success)
     end
 
+    #ログインしているユーザーがアクセス制限できているかのテスト
+    it "ログイン状態でのアクセス制限ができている" do 
+      get root_path
+      expect(response).to_not have_http_status(:success)
+    end
+
     # it "食事代が取得されていること" do
     #   expect(response.body).to include post.food
     # end
@@ -140,6 +146,26 @@ RSpec.describe "Users", type: :request do
     it "indexにリダイレクトされること" do
       delete user_path(user)
       expect(response).to redirect_to(users_path)
+    end
+  end
+  
+  describe "アクセス制限" do
+    context "ログインしている場合" do
+      before do
+        login
+      end
+
+      it "新規作成ページにいけないようになっていること" do
+        get new_user_path
+        expect(response).to_not have_http_status(:success)
+      end
+    end
+
+    context"ログインしていない場合" do
+      it "indexにいけないようになっていること" do
+        get users_path
+        expect(response).to_not have_http_status(:success)
+      end
     end
   end
 end
