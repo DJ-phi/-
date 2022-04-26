@@ -5,7 +5,7 @@ RSpec.describe "Users", type: :request do
   let!(:new_post) { create(:post) }
   let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
-  let!(:unvalid_attributes) { attributes_for(:user, :for_update2) }
+  let!(:unvalid_attributes) { attributes_for(:user, :un_update) }
 
   describe "#index" do
     before do
@@ -100,10 +100,6 @@ RSpec.describe "Users", type: :request do
   it "emailが取得されていること" do
     expect(response.body).to include user.email
   end
-
-    it "パスワードが取得できていること" do
-      expect(response.body).to include user.password.to_s
-    end
 
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
