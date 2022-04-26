@@ -3,6 +3,7 @@
     <div class="user">
       <h2><%= @user.name %></h2>
       <p><%= @user.email %></p>
+      <% # TODO: 完成後に削除 %>
       <p><%= @user.password%></p>
       <%= link_to "編集", edit_user_path %>
       <%= link_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？?" } %>
