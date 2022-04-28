@@ -1,0 +1,30 @@
+<h3>ユーザー情報一覧</h3>
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>食費</th>
+      <th>交通費</th>
+      <th>使った日</th>
+      <th>合計額</th>
+      <th>確認</th>
+      <th>編集</th>
+      <th>消去</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.food %></td>
+        <td><%= post.traffic %></td>
+        <td><%= post.use_day.to_s(:datetime_jp) %></td>
+        <td><%= post.count_price %></td>
+        <td><%= link_to "確認", post %> </td>
+        <td><%= link_to "編集", [:edit, post] %></td>
+        <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "スケジュール新規登録", new_post_path %>

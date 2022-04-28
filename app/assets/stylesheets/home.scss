@@ -56,17 +56,26 @@ body {
 }
 
 /* ヘッダー ================================ */
-header {
-  height: 65px;
+header, footer {
   width: 100%;
   background-color: rgba(34, 49, 52, 0.9);
 }
 
+header {
+  height: 65px;
+}
+
 footer  {
-  background-color: rgba(34, 49, 52, 0.9);
+  position: absolute;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+  text-align: center;
 }
 
 footer h1 {
+  color: #f5f8fa;
+}
+
+footer h3 {
   color: #f5f8fa;
 }
 
