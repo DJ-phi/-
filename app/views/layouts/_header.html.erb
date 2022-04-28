@@ -3,25 +3,30 @@
     <h1>(▽◕ ᴥ ◕▽)○柴～。ねえ、知ってる？家計簿アプリ</h1>
   </div>
   <ul class="header-menus">
-  <% # TODO: 後ほどつける予定 %>
-  <% if false %>
-    <li>
-      <%= link_to "家計簿アプリとは", about_path %>
-    </li>
-    <li>
-      <%= link_to "一覧", posts_path %>
-    </li>
-  <% end %>
-    <li>
-      <%= link_to "新規作成", new_user_path %>
-    </li>
-    <li>
-      <%= link_to "ユーザー一覧", users_path %>
-    </li>
+    <% if @current_user %>
+    <% # TODO :後ほど削除 %>
+      <li>
+        <%= link_to "ユーザー一覧", users_path %>
+      </li>
+      <li>
+        <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+      </li>
+      <li>
+        <%= link_to("ログアウト", "/logout", {method: "post"})%>
+      </li>
+      <% # TODO: 後ほどつける予定 %>
+      <% if false %>
+        <li>
+          <%= link_to "一覧", posts_path %>
+        </li>
+      <% end %>
+    <% else %>
+      <li>
+        <%= link_to "新規作成", new_user_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", login_path %>
+      </li>
+    <% end %>
   </ul>
 </header>
-<% if flash[:notice] %>
-  <div class="flash">
-    <%= flash[:notice] %>
-  </div>
-<% end %>

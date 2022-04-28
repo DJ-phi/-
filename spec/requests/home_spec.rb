@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Homes", type: :request do
 
   before do
-    get "/home/top"
+    get root_path
   end
 
   describe "GET /top" do
