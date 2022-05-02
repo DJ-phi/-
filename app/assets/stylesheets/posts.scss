@@ -1,9 +1,15 @@
-* {
-  margin: 0px;
-  padding: 0px;
+// index,show
+
+  table {
+  margin: auto;
+  padding-top: 60px;
+  }
+
+.show_h3 {
+  padding-top: 40px;
+  text-align: center;
 }
 
-// index
 table th {
   background-color: lightskyblue;
   padding: 10px 20px;
@@ -82,4 +88,23 @@ input {
   border: none;
   padding: 10px;
   letter-spacing: 2px;
+}
+
+// ボタン
+.btn {
+  padding: 8px 24px;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 4px;
+  background-color: #3b5998;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.post_btn {
+  padding-top: 20px;
+  text-align: center;
 }

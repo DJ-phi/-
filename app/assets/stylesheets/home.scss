@@ -66,8 +66,10 @@ header {
 }
 
 footer  {
-  position: absolute;/*←絶対位置*/
-  bottom: 0; /*下に固定*/
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9);
   text-align: center;
 }
 
