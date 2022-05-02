@@ -26,7 +26,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -41,7 +40,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:notice] = "削除しました"
-    redirect_to postss_path
+    redirect_to posts_path
   end
 
   private
