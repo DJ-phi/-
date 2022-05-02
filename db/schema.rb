@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_125030) do
+ActiveRecord::Schema.define(version: 2022_05_02_162626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
-    t.integer "traffic"
-    t.integer "food"
-    t.datetime "use_day"
-    t.integer "count_price"
+    t.integer "traffic", default: 0
+    t.integer "food", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
