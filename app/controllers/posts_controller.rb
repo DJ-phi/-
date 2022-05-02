@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy] #findをメソッド化している
   # before_action :authenticate_user 後ほど解放
 
   def index
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.all
+    
   end
 
   def edit
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "更新しました"
-      redirect_to post_path(@post.id)
+      redirect_to posts_path
     else
       render :edit
     end
