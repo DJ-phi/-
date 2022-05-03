@@ -4,15 +4,20 @@ class PostsController < ApplicationController
   # before_action :authenticate_user 後ほど解放
 
   def index
+    console
     @posts = Post.all
   end
 
   def new
+    console
     @post = Post.new
   end
 
   def create
+    #複雑だったから解説入れ, Post.newで受け皿ができて
+    #post_paramsで送られた情報を格納されて@post.user_id = @current_user.idでnillを上書きしてセーブしている
     @post = Post.new(post_params)
+    @post.user_id = @current_user.id
     if @post.save
       flash[:notice] = "投稿できました"
       redirect_to post_path(@post.id)
