@@ -26,24 +26,9 @@
           <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>
       <% end %>
-      <% # TODO: どっちが適正か分からないのでとりあえず保留 %>
-      <% if false %>
-      <tbody>
-        <tr>
-          <td><%= @post.title %></td>
-          <td><%= @post.food %></td>
-          <td><%= @post.traffic %></td>
-          <td><%= @post.updated_at.to_s(:datetime_jp) %></td>
-          <td><%= @post.total_price %></td>
-          <td><%= link_to "参照", post %></td>
-          <td><%= link_to "編集", [:edit, post] %></td>
-          <td><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？?" } %></td>
-        </tr>
       </tbody>
-      <% end %>
-    </tbody>
-  </table>
+    </table>
   <div class="post_btn">
-  <%= link_to "新規登録", new_post_path, class: "btn" %>
+    <%= link_to "新規登録", new_post_path, class: "btn" %>
   </div>
 </div>
