@@ -23,6 +23,9 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#new" do
+    before do
+      get new_user_path
+    end
 
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)

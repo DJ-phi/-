@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy] #findをメソッド化している
-  # before_action :authenticate_user 後ほど解放
+  before_action :set_post, only: [ :show, :edit, :update, :destroy ] #findをメソッド化している
+  before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
   def index
     console
@@ -54,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :food, :traffic)
+    params.require(:post).permit(:title, :food, :traffic, :user_id)
   end
 end
