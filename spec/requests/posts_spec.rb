@@ -129,8 +129,6 @@ RSpec.describe "Posts", type: :request do
         expect(response).to_not have_http_status(:success)
       end
 
-
-
       it "制限のかかっているページににいくとログインページにリダイレクトされること" do
         get new_post_path
         expect(response).to redirect_to(login_path)
