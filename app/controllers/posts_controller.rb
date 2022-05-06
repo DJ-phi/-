@@ -16,11 +16,12 @@ class PostsController < ApplicationController
   def create
     #複雑だったから解説入れ, Post.newで受け皿ができて
     #post_paramsで送られた情報を格納されて@post.user_id = @current_user.idでnillを上書きしてセーブしている
+    #post.user_id = @current_user.idドライ化してset_post_user_idメソッドに変更
     @post = Post.new(post_params)
-    @post.user_id = @current_user.id
+    set_post_user_id
     if @post.save
       flash[:notice] = "投稿できました"
-      redirect_to post_path(@post.id)
+      redirect_to user_path(@post.user_id)
     else
       render :new
     end
@@ -35,16 +36,17 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "更新しました"
-      redirect_to posts_path
+      redirect_to user_path(@post.user_id)
     else
       render :edit
     end
   end
 
   def destroy
+    set_post_user_id
     @post.destroy
     flash[:notice] = "削除しました"
-    redirect_to posts_path
+    redirect_to user_path(@post.user_id)
   end
 
   private
@@ -55,5 +57,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :food, :traffic, :user_id)
+  end
+
+  private
+  
+  def set_post_user_id
+    @post.user_id = @current_user.id
   end
 end
