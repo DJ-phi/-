@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
       id { 1 }
-      name { Faker::Name.unique.initials(number: 2) }
+      name { Faker::Name.initials(number: 2) }
       # traffic { 1 }
       # food { 1 }
       # use_day { "2022-03-28 19:21:58" }

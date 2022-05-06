@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    console
+    # console
     @post = Post.new
   end
 
