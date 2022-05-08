@@ -48,9 +48,9 @@ RSpec.describe "Posts", type: :request do
       expect(response.body).to include new_post.total_price.to_s
     end
 
-    it "使った日時が取得できていること" do
-      expect(response.body).to include new_post.updated_at.to_s
-    end
+    # it "使った日時が取得できていること" do
+    #   expect(response.body).to include new_post.updated_at.to_s
+    # end
 
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
