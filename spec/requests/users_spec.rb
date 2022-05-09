@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
-  # let!(:new_post) { create(:post) }
+  let!(:new_post) { create(:post) }
   let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
   let!(:unvalid_attributes) { attributes_for(:user, :un_update) }
@@ -58,6 +58,22 @@ RSpec.describe "Users", type: :request do
 
     it "パスワードが取得できていること" do
       expect(response.body).to include user.password.to_s
+    end
+
+    it "食事代が取得されていること" do
+      expect(response.body).to include new_post.food.to_s
+    end
+
+    it "交通費が取得されていること" do
+      expect(response.body).to include new_post.traffic.to_s
+    end
+
+    it "合計金額が取得されていること" do
+      expect(response.body).to include new_post.total_price.to_s
+    end
+
+    it "使った日時が取得できていること" do
+      expect(response.body).to include new_post.created_at.strftime('%Y/%m/%d')
     end
 
     it "レスポンスステータスコードが200であること" do
