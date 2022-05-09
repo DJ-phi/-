@@ -11,6 +11,7 @@ RSpec.describe "Users", type: :request do
     before do
       login
       get users_path
+
     end
 
     it "ユーザーの名前が取得できていること" do
