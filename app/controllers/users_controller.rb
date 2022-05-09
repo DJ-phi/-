@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     # @posts = Post.where(user_id: @current_user.id) #whereを使う場合カラム：
     #アソシエーションをしていた場合
     @posts = @current_user.posts
+    console
   end
 
   def edit
