@@ -17,7 +17,7 @@
         <td><%= @post.title %></td>
         <td><%= @post.food %></td>
         <td><%= @post.traffic %></td>
-        <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= @post.created_at.to_s(:datetime_jp) %></td>
         <td><%= @post.total_price %></td>
         <td><%= link_to "編集", edit_post_path %></td>
         <td><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？?" } %></td>

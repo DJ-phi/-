@@ -73,7 +73,7 @@ RSpec.describe "Users", type: :request do
     end
 
     it "使った日時が取得できていること" do
-      expect(response.body).to include new_post.created_at.strftime('%Y/%m/%d')
+      expect(response.body).to include new_post.created_at.to_s(:datetime_jp)
     end
 
     it "レスポンスステータスコードが200であること" do
