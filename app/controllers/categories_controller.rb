@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [ :show, :edit, :update, :destroy ] #findをメソッド化している
+  before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
   def index
   @categories = Category.all
-  console
   end
 
   def new
@@ -31,6 +31,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    set_category_user_id
     if @category.update(category_params)
       flash[:notice] = "更新しました"
       redirect_to user_path(@category.user_id)

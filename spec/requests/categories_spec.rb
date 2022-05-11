@@ -3,21 +3,24 @@ require 'rails_helper'
 RSpec.describe "Categories", type: :request do
   let!(:user) { create(:user) }
   let!(:category) { create(:category) }
+  let!(:category_create) { attributes_for(:category) }
 
   describe "#index" do
+    before do
+      login
+      get categories_path
+    end
 
     it"nameが表示されている" do
       expect(response.body).to include category.name
-      expect(response.body).to include user.name
     end
 
     it "レスポンスステータスコードが正常である" do
-      get "/categories/index"
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /new" do
+  describe "#new" do
     before do
       login
       get new_category_path
@@ -36,16 +39,16 @@ RSpec.describe "Categories", type: :request do
     context "有効なパラメーターの場合" do
       it "データが作成されること" do
         expect {
-          post categries_path, params: { post: category  } #paramsはフォームで送られている情報
+          post categories_path, params: { category: category_create } #paramsはフォームで送られている情報
         }.to change(Category, :count).by(1)
       end
     end
   end
 
-  describe "GET /show" do
+  describe "#show" do
     before do
       login
-      get category_path(new_category.id)
+      get category_path(category.id)
     end
 
     it "nameが表示されている" do
@@ -57,7 +60,7 @@ RSpec.describe "Categories", type: :request do
     end
   end
 
-  describe "GET /edit" do
+  describe "#edit" do
     before do
       login
       get edit_category_path(category.id)
@@ -79,14 +82,14 @@ RSpec.describe "Categories", type: :request do
 
     context "有効なパラメーターの場合" do
       it "データが更新されること" do
-        patch category_path(category), params: { post: category }
+        patch category_path(category), params: { category: category_create }
         expect(category.reload.name).to eq category[:name]
       end
 
       it "更新したデータのshowにリダイレクトされること" do
-        patch post_path(category), params: { post: category }
+        patch category_path(category), params: {category: category_create }
         category.reload
-        # expect(response).to redirect_to(user_path(user.id))
+        expect(response).to redirect_to(user_path(user.id))
       end
     end
   end
@@ -98,14 +101,14 @@ RSpec.describe "Categories", type: :request do
 
     it "データが削除されること" do
       expect {
-        delete post_path(category)
+        delete category_path(category)
       }.to change(Category, :count).by(-1)
     end
 
-    # it "userのshowにリダイレクトされること" do
-    #   delete post_path(category)
-    #   expect(response).to redirect_to(user_path(user.id))
-    # end
+    it "userのshowにリダイレクトされること" do
+      delete category_path(category)
+      expect(response).to redirect_to(user_path(user.id))
+    end
   end
 
   describe "アクセス制限" do 
