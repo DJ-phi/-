@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "login" => "users#login"
   post "logout" => "users#logout"
 
+  resources:categories
   resources:users
   resources:posts
 end
