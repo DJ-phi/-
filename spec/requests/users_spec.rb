@@ -39,6 +39,18 @@ RSpec.describe "Users", type: :request do
           post users_path, params: { user: valid_attributes  } #paramsはフォームで送られている情報
         }.to change(User, :count).by(1)
       end
+
+      it "データが作成されるとshowにリダイレクトされること" do
+          post users_path, params: { user: valid_attributes  } #paramsはフォームで送られている情報
+          expect(response).to redirect_to(user_path(user.id))
+      end
+    end
+
+    context "無効なパラメーターの場合" do
+      it "レスポンスが200であること" do
+        patch user_path(user), params: { user: unvalid_attributes }
+        expect(response.status).to eq 200
+      end
     end
   end
 
@@ -145,23 +157,13 @@ RSpec.describe "Users", type: :request do
         login
       end
 
-      it "新規作成ページにいけないようになっていること" do
-        get new_user_path
-        expect(response).to_not have_http_status(:success)
-      end
-
       it "アクセス制限された場合一覧ページにリダイレクトされていること" do
         get new_user_path
-        expect(response).to redirect_to(users_path)
+          expect(response).to redirect_to(users_path)
       end
     end
 
     context"ログインしていない場合" do
-      it "一覧ページにいけないようになっていること" do
-        get users_path
-        expect(response).to_not have_http_status(:success)
-      end
-
       it "一覧ページにいくとログインページにリダイレクトされること" do
         get users_path
         expect(response).to redirect_to(login_path)

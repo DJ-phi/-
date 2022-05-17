@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
-  belongs_to :user, optional: true #リレーション, userは1の関係性, optional: trueとはbelongs_toの外部キーのnilを許可するというもの
+  belongs_to :user #リレーション, userは1の関係性
 
-  validates :traffic, :food, format: { with: /\A[0-9]+\z/ }
+  validates :price, numericality: { only_integer: true }
 
-  def total_price
-    traffic + food
-  end
+  #TODO:仕様が変わったのでとりあえずコメントアウト
+  # def total_price
+  #   traffic + food
+  # end
 end

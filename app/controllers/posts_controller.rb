@@ -43,7 +43,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    set_post_user_id
     @post.destroy
     flash[:notice] = "削除しました"
     redirect_to user_path(@post.user_id)
@@ -56,7 +55,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :food, :traffic, :user_id)
+    params.require(:post).permit(:title, :food, :traffic)
   end
 
   private
