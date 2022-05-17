@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :user_id, :post_id)
+    params.require(:category).permit(:name, :post_id)
   end
 
   def set_category

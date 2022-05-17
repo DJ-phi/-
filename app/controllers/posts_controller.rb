@@ -6,11 +6,13 @@ class PostsController < ApplicationController
   def index
     console
     @posts = Post.all
+    
   end
 
   def new
     # console
     @post = Post.new
+    @categories = @current_user.categories
   end
 
   def create
@@ -31,6 +33,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @categories = @current_user.categories
   end
 
   def update
@@ -49,6 +52,12 @@ class PostsController < ApplicationController
     redirect_to user_path(@post.user_id)
   end
 
+  def new_category 
+    @category = Category.new(params.require(:category).permit(:name, :user_id, :post_id))
+    @category.user_id = @current_user.id
+    @category.save
+  end
+
   private
 
   def set_post
@@ -56,10 +65,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :food, :traffic, :user_id)
+    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day)
   end
-
-  private
   
   def set_post_user_id
     @post.user_id = @current_user.id

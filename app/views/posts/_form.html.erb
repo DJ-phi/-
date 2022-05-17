@@ -1,9 +1,14 @@
 <%= form_with model: post do |f| %>
-  <%= f.label :title ,"タイトル" %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :food ,"¥食事代" %><br>
-  <%= f.text_field :food %><br>
-  <%= f.label :traffic ,"¥交通費" %><br>
-  <%= f.text_field :traffic %><br>
+<%= link_to "新規カテゴリ", {controller: 'posts', action: 'new_category'}, {remote: true, params: {key: "value"}, id: "new_category_btn"} %>
+  <% @categories.each do |category| %>
+    <%= f.radio_button :category_id, category.id %><br>
+    <%= f.label :category_id, category.name %><br>
+  <% end %>
+  <%= f.label :use_day, "使った日" %><br>
+  <%= f.date_field :use_day  %><br>
+  <%= f.label :memo ,"メモ" %><br>
+  <%= f.text_field :memo %><br>
+  <%= f.label :price ,"¥価格" %><br>
+  <%= f.text_field :price %><br>
   <%= f.submit "登録" %>
 <% end %>
