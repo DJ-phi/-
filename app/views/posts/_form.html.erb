@@ -1,5 +1,7 @@
 <%= form_with model: post do |f| %>
-<%= link_to "新規カテゴリ", {controller: 'posts', action: 'new_category'}, {remote: true, params: {key: "value"}, id: "new_category_btn"} %>
+  <%= f.text_field :category_name %>
+  <%# paramsの後の記述はストロングパラメータに登録したい時のハッシュ %>
+  <%= link_to "カテゴリ追加ボタン", controller: 'posts', action: 'new_category', remote: true, params: {category:{name: :category_name}} %><br>
   <% @categories.each do |category| %>
     <%= f.radio_button :category_id, category.id %><br>
     <%= f.label :category_id, category.name %><br>
