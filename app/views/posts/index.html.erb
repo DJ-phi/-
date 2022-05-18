@@ -1,3 +1,43 @@
+<h3 class="post_h3">投稿一覧</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>メモ</th>
+        <th>使った日</th>
+        <th>価格</th>
+        <th>カテゴリー</th>
+        <th>編集</th>
+        <th>消去</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.memo %></td>
+          <td><%= post.use_day.to_s(:datetime_jp) %></td>
+          <td><%= post.price %></td>
+          <td></td>
+          <% if false %>
+          <td><%= post.category.name %></td>
+          <% end %>
+          <td><%= link_to "編集", [:edit, post] %></td>
+          <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="post_btn">
+    <%= link_to "新規投稿", new_post_path, class: "btn" %>
+    <% # TODO: 飛べるためにとりあえず追加 %>
+    <%= link_to "カテゴリー", new_category_path, class: "btn" %>
+    <%= link_to "マイ投稿一覧", "/posts/#{@current_user.id}", class: "btn" %>
+  </div>
+</div>
+
+
+
+
+<% # TODO : 参考にするため,とりあえず残し %>
 <%if false%>
 <div class="post_body">
   <h3 class="post_h3">投稿一覧</h3>

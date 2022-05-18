@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [ :show, :edit, :update, :destroy ] #findをメソッド化している
+  before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
   def index
@@ -23,13 +23,15 @@ class PostsController < ApplicationController
     set_post_user_id
     if @post.save
       flash[:notice] = "投稿できました"
-      redirect_to user_path(@post.user_id)
+      redirect_to post_path(@post.user_id)
     else
       render :new
     end
   end
 
   def show
+    @posts = @current_user.posts
+    console
   end
 
   def edit
@@ -39,7 +41,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "更新しました"
-      redirect_to user_path(@post.user_id)
+      redirect_to post_path(@post.user_id)
     else
       render :edit
     end
@@ -49,7 +51,7 @@ class PostsController < ApplicationController
     set_post_user_id
     @post.destroy
     flash[:notice] = "削除しました"
-    redirect_to user_path(@post.user_id)
+    redirect_to posts_path
   end
 
   def new_category

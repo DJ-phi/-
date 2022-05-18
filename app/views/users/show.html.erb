@@ -26,7 +26,10 @@
                 <td><%= post.memo %></td>
                 <td><%= post.use_day.to_s(:datetime_jp) %></td>
                 <td><%= post.price %></td>
+                <td></td>
+                <% if false %>
                 <td><%= post.category.name %></td>
+                <% end %>
                 <td><%= link_to "編集", [:edit, post] %></td>
                 <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
               </tr>
