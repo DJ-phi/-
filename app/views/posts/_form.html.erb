@@ -1,16 +1,39 @@
-<%= form_with model: post do |f| %>
-  <%= f.text_field :category_name %>
-  <%# paramsの後の記述はストロングパラメータに登録したい時のハッシュ %>
-  <%= link_to "カテゴリ追加ボタン", controller: 'posts', action: 'new_category', remote: true, params: {category:{name: :category_name}} %><br>
-  <% @categories.each do |category| %>
-    <%= f.radio_button :category_id, category.id %><br>
-    <%= f.label :category_id, category.name %><br>
+<div id="post_<%= post.id %>">
+  <%= form_with model: post do |f| %>
+    <%= f.text_field :category_name, class: 'text_box' %>
+    <p id="output1"></p>
+    <%# paramsの後の記述はストロングパラメータに登録したい時のハッシュ %>
+    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true, params: {category:{name: :category_name}}}, { id: "link" } %><br>
+    <% #TODO %>
+    <% @categories.each do |category| %>
+      <%= f.radio_button :category_id, category.id %><br>
+      <%= f.label :category_id, category.name %><br>
+    <% end %>
+    <%= f.label :use_day, "使った日" %><br>
+    <%= f.date_field :use_day  %><br>
+    <%= f.label :memo ,"メモ" %><br>
+    <%= f.text_field :memo %><br>
+    <%= f.label :price ,"¥価格" %><br>
+    <%= f.text_field :price %><br>
+    <%= f.submit "登録" %>
   <% end %>
-  <%= f.label :use_day, "使った日" %><br>
-  <%= f.date_field :use_day  %><br>
-  <%= f.label :memo ,"メモ" %><br>
-  <%= f.text_field :memo %><br>
-  <%= f.label :price ,"¥価格" %><br>
-  <%= f.text_field :price %><br>
-  <%= f.submit "登録" %>
-<% end %>
+  <script type="text/javascript">
+    const text_box = document.querySelector(".text_box");
+    const output1 = document.getElementById('output1');
+    //a要素を取得する
+    let link = document.getElementById("link");
+    //a要素のhref属性の値を取得する
+    let oldHref = link.getAttribute('href');
+    //replaceでhref属性の一部,今回だと（category_name）を新しい値（text_box）に置き換える
+    let newHref = oldHref.replace('category_name', text_box);
+    //置き換えた値をa要素のhref属性に設定する
+    link.setAttribute('href', newHref); 
+    // addEventListenerで#text_boxにイベントを付与, inputのイベントが発生したら動かしたい関数handleInputが動く
+    text_box.addEventListener('input', handleInput); 
+    function handleInput(event) {
+      console.log(event.target.value);
+      // console.log("動いた");
+    output1.textContent = event.target.value;
+}
+  </script>
+</div>

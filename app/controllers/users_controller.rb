@@ -29,12 +29,11 @@ class UsersController < ApplicationController
     # @posts = Post.where(user_id: @current_user.id) #whereを使う場合カラム：
     #アソシエーションをしていた場合
     @posts = @current_user.posts
-    # @categories = @current_user.categories
     
 
     # @users = @category.users 
     @categories = @user.categories 
-    
+    # @categories = @current_user.categories
     @users = User.joins(:categories)
     # @categories = Category.where(user_id: @current_user.id)
     console

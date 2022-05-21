@@ -24,7 +24,7 @@
             <% @posts.each do |post| %>
               <tr>
                 <td><%= post.memo %></td>
-                <td><%= post.use_day.to_s(:datetime_jp) %></td>
+                <td><%= post.use_day %></td>
                 <td><%= post.price %></td>
                 <td></td>
                 <% if false %>
