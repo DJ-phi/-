@@ -2,6 +2,7 @@
   <table>
     <thead>
       <tr>
+        <th>画像</th>
         <th>メモ</th>
         <th>使った日</th>
         <th>価格</th>
@@ -13,6 +14,9 @@
     <tbody>
       <% @posts.each do |post| %>
         <tr>
+          <% if post.image.attached? %>
+            <td><%= image_tag post.image %></td>
+          <% end %>
           <td><%= post.memo %></td>
           <td><%= post.use_day %></td>
           <td><%= post.price %></td>

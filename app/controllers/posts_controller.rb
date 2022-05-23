@@ -59,6 +59,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.image.purge #画像消去できるための記述
     @post.destroy
     flash[:notice] = "削除しました"
     redirect_to posts_path
@@ -80,7 +81,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day)
+    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day, :image)
   end
   
   def set_post_user_id

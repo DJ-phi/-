@@ -31,7 +31,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    set_category_user_id
     if @category.update(category_params)
       flash[:notice] = "更新しました"
       redirect_to user_path(@category.user_id)
@@ -41,10 +40,9 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    set_category_user_id
     @category.destroy
     flash[:notice] = "削除しました"
-    redirect_to user_path(@category.user_id)
+    redirect_to categories_path
   end
 
   private
