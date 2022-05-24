@@ -1,37 +1,31 @@
-<div id="post_<%= post.id %>">
-  <%= form_with model: post do |f| %>
-    <%= f.text_field :category_name, id: 'text_box' %>
-    <%# paramsの後の記述はストロングパラメータに登録したい時のハッシュ %>
-    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true, params: {category:{name: :category_name}}}, { id: "link" } %><br>
-    <% #TODO %>
-    <% @categories.each do |category| %>
-      <%= f.radio_button :category_id, category.id %><br>
-      <%= f.label :category_id, category.name %><br>
-    <% end %>
-    <%= f.label :image, "画像" %><br>
-    <%= f.file_field :image %><br>
-    <%= f.label :use_day, "使った日" %><br>
-    <%= f.date_field :use_day  %><br>
-    <%= f.label :memo ,"メモ" %><br>
-    <%= f.text_field :memo %><br>
-    <%= f.label :price ,"¥価格" %><br>
-    <%= f.text_field :price %><br>
-    <%= f.submit "登録" %>
-  <% end %>
-  <script type="text/javascript">
-    const text_box = document.getElementById("text_box");
-    //a要素を取得する
-    let link = document.getElementById("link");
-    //この記述でhrefのurl生成
-    let href_html = "<%= posts_new_category_path %>?category%5Bname%5D="
-    // addEventListenerで#text_boxにイベントを付与, inputのイベントが発生したら動かしたい関数handleInputが動く
-    text_box.addEventListener('input', handleInput); 
+<%= form_with model: post do |f| %>
+  <%= f.text_field :category_name, id: 'text_box' %>
+  <%# paramsの後の記述はストロングパラメータに登録したい時のハッシュ %>
+  <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true, params: {category:{name: :category_name}}}, { id: "link" } %><br>
+  <%= render "ajax", category: @categories, f: f %><%#変数名,key,探してくれる: 渡したい値%>
+  <%= f.label :image, "画像" %><br>
+  <%= f.file_field :image %><br>
+  <%= f.label :use_day, "使った日" %><br>
+  <%= f.date_field :use_day  %><br>
+  <%= f.label :memo ,"メモ" %><br>
+  <%= f.text_field :memo %><br>
+  <%= f.label :price ,"¥価格" %><br>
+  <%= f.text_field :price %><br>
+  <%= f.submit "登録" %>
+<% end %>
+<script type="text/javascript">
+  const text_box = document.getElementById("text_box");
+  //a要素を取得する
+  let link = document.getElementById("link");
+  //この記述でhrefのurl生成
+  let href_html = "<%= posts_new_category_path %>?category%5Bname%5D="
+  // addEventListenerで#text_boxにイベントを付与, inputのイベントが発生したら動かしたい関数handleInputが動く
+  text_box.addEventListener('input', handleInput); 
 
-    //handleInput(event)引数に値が取得できるようになっている これはjsの仕様
-    //targetはhtmlのイベントが発生した時に値を取得
-    function handleInput(event) {
-      //link.setAttributeでセーブしていて, 今回pathを保存したいけど消されてしまうため変数で作ってあげて+で結合
-      link.setAttribute('href',  href_html + event.target.value);
-    }
-  </script>
-</div>
+  //handleInput(event)引数に値が取得できるようになっている これはjsの仕様
+  //targetはhtmlのイベントが発生した時に値を取得
+  function handleInput(event) {
+    //link.setAttributeでセーブしていて, 今回pathを保存したいけど消されてしまうため変数で作ってあげて+で結合
+    link.setAttribute('href',  href_html + event.target.value);
+  }
+</script>

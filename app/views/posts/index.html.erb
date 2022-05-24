@@ -7,6 +7,7 @@
         <th>使った日</th>
         <th>価格</th>
         <th>カテゴリー</th>
+        <th>参照</th>
         <th>編集</th>
         <th>消去</th>
       </tr>
@@ -15,15 +16,16 @@
       <% @posts.each do |post| %>
         <tr>
           <% if post.image.attached? %>
-            <td><%= image_tag post.image %></td>
+            <td><%= image_tag post.image, class: "post_image" %></td>
           <% end %>
           <td><%= post.memo %></td>
           <td><%= post.use_day %></td>
           <td><%= post.price %></td>
-          <td></td>
+          <%#TODO:後ほど解除  %>
           <% if false %>
           <td><%= post.category.name %></td>
           <% end %>
+          <td><%= link_to "参照", post %></td>
           <td><%= link_to "編集", [:edit, post] %></td>
           <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>

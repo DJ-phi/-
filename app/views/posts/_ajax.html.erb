@@ -1,0 +1,6 @@
+<div id="ajax">
+  <% @current_user.categories.each do |category| %>
+    <%= f.radio_button :category_id, category.id %><br>
+    <%= f.label :category_id, category.name %><br>
+  <% end %>
+</div>

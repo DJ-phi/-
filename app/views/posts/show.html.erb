@@ -3,6 +3,7 @@
   <table>
     <thead>
       <tr>
+        <th>画像</th>
         <th>メモ</th>
         <th>使った日</th>
         <th>価格</th>
@@ -14,13 +15,13 @@
     <tbody>
       <% @posts.each do |post| %>
         <tr>
+          <% if post.image.attached? %>
+            <td><%= image_tag post.image, class: "post_image" %></td>
+          <% end %>
           <td><%= post.memo %></td>
           <td><%= post.use_day %></td>
           <td><%= post.price %></td>
-          <td></td>
-          <% if false %>
           <td><%= post.category.name %></td>
-          <% end %>
           <td><%= link_to "編集", [:edit, post] %></td>
           <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>

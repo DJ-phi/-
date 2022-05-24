@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   def index
     console
     @posts = Post.all
-    
+    # @categories = @post.categories
+    @categories = @current_user.categories
   end
 
   def new
@@ -31,17 +32,7 @@ class PostsController < ApplicationController
 
   def show
     @posts = @current_user.posts
-
-    #TODO: この下からは試行錯誤中
-
-    #この記述でviewに@postを使うとshowに行けるようになっている
-    # @post = @current_user.id
-    
-    # @users = @category.users 
-    # @categories = @post.categories 
     @categories = @current_user.categories
-    # @categories = Category.joins(:posts)
-    # @categories = Category.where(user_id: @current_user.id)
     console
   end
 
@@ -66,9 +57,9 @@ class PostsController < ApplicationController
   end
 
   def new_category
-    
     #Category.newは受け皿, paramsはフォームで送った文を取得, ストロングパラメータは許可したいカラムのみ
     #今回だとuser_idはログインしてるidで登録したいので弾く
+    @f = 
     @category = Category.new(params.require(:category).permit(:name))
     @category.user_id = @current_user.id
     @category.save
