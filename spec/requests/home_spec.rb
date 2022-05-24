@@ -10,5 +10,9 @@ RSpec.describe "Homes", type: :request do
     it "ステータスコードが200になること" do
       expect(response).to have_http_status(:success)
     end
+
+    it "ログイン済の場合、家計簿にリダイレクトすること" do
+
+    end
   end
 end

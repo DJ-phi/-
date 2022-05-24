@@ -6,5 +6,5 @@ class Post < ApplicationRecord
   #仕様変更したから後ほど解除
   # def total_price
   #   traffic + food + category_price
-  # end
+  validates :price, numericality: { only_integer: true }
 end

@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [ :show, :edit, :update, :destroy ] #@user = User.find(params[:id])をメソッド化している
   before_action :authenticate_user, only: [ :index, :show, :edit, :update ] #ログイン状態じゃないと見れないページ
   before_action :forbid_login_user, only: [ :new, :create, :login_form, :login ] #ログイン状態のページ制限
-  # before_action :ensure_correct_user, only: [:edit, :update] #動作確認がしたいので後ほど解放
+  #TODO:動作確認がしたいので後ほど解放
+  # before_action :ensure_correct_user, only: [:edit, :update] 
 
   def index
     @users = User.all
@@ -93,6 +94,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password)
   end
 
+  #TODO:動作確認がしたいので後ほど解放
   # 動作確認するので後ほど解放
   # def ensure_correct_user
   #   if @current_user.id != params[:id].to_i

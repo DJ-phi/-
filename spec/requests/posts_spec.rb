@@ -27,6 +27,15 @@ RSpec.describe "Posts", type: :request do
           post posts_path, params: { post: post_create  } #paramsはフォームで送られている情報
         }.to change(Post, :count).by(1)
       end
+
+      it "データが作成されるとuser/showにリダイレクトすること" do
+
+      end
+    end
+
+    context "無効なパラメーターの場合" do
+      it "レスポンスが200であること" do
+      end
     end
   end
 
@@ -93,6 +102,11 @@ RSpec.describe "Posts", type: :request do
         expect(response).to redirect_to(user_path(user.id))
       end
     end
+
+    context "無効なパラメーターの場合" do
+      it "レスポンスが200であること" do
+      end
+    end
   end
 
   describe "#destroy" do
@@ -114,23 +128,18 @@ RSpec.describe "Posts", type: :request do
 
   describe "アクセス制限" do 
     context"ログインしていない場合" do
-      it "new_post_pathにいけないようになっていること" do
+      it "ログインページにリダイレクトされること" do
         get new_post_path
-        expect(response).to_not have_http_status(:success)
+        expect(response).to redirect_to(login_path)
       end
 
-      it "edit_post_pathにいけないようになっていること" do
+      it "ログインページにリダイレクトされること" do
         get edit_post_path(new_post.id)
-        expect(response).to_not have_http_status(:success)
+        expect(response).to redirect_to(login_path)
       end
 
-      it "postのshowにいけないようになっていること" do
+      it "ログインページにリダイレクトされること" do
         get post_path(new_post.id)
-        expect(response).to_not have_http_status(:success)
-      end
-
-      it "制限のかかっているページににいくとログインページにリダイレクトされること" do
-        get new_post_path
         expect(response).to redirect_to(login_path)
       end
     end
