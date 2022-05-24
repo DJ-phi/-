@@ -4,6 +4,6 @@
   <%= f.label :email ,"メールアドレス" %><br>
   <%= f.text_field :email %><br>
   <%= f.label :password ,"パスワード" %><br>
-  <%= f.text_field :password %><br>
+  <%= f.password_field :password,placeholder: "4文字以上,10文字以内" %><br>
   <%= f.submit "登録" %>
 <% end %>

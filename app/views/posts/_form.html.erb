@@ -1,0 +1,9 @@
+<%= form_with model: post do |f| %>
+  <%= f.label :title ,"タイトル" %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :food ,"¥食事代" %><br>
+  <%= f.text_field :food %><br>
+  <%= f.label :traffic ,"¥交通費" %><br>
+  <%= f.text_field :traffic %><br>
+  <%= f.submit "登録" %>
+<% end %>

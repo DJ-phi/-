@@ -3,12 +3,16 @@ require 'rails_helper'
 RSpec.describe "Homes", type: :request do
 
   before do
-    get "/home/top"
+    get root_path
   end
 
   describe "GET /top" do
     it "ステータスコードが200になること" do
       expect(response).to have_http_status(:success)
+    end
+
+    it "ログイン済の場合、家計簿にリダイレクトすること" do
+
     end
   end
 end
