@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   def index
     console
     @posts = Post.all
-    # @categories = @post.categories
     @categories = @current_user.categories
   end
 
@@ -34,6 +33,7 @@ class PostsController < ApplicationController
     @posts = @current_user.posts
     @categories = @current_user.categories
     console
+
   end
 
   def edit
