@@ -33,7 +33,6 @@ class PostsController < ApplicationController
     @posts = @current_user.posts
     @categories = @current_user.categories
     console
-
   end
 
   def edit
