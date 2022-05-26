@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     console
     @posts = Post.all
-    @categories = @current_user.categories
+    @categories = Category.all
   end
 
   def new
