@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "login" => "users#login"
   post "logout" => "users#logout"
   get "posts/new_category" => "posts#new_category"
+  get "posts/search" => "posts#search"
 
   resources:categories
   resources:users

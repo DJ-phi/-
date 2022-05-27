@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def forbid_login_user
     if @current_user
-      redirect_to users_path    #プロゲートだとposts_pathに指定してるから後ほど変更かも
+      redirect_to users_path
     end
   end
 end

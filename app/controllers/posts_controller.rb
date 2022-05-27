@@ -3,6 +3,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
+  def search
+    @posts = Post.search(params[:search])
+  end
+
   def index
     console
     @posts = Post.all

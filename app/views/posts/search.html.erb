@@ -1,0 +1,5 @@
+<div class="search_count">
+<% if false %>
+<h2>検索結果 :<%= Post.where('memo LIKE ? OR use_day LIKE ? ',"%#{params[:search]}%","%#{params[:search]}%").count %>件</h2>
+<% end %>
+<%= render "show", post: @post %>

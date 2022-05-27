@@ -30,14 +30,7 @@ class UsersController < ApplicationController
     # @posts = Post.where(user_id: @current_user.id) #whereを使う場合カラム：
     #アソシエーションをしていた場合
     @posts = @current_user.posts
-    
-
-    # @users = @category.users 
-    @categories = @user.categories 
-    # @categories = @current_user.categories
     @users = User.joins(:categories)
-    # @categories = Category.where(user_id: @current_user.id)
-    console
   end
 
   def edit
@@ -68,7 +61,7 @@ class UsersController < ApplicationController
       password: params[:password]
     )
     if @user 
-      session[:user_id] = @user.id  #ここに追加
+      session[:user_id] = @user.id #ここに追加
       flash[:notice] = "ログインしました"
       redirect_to user_path(@user.id)
     else
