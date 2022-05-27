@@ -11,12 +11,9 @@ class Post < ApplicationRecord
   #検索機能
   def self.search(search)
     if search
-      Post.where([ 'to_char(memo) LIKE ? ', "%#{search}%" ])
+      Post.where( ' memo LIKE ? ',  "%#{search}%" )
     else
       Post.all
     end
   end
 end
-
-# @tasks = Task.where('do_at like ?', "%#{Date.today}%")
-#          Task.where("to_char(do_at , 'YYYY-MM-DD') LIKE ?", "%#{Date.today}%")
