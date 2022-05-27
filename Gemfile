@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+#herokuのエラー解消
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,9 +42,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-doc'
   # gem 'pry-byebug'
-  gem 'hirb'
-  gem 'hirb-unicode'
-  gem 'net-smtp', require: false
   #保留  追加するとruby version 3.1が見つかんねええよと怒られる
   # gem 'rubocop-airbnb'
 end
