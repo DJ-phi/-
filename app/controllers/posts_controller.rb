@@ -8,13 +8,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    console
+
     @posts = Post.all
     @categories = Category.all
   end
 
   def new
-    console
+
     @post = Post.new
     @categories = @current_user.categories
   end
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   def show
     @posts = @current_user.posts
     @categories = @current_user.categories
-    console
+
   end
 
   def edit
