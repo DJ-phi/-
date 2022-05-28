@@ -31,6 +31,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+# awsの画像設定
+gem 'fog-aws'
+gem "aws-sdk-s3", require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
