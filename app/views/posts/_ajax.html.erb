@@ -1,0 +1,19 @@
+<div id="ajax">
+  <%= form_with model: post do |f| %>
+    <% @current_user.categories.each do |category| %>
+      <%= f.radio_button :category_id, category.id %><br>
+      <%= f.label :category_id, category.name %><br>
+    <% end %>
+    <%= f.text_field :category_name, id: 'text_box' %>
+    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true, params: {post:{memo: "test"}, category:{name: "category_name"}}}, { id: "link" } %><br>
+    <%= f.label :image, "画像" %><br>
+    <%= f.file_field :image, id: "image" %><br>
+    <%= f.label :use_day, "使った日" %><br>
+    <%= f.date_field :use_day, id: "use_day" %><br>
+    <%= f.label :memo ,"メモ" %><br>
+    <%= f.text_field :memo, id: "memo" %><br>
+    <%= f.label :price ,"¥価格" %><br>
+    <%= f.text_field :price, id: "price" %><br>
+    <%= f.submit "登録" %>
+  <% end %>
+</div>
