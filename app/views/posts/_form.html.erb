@@ -16,12 +16,16 @@
       let memoParams = memo.value
       let priceParams = price.value
       let category_nameParams = text_box.value
+      let imageParams = image.value
+      let use_dayParams = use_day.value
 
       let memoResult = "post[memo]=" + memoParams
       let priceResult = "post[price]=" + priceParams
       let category_nameResult = "category[name]=" + category_nameParams
+      let imageResult = "post[image]=" + imageParams
+      let use_dayResult = "post[use_day]=" + use_dayParams
 
-      let result = "<%= posts_new_category_path %>" + "?" + memoResult +"&"+ priceResult +"&"+ category_nameResult
+      let result = "<%= posts_new_category_path %>" + "?" + memoResult +"&"+ priceResult +"&"+ category_nameResult +"&"+ imageResult +"&"+ use_dayResult
 
       link.setAttribute('href',  encodeURI(result))
     }

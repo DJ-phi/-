@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   def self.search(search)
     if search
       #数字の検索は文字列にしないとエラーになるcast(price as text)でテキストに変換されている
-      Post.joins(:category).where( 'cast(price as text) LIKE ? OR memo LIKE ? OR name LIKE ?',  "%#{search}%", "%#{search}%", "%#{search}%" )
+      Post.joins(:category).where( 'cast(use_day as text) LIKE ? OR cast(price as text) LIKE ? OR memo LIKE ? OR name LIKE ?',  "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%" )
     else
       Post.all
     end
