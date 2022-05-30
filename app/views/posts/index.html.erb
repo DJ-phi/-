@@ -1,83 +1,64 @@
 <div class=""><h1>ブロック</h1></div>
-<%= render "layouts/search" %>
 <h3 class="post_h3">投稿一覧</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>画像</th>
-        <th>メモ</th>
-        <th>使った日</th>
-        <th>価格</th>
+<%= render "layouts/search" %>
+<table>
+  <thead>
+    <tr>
+      <th>いいね</th>
+      <th>画像</th>
+      <th>メモ</th>
+      <th>使った日</th>
+      <th>価格</th>
+      <% # TODO:後ほど解除かも↓の方も忘れないで %>
+      <% if false %>
         <th>カテゴリー</th>
-        <th>参照</th>
-        <th>編集</th>
-        <th>消去</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <% if post.image.attached? %>
-            <td><%= image_tag post.image, class: "post_image" %></td>
-          <% end %>
-          <td><%= post.memo %></td>
-          <td><%= post.use_day %></td>
-          <td><%= post.price %></td>
-          <%#TODO:後ほど解除  %>
-          <% if false %>
-          <td><%= post.category.name %></td>
-          <% end %>
-          <td><%= link_to "参照", post %></td>
-          <td><%= link_to "編集", [:edit, post] %></td>
-          <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-        </tr>
       <% end %>
-    </tbody>
-  </table>
-  <div class="post_btn">
+      <th>参照</th>
+      <th>編集</th>
+      <th>消去</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <div id="post_<%= post.id %>">
+          <%= render "likes/like", post: post %>
+        </div>
+        <% if post.image.attached? %>
+        <td><%= image_tag post.image, class: "post_image" %></td>
+        <td><%= post.memo %></td>
+        <td><%= post.use_day %></td>
+        <td><%= post.price %></td>
+        <%#TODO:後ほど解除  %>
+        <% if false %>
+        <td><%= post.category.name %></td>
+        <% end %>
+        <td><%= link_to "参照", post %></td>
+        <td><%= link_to "編集", [:edit, post] %></td>
+        <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</tbody>
+</table>
+
+
+
+<% if false %>
+<div class=""><h1>ブロック</h1></div>
+<h3 class="post_h3">投稿一覧</h3>
+<%= render "layouts/search" %>
+<% @posts.each do |post| %>
+  <tr id="post_<%= post.id %>">
+    <%= render 'post', post: post %>
+  </tr>
+<% end %>
+<div class="post_btn">
     <%= link_to "新規投稿", new_post_path, class: "btn" %>
     <% # TODO: 飛べるためにとりあえず追加 %>
     <%= link_to "カテゴリー", new_category_path, class: "btn" %>
     <%= link_to "マイ投稿一覧", "/posts/#{@current_user.id}", class: "btn" %>
   </div>
-</div>
 
 
-
-<% # TODO : 参考にするため,とりあえず残し %>
-<%if false%>
-<div class="post_body">
-  <h3 class="post_h3">投稿一覧</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>食費</th>
-        <th>交通費</th>
-        <th>使った日</th>
-        <th>合計額</th>
-        <th>確認</th>
-        <th>編集</th>
-        <th>消去</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.title %></td>
-          <td><%= post.food %></td>
-          <td><%= post.traffic %></td>
-          <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-          <td><%= post.total_price %></td>
-          <td><%= link_to "参照", post %></td>
-          <td><%= link_to "編集", [:edit, post] %></td>
-          <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="post_btn">
-    <%= link_to "新規登録", new_post_path, class: "btn" %>
-  </div>
-</div>
 <% end %>
