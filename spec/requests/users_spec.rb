@@ -72,22 +72,6 @@ RSpec.describe "Users", type: :request do
       expect(response.body).to include user.password.to_s
     end
 
-    it "食事代が取得されていること" do
-      expect(response.body).to include new_post.food.to_s
-    end
-
-    it "交通費が取得されていること" do
-      expect(response.body).to include new_post.traffic.to_s
-    end
-
-    it "合計金額が取得されていること" do
-      expect(response.body).to include new_post.total_price.to_s
-    end
-
-    it "使った日時が取得できていること" do
-      expect(response.body).to include new_post.created_at.to_s(:datetime_jp)
-    end
-
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
     end
@@ -103,9 +87,9 @@ RSpec.describe "Users", type: :request do
       expect(response.body).to include user.name
     end
 
-  it "emailが取得されていること" do
-    expect(response.body).to include user.email
-  end
+    it "emailが取得されていること" do
+      expect(response.body).to include user.email
+    end
 
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
