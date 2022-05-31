@@ -1,17 +1,13 @@
 <div class="search">
   <div class="keyword">
     <%= form_with url: posts_search_path, method: :get, local: true do |s| %>
-      <%= s.text_field :search,placeholder: "キーワード..." %>
+      <%= s.text_field :keyword,placeholder: "キーワード..." %>
+      <%= s.text_field :price,placeholder: "値段..." %>
+      <%= s.date_field :created_at_gteq%>
+      <%= s.date_field :created_at_lteq%>
       <%= s.submit :search, class: "btn" %>
     <% end %>
   </div>
-
-  <%= form_with url: posts_search_path, method: :get, local: true do |s| %> 
-    <%= s.date_field :created_at_gteq%>
-    <span>~</span>
-    <%= s.date_field :created_at_lteq%>
-    <%= s.submit :search, class: "btn" %>
-  <%end%>
   <% if false %>
   <div class="price">
     <%= form_with url: posts_search_path, method: :get, local: true do |s| %>
