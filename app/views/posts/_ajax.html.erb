@@ -5,7 +5,7 @@
       <%= f.label :category_id, category.name %><br>
     <% end %>
     <%= f.text_field :category_name, id: 'text_box' %>
-    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true, params: {post:{memo: "test"}, category:{name: "category_name"}}}, { id: "link" } %><br>
+    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true }, { id: "link" } %><br>
     <%= f.label :image, "画像" %><br>
     <%= f.file_field :image, id: "image" %><br>
     <%= f.label :use_day, "使った日" %><br>
@@ -17,3 +17,32 @@
     <%= f.submit "登録" %>
   <% end %>
 </div>
+<script type="text/javascript">
+  const text_box = document.getElementById("text_box");
+  const image = document.getElementById("image");
+  const use_day = document.getElementById("use_day");
+  const memo = document.getElementById("memo");
+  const price = document.getElementById("price");
+  
+
+
+  //a要素を取得する
+  let link = document.getElementById("link");
+  link.addEventListener('click', makeParams);
+  
+  function makeParams() {
+    let memoParams = memo.value
+    let priceParams = price.value
+    let category_nameParams = text_box.value
+    let use_dayParams = use_day.value
+
+    let memoResult = "post[memo]=" + memoParams
+    let priceResult = "post[price]=" + priceParams
+    let category_nameResult = "category[name]=" + category_nameParams
+    let use_dayResult = "post[use_day]=" + use_dayParams
+
+    let result = "<%= posts_new_category_path %>" + "?" + memoResult +"&"+ priceResult +"&"+ category_nameResult +"&"+ use_dayResult
+
+    link.setAttribute('href',  encodeURI(result))
+  }
+</script>

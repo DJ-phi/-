@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     @category = Category.new(params.require(:category).permit(:name))
     @category.user_id = @current_user.id
     @category.save
-    @post = Post.new(params.require(:post).permit(:memo, :price))
+    @post = Post.new(params.require(:post).permit(:memo, :price, :use_day))
     p @post.inspect
   end
 

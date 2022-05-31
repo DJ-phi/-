@@ -4,9 +4,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_one_attached :image #アクティブストレージを使うための記述
 
-  #仕様変更したから後ほど解除
-  # def total_price
-  #   traffic + food + category_price
+  #ばりでーしょん
   validates :price, numericality: { only_integer: true }
 
   #検索機能
@@ -18,6 +16,10 @@ class Post < ApplicationRecord
       Post.all
     end
   end
+
+  #スコープ
+  # scope :
+  # scope :young, -> { where("age < 20") }
 end
 
 # Room.where(['room_name LIKE ? OR room_area LIKE ? OR room_memo LIKE ? ', "%#{search}%", "%#{search}%", "%#{search}%"])参考文

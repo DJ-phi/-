@@ -5,6 +5,14 @@
       <%= s.submit :search, class: "btn" %>
     <% end %>
   </div>
+
+  <%= form_with url: posts_search_path, method: :get, local: true do |s| %> 
+    <%= s.date_field :created_at_gteq%>
+    <span>~</span>
+    <%= s.date_field :created_at_lteq%>
+    <%= s.submit :search, class: "btn" %>
+  <%end%>
+  <% if false %>
   <div class="price">
     <%= form_with url: posts_search_path, method: :get, local: true do |s| %>
       <%= s.radio_button :price_gteq, '' %>指定しない
@@ -16,4 +24,5 @@
     <%= s.submit :search, class: "btn" %>
     <% end %>
   </div>
+  <% end %>
 </div>
