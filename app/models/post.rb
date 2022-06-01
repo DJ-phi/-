@@ -24,10 +24,6 @@ class Post < ApplicationRecord
   #スコープ
   # scope :
   # scope :young, -> { where("age < 20") }
-
-  def self.keisan(name,name1)
-    p name + name1
-  end
 end
 
 # Post.joins(:category).where( 'cast(created_at as text) LIKE ? OR cast(use_day as text) LIKE ? OR cast(price as text) LIKE ? OR memo LIKE ? OR name LIKE ?',  "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%" )
