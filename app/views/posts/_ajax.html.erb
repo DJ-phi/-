@@ -1,8 +1,8 @@
 <div id="ajax">
   <%= form_with model: post do |f| %>
     <% @current_user.categories.each do |category| %>
-      <%= f.radio_button :category_id, category.id %><br>
-      <%= f.label :category_id, category.name %><br>
+      <%= f.radio_button :category_id, category.id %>
+      <%= f.label :category_id, category.name %>
     <% end %>
     <%= f.text_field :category_name, id: 'text_box' %>
     <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true }, { id: "link",  onclick: "makeParams()" } %><br>
