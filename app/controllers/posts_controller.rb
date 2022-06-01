@@ -3,18 +3,18 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
-  def search
-    @posts = Post.search(params[:search])
+  def search 
+    @posts = Post.search(params[:keyword], params[:price], params[:price])
   end
 
   def index
-
+    console
     @posts = Post.all
     @categories = Category.all
   end
 
   def new
-
+    
     @post = Post.new
     @categories = @current_user.categories
   end
@@ -53,7 +53,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.image.purge #画像消去できるための記述
     @post.destroy
     flash[:notice] = "削除しました"
     redirect_to posts_path
@@ -76,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day, :image)
+    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day, :image, :category_name)
   end
   
   def set_post_user_id
