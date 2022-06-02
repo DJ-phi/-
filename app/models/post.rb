@@ -16,6 +16,7 @@ class Post < ApplicationRecord
       Post.joins(:category).where('cast(price as text) LIKE ?', "%#{price}%")
     elsif created_at
       Post.where('created_at(price as text) LIKE ?', "%#{created_at}%")
+      # WHERE カラム名 BETWEEN 日付 AND 日付」で指定した2つの日付期間内のデータを取得します。
     else
       Post.all
     end
