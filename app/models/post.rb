@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user #リレーション, userは1の関係性
   belongs_to :category
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_one_attached :image #アクティブストレージを使うための記述
 
   #ばりでーしょん
@@ -15,8 +15,10 @@ class Post < ApplicationRecord
     elsif price.present?
       Post.joins(:category).where('cast(price as text) LIKE ?', "%#{price}%")
     elsif use_day.present? && end_day.present?
-      Post.where("use_day BETWEEN ? AND ? ", "#{use_day}", "#{end_day}")
+      Post.where("use_day BETWEEN ? AND ? ", use_day.to_s, end_day.to_s)
       # WHERE カラム名 BETWEEN 日付 AND 日付」で指定した2つの日付期間内のデータを取得します。
+      #↓の記述で動いていたがruboの修正でto_sになった
+      # Post.where("use_day BETWEEN ? AND ? ", "#{use_day}", "#{end_day}")
     else
       Post.all
     end
