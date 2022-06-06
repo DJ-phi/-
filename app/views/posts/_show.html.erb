@@ -17,6 +17,8 @@
         <tr>
           <% if post.image.attached? %>
             <td><%= image_tag post.image, class: "post_image" %></td>
+          <% else %>
+            <td></td>
           <% end %>
           <td><%= post.memo %></td>
           <td><%= post.use_day %></td>
