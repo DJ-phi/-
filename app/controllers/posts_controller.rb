@@ -67,10 +67,6 @@ class PostsController < ApplicationController
     @post = Post.new(params.require(:post).permit(:memo, :price, :use_day))
     p @post.inspect
   end
-
-  def self.search(keyword, price, use_day, end_day)
-    Post.keyword(keyword).price(price).use_day(use_day, end_day)
-  end
   
   private
 
