@@ -5,7 +5,6 @@ FactoryBot.define do
       password { 1234 }
       email { Faker::Internet.unique.free_email }
 
-      
     trait :for_create do
       id { 4 }
       name { Faker::Name.unique.initials(number: 2) }

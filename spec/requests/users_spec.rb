@@ -2,11 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
-  let!(:new_post) { create(:post,:skip_validation) }
+  let!(:new_post) { create(:post, :skip_validation) }
   let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
   let!(:unvalid_attributes) { attributes_for(:user, :un_update) }
-
 
   describe "#new" do
     before do
