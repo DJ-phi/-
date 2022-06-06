@@ -2,6 +2,9 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
+  
+  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy] 
 
   def search 
     @posts = Post.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])

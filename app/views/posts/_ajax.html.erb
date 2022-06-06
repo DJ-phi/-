@@ -2,10 +2,11 @@
   <%= form_with model: post do |f| %>
     <% @current_user.categories.each do |category| %>
       <%= f.radio_button :category_id, category.id %>
-      <%= f.label :category_id, category.name %>
+      <%= f.label :category_id, category.name %><br>
     <% end %>
+    <p>↓ここに追加したいカテゴリーを入力してね↓</p><br>
     <%= f.text_field :category_name, id: 'text_box' %>
-    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true }, { id: "link",  onclick: "makeParams()" } %><br>
+    <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true }, { id: "link", class: "btn", onclick: "makeParams()" } %><br>
     <%= f.label :image, "画像" %><br>
     <%= f.file_field :image, id: "image" %><br>
     <%= f.label :use_day, "使った日" %><br>
