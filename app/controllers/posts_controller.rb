@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
   def search 
-    @posts = Post.search(params[:keyword], params[:price], params[:use_day], params[:end_day])
+    @posts =  Post.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
   end
 
   def index
@@ -68,6 +68,10 @@ class PostsController < ApplicationController
     p @post.inspect
   end
 
+  def self.search(keyword, price, use_day, end_day)
+    Post.keyword(keyword).price(price).use_day(use_day, end_day)
+  end
+  
   private
 
   def set_post

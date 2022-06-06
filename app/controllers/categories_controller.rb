@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
   def index
-  @categories = Category.all
+  @categories = current_user.categories
   console
   end
 

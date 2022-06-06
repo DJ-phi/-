@@ -2,25 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
-  let!(:new_post) { create(:post) }
+  let!(:new_post) { create(:post,:skip_validation) }
   let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
   let!(:unvalid_attributes) { attributes_for(:user, :un_update) }
 
-  describe "#index" do
-    before do
-      login
-      get users_path
-    end
-
-    it "ユーザーの名前が取得できていること" do
-      expect(response.body).to include user.name
-    end
-
-    it "レスポンスステータスコードが200であること" do
-      expect(response).to have_http_status(:success)
-    end
-  end
 
   describe "#new" do
     before do
