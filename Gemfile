@@ -48,7 +48,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  # gem 'pry-byebug'
+  gem 'pry-byebug'
   #保留  追加するとruby version 3.1が見つかんねええよと怒られる
   # gem 'rubocop-airbnb'
 end

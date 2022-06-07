@@ -7,13 +7,13 @@ class PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy] 
 
   def search 
-    @posts = Post.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
+    @posts = Post.joins_category.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
+    
   end
 
   def index
     console
     @posts = Post.all
-    @categories = Category.all
   end
 
   def new
