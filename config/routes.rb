@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
 
   resources:categories
-  resources:users
+  resources:users, except: [:index]
   resources:posts
 end
