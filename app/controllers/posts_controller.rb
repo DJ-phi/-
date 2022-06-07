@@ -12,11 +12,11 @@ class PostsController < ApplicationController
 
   def index
     console
-    @posts = Post.all
+    #TODO:未完成
+    @posts = Post.all.includes(:category, :image_attachment)
   end
 
   def new
-    
     @post = Post.new
     @categories = @current_user.categories
   end

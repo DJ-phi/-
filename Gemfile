@@ -34,7 +34,10 @@ gem 'net-pop'
 # awsの画像設定
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
+#エラーを日本語化
 gem 'rails-i18n'
+#n1問題を見れる
+gem 'bullet'
 
 
 group :development, :test do
