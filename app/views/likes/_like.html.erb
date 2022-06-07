@@ -1,5 +1,5 @@
 <% if @current_user.liked_by?(post.id) %>
-  <div><%= link_to 'いいねを外す', destroy_like_path(post), method: :DELETE, remote: true %><%= post.likes.count %></div>
+  <%= link_to 'いいねを外す', destroy_like_path(post), method: :DELETE, remote: true %><%= post.likes.count %>
 <% else %>
-  <div><%= link_to 'いいね', create_like_path(post), method: :POST, remote: true %><%= post.likes.count %></div>
+  <%= link_to 'いいね', create_like_path(post), method: :POST, remote: true %><%= post.likes.count %>
 <% end %>

@@ -1,4 +1,3 @@
-<div class=""><h1>ブロック</h1></div>
 <h3 class="post_h3">投稿一覧</h3>
 <%= render "layouts/search" %>
 <table>
@@ -16,12 +15,14 @@
   </thead>
   <tbody>
     <% @posts.each do |post| %>
-      <tr id="post_<%= post.id %>">
+      <tr>
         <td id="post_<%= post.id %>">
           <%= render "likes/like", post: post %>
         </td>
         <% if post.image.attached? %>
           <td><%= image_tag post.image, class: "post_image" %></td>
+        <% else %>
+          <td></td>
         <% end %>
         <td><%= post.memo %></td>
         <td><%= post.use_day %></td>
@@ -33,3 +34,7 @@
     <% end %>
   </tbody>
 </table>
+<div class="post_btn">
+  <%= link_to "新規投稿", new_post_path, class: "btn" %>
+  <%= link_to "カテゴリー", new_category_path, class: "btn" %>
+</div>
