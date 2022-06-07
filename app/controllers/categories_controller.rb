@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
   #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_category, only: [:edit, :update, :destroy]
 
   def index
   @categories = @current_user.categories

@@ -4,11 +4,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
   
   #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy] 
+  before_action :ensure_correct_post, only: [:edit, :update, :destroy] 
 
   def search 
     @posts = Post.joins_category.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
-    
   end
 
   def index
@@ -30,16 +29,10 @@ class PostsController < ApplicationController
     set_post_user_id
     if @post.save
       flash[:notice] = "投稿できました"
-      redirect_to post_path(@post.user_id)
+      redirect_to posts_path
     else
       render :new
     end
-  end
-
-  def show
-    @posts = @current_user.posts
-    @categories = @current_user.categories
-
   end
 
   def edit
@@ -49,7 +42,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "更新しました"
-      redirect_to post_path(@post.user_id)
+      redirect_to posts_path
     else
       render :edit
     end

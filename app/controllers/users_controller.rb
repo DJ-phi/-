@@ -12,10 +12,6 @@ class UsersController < ApplicationController
   #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
   before_action :ensure_correct_user, only: [:edit, :update, :destroy] 
 
-  def index
-    @users = User.all
-  end
-
   def new
     @user = User.new
   end

@@ -22,7 +22,21 @@ class ApplicationController < ActionController::Base
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to user_path(@user)
+    end
+  end
+
+  def ensure_correct_post
+    if @current_user.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to posts_path
+    end
+  end
+
+  def ensure_correct_category
+    if @current_user.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to categoris_path
     end
   end
 end
