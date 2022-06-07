@@ -11,7 +11,6 @@
       <th>価格</th>
       <% # TODO:後ほど解除かも↓の方も忘れないで %>
         <th>カテゴリー</th>
-      <th>参照</th>
       <th>編集</th>
       <th>消去</th>
     </tr>
@@ -30,7 +29,6 @@
         <td><%= post.price %></td>
         <%#TODO:後ほど解除  %>
         <td><%= post.category.name %></td>
-        <td><%= link_to "参照", post %></td>
         <td><%= link_to "編集", [:edit, post] %></td>
         <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
       </tr>

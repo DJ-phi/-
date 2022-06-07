@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   resources:categories
   resources:users, except: [:index]
-  resources:posts
+  resources:posts, except: [:show]
 end
