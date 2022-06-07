@@ -28,10 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    #アソシエーションをしない記述
-    # @posts = Post.where(user_id: @current_user.id) #whereを使う場合カラム：
-    #アソシエーションをしていた場合
-    @posts = @current_user.posts
+    
   end
 
   def edit

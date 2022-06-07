@@ -1,12 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
+
+  #アソシエーションしていると外部キーがないとダメな為他のテーブルも作る必要がある
   let!(:new_post) { create(:post) }
-  let!(:post_create) { attributes_for(:post) }
+
+
   let!(:user) { create(:user) }
 
+  
+  let!(:post_create) { attributes_for(:post) }
+  
+
   describe "GET /new" do
+
     before do
+
       login
       get new_post_path
     end

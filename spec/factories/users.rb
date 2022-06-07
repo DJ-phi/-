@@ -23,8 +23,5 @@ FactoryBot.define do
       password { 1 }
       email { Faker::Internet.unique.free_email }
     end
-    trait :skip_validation do
-      to_create { |instance| instance.save(validate: false) }
-    end
   end
 end
