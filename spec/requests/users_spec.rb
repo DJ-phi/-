@@ -31,9 +31,9 @@ RSpec.describe "Users", type: :request do
     end
 
     context "無効なパラメーターの場合" do
-      it "レスポンスが200であること" do
+      it "renderのlogin_pathにリダイレクトされること" do
         patch user_path(user), params: { user: unvalid_attributes }
-        expect(response.status).to eq 200
+        expect(response).to redirect_to(login_path)
       end
     end
   end
@@ -50,10 +50,6 @@ RSpec.describe "Users", type: :request do
 
     it "emailが取得されていること" do
       expect(response.body).to include user.email
-    end
-
-    it "パスワードが取得できていること" do
-      expect(response.body).to include user.password.to_s
     end
 
     it "レスポンスステータスコードが200であること" do
@@ -107,6 +103,10 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#destroy" do
+    before do
+      login
+    end
+    
     it "データが削除されること" do
       expect {
         delete user_path(user)
@@ -125,15 +125,15 @@ RSpec.describe "Users", type: :request do
         login
       end
 
-      it "アクセス制限された場合一覧ページにリダイレクトされていること" do
+      it "制限されたページにいくと一覧ページにリダイレクトされていること" do
         get new_user_path
-          expect(response).to redirect_to(users_path)
+          expect(response).to redirect_to(users_path(user))
       end
     end
 
     context"ログインしていない場合" do
-      it "一覧ページにいくとログインページにリダイレクトされること" do
-        get users_path
+      it "制限にかかったページにいくとログインページにリダイレクトされること" do
+        get posts_path
         expect(response).to redirect_to(login_path)
       end
     end

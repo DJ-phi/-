@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #TODO: エラーになる
   def forbid_login_user
     if @current_user
       #TODO:この記述じゃないとエラーになる
