@@ -11,8 +11,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    console
-    #TODO:未完成
+    # @posts = Post.all.includes(:category, :image_attachment)
+  #TODO:未完成
+  if search.present?
+    @posts = Post.joins_category.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
+  end
     @posts = Post.all.includes(:category, :image_attachment)
   end
 
