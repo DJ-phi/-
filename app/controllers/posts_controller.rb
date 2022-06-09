@@ -4,19 +4,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user #ログイン状態じゃないと見れないページ
   
   #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
-  before_action :ensure_correct_post, only: [:edit, :update, :destroy] 
-
-  def search 
-    @posts = Post.joins_category.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
-  end
+  before_action :ensure_correct_post, only: [:edit, :update, :destroy]
 
   def index
-    # @posts = Post.all.includes(:category, :image_attachment)
-  #TODO:未完成
-  if search.present?
-    @posts = Post.joins_category.keyword(params[:keyword]).price(params[:price]).use_day(params[:use_day], params[:end_day])
-  end
-    @posts = Post.all.includes(:category, :image_attachment)
+    console
+    #all以外に何かくっつける場合はallはいらないです
+    @posts = @current_user.posts.eager_load_category.keyword(params[:keyword]).prices(params[:prices]).use_day(params[:use_day], params[:end_day])
+    # .user_id(@current_user.id)
   end
 
   def new
