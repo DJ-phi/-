@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>いいね</th>
+      <th>ajaxいいね</th>
       <th>画像</th>
       <th>メモ</th>
       <th>使った日</th>
@@ -38,3 +38,6 @@
   <%= link_to "新規投稿", new_post_path, class: "btn" %>
   <%= link_to "カテゴリー", new_category_path, class: "btn" %>
 </div>
+<h4>(▽◕ ᴥ ◕▽)○柴～。ねえ、知ってる？現在の日にち<%= Date.current.strftime("%Y年 %m月 %d日")%>投稿数<%= @posts.count %> 件 </h4>
+<%#TODO:未完成%>
+  <h4>(▽◕ ᴥ ◕▽)○柴～。ねえ、知ってる？合計金額¥<%= @posts.map(&:price).sum %> 円 </h4>

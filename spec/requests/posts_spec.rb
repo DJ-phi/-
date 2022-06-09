@@ -3,15 +3,17 @@ require 'rails_helper'
 RSpec.describe "Posts", type: :request do
 
   #アソシエーションしていると外部キーがないとダメな為他のテーブルも作る必要がある
+  #先にuserを作らないとバリデーションエラーになる
+  #categoryはuserがないと作れないため先にuserを作る,postはuserとcategoryを作らないといけないためこの順番になる
+  #user→categry→post
+  let!(:user) { create(:user) }
+  let!(:category) { create(:category) }
+
   let!(:new_post) { create(:post) }
 
-
-  let!(:user) { create(:user) }
-
-  
   let!(:post_create) { attributes_for(:post) }
-  
 
+  
   describe "GET /new" do
 
     before do
