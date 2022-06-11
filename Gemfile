@@ -38,7 +38,8 @@ gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
 #n1問題を見れる
 gem 'bullet'
-
+#rspecのdbをどうにかできる
+gem 'database_cleaner'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
