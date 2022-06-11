@@ -28,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    console
   end
 
   def edit
@@ -76,7 +75,6 @@ class UsersController < ApplicationController
   end
 
   private
-
   def set_user
     @user = User.find(params[:id])
   end

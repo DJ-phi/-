@@ -42,6 +42,18 @@ RSpec.describe "Categories", type: :request do
           post categories_path, params: { category: category_create } #paramsはフォームで送られている情報
         }.to change(Category, :count).by(1)
       end
+
+      it "データが作成されるとposts/indexにリダイレクトすること" do
+        post categories_path, params: { post: post_create } #paramsはフォームで送られている情報
+        expect(response).to redirect_to(categories_path)
+      end
+    end
+
+    context "無効なパラメーターの場合" do
+      it "レスポンスが200であること" do
+        patch user_path(user), params: { user: unvalid_attributes }
+        expect(response.status).to eq 200
+      end
     end
   end
 
@@ -89,9 +101,16 @@ RSpec.describe "Categories", type: :request do
       it "更新したデータのshowにリダイレクトされること" do
         patch category_path(category), params: {category: category_create }
         category.reload
-        expect(response).to redirect_to(user_path(user.id))
+        expect(response).to redirect_to(categories_path)
       end
     end
+
+    # context "無効なパラメーターの場合" do
+    #   it "レスポンスが200であること" do
+    #     patch user_path(user), params: { user: unvalid_attributes }
+    #     expect(response.status).to eq 200
+    #   end
+    # end
   end
 
   describe "#destroy" do
@@ -105,9 +124,9 @@ RSpec.describe "Categories", type: :request do
       }.to change(Category, :count).by(-1)
     end
 
-    it "userのshowにリダイレクトされること" do
+    it "categories/indexにリダイレクトされること" do
       delete category_path(category)
-      expect(response).to redirect_to(user_path(user.id))
+      expect(response).to redirect_to(categories_path)
     end
   end
 

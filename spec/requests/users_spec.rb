@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
-  let!(:valid_attributes) { attributes_for(:user, :for_create) } #attributes_forはフォームに入力したい情報を作ってる
+  #attributes_forはフォームに入力したい情報を作ってる
+  #ハッシュになる
+  #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
+  let!(:valid_attributes) { attributes_for(:user, :for_create) } 
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
   let!(:unvalid_attributes) { attributes_for(:user, :un_update) }
 
@@ -20,20 +23,21 @@ RSpec.describe "Users", type: :request do
     context "有効なパラメーターの場合" do
       it "データが作成されること" do
         expect {
-          post users_path, params: { user: valid_attributes  } #paramsはフォームで送られている情報
+          post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
         }.to change(User, :count).by(1)
       end
 
       it "データが作成されるとshowにリダイレクトされること" do
-          post users_path, params: { user: valid_attributes  } #paramsはフォームで送られている情報
-          expect(response).to redirect_to(user_path(user.id))
+          post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
+          expect(response).to redirect_to(user_path(User.last)) #User.lastにしないと通らないUser.lastは一番新しく作ったデータを参照
       end
     end
 
     context "無効なパラメーターの場合" do
-      it "renderのlogin_pathにリダイレクトされること" do
-        patch user_path(user), params: { user: unvalid_attributes }
-        expect(response).to redirect_to(login_path)
+      #createの場合postになる
+      it "レスポンスが200であること" do
+        post users_path, params: { user: unvalid_attributes }
+        expect(response.status).to eq 200
       end
     end
   end
@@ -82,6 +86,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "有効なパラメーターの場合" do
+      #patchはupdate
       it "データが更新されること" do
         patch user_path(user), params: { user: new_valid_attributes }
         expect(user.reload.name).to eq new_valid_attributes[:name]
@@ -127,7 +132,7 @@ RSpec.describe "Users", type: :request do
 
       it "制限されたページにいくと一覧ページにリダイレクトされていること" do
         get new_user_path
-          expect(response).to redirect_to(users_path(user))
+          expect(response).to redirect_to(user_path(user))
       end
     end
 
