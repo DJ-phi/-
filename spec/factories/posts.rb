@@ -19,8 +19,8 @@ FactoryBot.define do
     trait :un_update do
       memo { }
       price { }
-      user_id {  }
-      category_id {  }
+      user_id { }
+      category_id { }
       # use_day { }
     end
 
