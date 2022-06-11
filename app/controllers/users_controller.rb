@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    console
   end
 
   def edit
@@ -85,12 +85,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password)
   end
 
-  #TODO:動作確認がしたいので後ほど解放
-  # 動作確認するので後ほど解放
-  # def ensure_correct_user
-  #   if @current_user.id != params[:id].to_i
-  #     flash[:notice] = "権限がありません"
-  #     redirect_to users_path 
-  #   end
-  # end
+  def ensure_correct_user
+    if @current_user.id != @user.id
+      flash[:notice] = "権限がありません"
+      redirect_to user_path(@current_user)
+    end
+  end
 end

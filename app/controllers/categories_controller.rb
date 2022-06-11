@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   before_action :ensure_correct_category, only: [:edit, :update, :destroy]
 
   def index
+    console
     @categories = @current_user.categories
   end
 
@@ -21,7 +22,7 @@ class CategoriesController < ApplicationController
     set_category_user_id
     if @category.save
       flash[:notice] = "投稿できました"
-      redirect_to user_path(@category.user_id)
+      redirect_to categories_path
     else
       render :new
     end
@@ -36,7 +37,7 @@ class CategoriesController < ApplicationController
   def update
     if @category.update(category_params)
       flash[:notice] = "更新しました"
-      redirect_to user_path(@category.user_id)
+      redirect_to categories_path
     else
       render :edit
     end
@@ -60,5 +61,12 @@ class CategoriesController < ApplicationController
 
   def set_category_user_id
     @category.user_id = @current_user.id
+  end
+
+  def ensure_correct_category
+    if @current_user.id != @category.user_id
+      flash[:notice] = "権限がありません"
+      redirect_to categories_path
+    end
   end
 end

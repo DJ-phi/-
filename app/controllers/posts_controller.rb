@@ -7,7 +7,6 @@ class PostsController < ApplicationController
   before_action :ensure_correct_post, only: [:edit, :update, :destroy]
 
   def index
-    console
     #all以外に何かくっつける場合はallはいらないです
     @posts = @current_user.posts.eager_load_category.keyword(params[:keyword]).prices(params[:prices]).use_day(params[:use_day], params[:end_day])
     # .user_id(@current_user.id)
@@ -73,5 +72,12 @@ class PostsController < ApplicationController
   
   def set_post_user_id
     @post.user_id = @current_user.id
+  end
+
+  def ensure_correct_post
+    if @current_user.id != @post.user_id
+      flash[:notice] = "権限がありません"
+      redirect_to posts_path
+    end
   end
 end
