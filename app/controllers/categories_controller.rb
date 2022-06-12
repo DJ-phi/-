@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [ :show, :edit, :update, :destroy ] #findをメソッド化している
+  before_action :set_category, only: [ :edit, :update, :destroy ] #findをメソッド化している
 
   #ログイン状態じゃないと見れないページ
   before_action :authenticate_user
@@ -27,9 +27,6 @@ class CategoriesController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
