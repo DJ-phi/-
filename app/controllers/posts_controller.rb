@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
-  before_action :authenticate_user #ログイン状態じゃないと見れないページ
-  
-  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
+  #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
+  before_action :authenticate_user
+  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
   before_action :ensure_correct_post, only: [:edit, :update, :destroy]
 
   def index
@@ -57,7 +57,6 @@ class PostsController < ApplicationController
     @category.user_id = @current_user.id
     @category.save
     @post = Post.new(params.require(:post).permit(:memo, :price, :use_day))
-    p @post.inspect
   end
   
   private

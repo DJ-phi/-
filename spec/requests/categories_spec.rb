@@ -3,7 +3,13 @@ require 'rails_helper'
 RSpec.describe "Categories", type: :request do
   let!(:user) { create(:user) }
   let!(:category) { create(:category) }
-  let!(:category_create) { attributes_for(:category) }
+  #attributes_forはフォームに入力したい情報を作ってる
+  #ハッシュになる
+  #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
+  let!(:valid_attributes) { attributes_for(:category, :for_update) }
+  let!(:new_valid_attributes) { attributes_for(:category, :for_create) }
+  let!(:unvalid_attributes) { attributes_for(:category, :un_update) }
+  #                                             ↑ここを変え忘れると違うテーブルのデータが生成される
 
   describe "#index" do
     before do
@@ -39,19 +45,19 @@ RSpec.describe "Categories", type: :request do
     context "有効なパラメーターの場合" do
       it "データが作成されること" do
         expect {
-          post categories_path, params: { category: category_create } #paramsはフォームで送られている情報
+          post categories_path, params: { category: valid_attributes } #paramsはフォームで送られている情報
         }.to change(Category, :count).by(1)
       end
 
       it "データが作成されるとposts/indexにリダイレクトすること" do
-        post categories_path, params: { post: post_create } #paramsはフォームで送られている情報
+        post categories_path, params: { category: valid_attributes } #paramsはフォームで送られている情報
         expect(response).to redirect_to(categories_path)
       end
     end
 
     context "無効なパラメーターの場合" do
       it "レスポンスが200であること" do
-        patch user_path(user), params: { user: unvalid_attributes }
+        post categories_path, params: { category: unvalid_attributes }
         expect(response.status).to eq 200
       end
     end
@@ -94,23 +100,23 @@ RSpec.describe "Categories", type: :request do
 
     context "有効なパラメーターの場合" do
       it "データが更新されること" do
-        patch category_path(category), params: { category: category_create }
+        patch category_path(category), params: { category: new_valid_attributes }
         expect(category.reload.name).to eq category[:name]
       end
 
-      it "更新したデータのshowにリダイレクトされること" do
-        patch category_path(category), params: {category: category_create }
+      it "更新したデータのindexにリダイレクトされること" do
+        patch category_path(category), params: {category: new_valid_attributes }
         category.reload
         expect(response).to redirect_to(categories_path)
       end
     end
 
-    # context "無効なパラメーターの場合" do
-    #   it "レスポンスが200であること" do
-    #     patch user_path(user), params: { user: unvalid_attributes }
-    #     expect(response.status).to eq 200
-    #   end
-    # end
+    context "無効なパラメーターの場合" do
+      it "レスポンスが200であること" do
+        patch category_path(category), params: { category: unvalid_attributes }
+        expect(response.status).to eq 200
+      end
+    end
   end
 
   describe "#destroy" do

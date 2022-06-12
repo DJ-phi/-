@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   #ログイン状態のページ制限, application_controller.rbに記述がある
   before_action :forbid_login_user, only: [ :new, :create, :login_form, :login ]
 
-  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
+  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
   before_action :ensure_correct_user, only: [:edit, :update, :destroy] 
 
   def new

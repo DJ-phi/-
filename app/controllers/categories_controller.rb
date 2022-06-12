@@ -1,12 +1,13 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [ :show, :edit, :update, :destroy ] #findをメソッド化している
-  before_action :authenticate_user #ログイン状態じゃないと見れないページ
 
-  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる, application_controller.rbに記述がある
+  #ログイン状態じゃないと見れないページ
+  before_action :authenticate_user
+
+  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
   before_action :ensure_correct_category, only: [:edit, :update, :destroy]
 
   def index
-    console
     @categories = @current_user.categories
   end
 
@@ -16,8 +17,8 @@ class CategoriesController < ApplicationController
 
   def create
     #複雑だったから解説入れ, Post.newで受け皿ができて
-    #post_paramsで送られた情報を格納されて@post.user_id = @current_user.idでnillを上書きしてセーブしている
-    #post.user_id = @current_user.idドライ化してset_post_user_idメソッドに変更
+    #category_paramsで送られた情報を格納されて@category.user_id = @current_user.idでnillを上書きしてセーブしている
+    #category.user_id = @current_user.idドライ化してset_post_user_idメソッドに変更
     @category = Category.new(category_params)
     set_category_user_id
     if @category.save

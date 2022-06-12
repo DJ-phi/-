@@ -9,6 +9,9 @@ RSpec.describe "Posts", type: :request do
   let!(:user) { create(:user) }
   let!(:category) { create(:category) }
   let!(:new_post) { create(:post) }
+  #attributes_forはフォームに入力したい情報を作ってる
+  #ハッシュになる
+  #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
   let!(:valid_attributes) { attributes_for(:post, :for_update) }
   let!(:new_valid_attributes) { attributes_for(:post, :for_create) }
   let!(:unvalid_attributes) { attributes_for(:post, :un_update) }
