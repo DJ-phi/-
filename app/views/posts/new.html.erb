@@ -3,13 +3,7 @@
     <div class="form-heading">新規作成</div>
     <div class="form posts-form">
       <div class="form-body">
-        <% if @post.errors.any? %>
-          <% @post.errors.full_messages.each do |message| %>
-            <div class="form-error">
-              <%= message %>
-            </div>
-          <% end %>
-        <% end %>
+        <%= render "error_message", post: @post %>
         <%= render "form", post: @post %>
       </div>
     </div>
