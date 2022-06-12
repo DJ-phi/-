@@ -63,21 +63,6 @@ RSpec.describe "Categories", type: :request do
     end
   end
 
-  describe "#show" do
-    before do
-      login
-      get category_path(category.id)
-    end
-
-    it "nameが表示されている" do
-      expect(response.body).to include category.name
-    end
-
-    it "レスポンスステータスコードが200であること" do
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "#edit" do
     before do
       login
@@ -140,16 +125,6 @@ RSpec.describe "Categories", type: :request do
     context"ログインしていない場合" do
       it "new_category_pathにいけないようになっていること" do
         get new_category_path
-        expect(response).to_not have_http_status(:success)
-      end
-
-      it "edit_category_pathにいけないようになっていること" do
-        get edit_category_path(category.id)
-        expect(response).to_not have_http_status(:success)
-      end
-
-      it "categoryのshowにいけないようになっていること" do
-        get category_path(category.id)
         expect(response).to_not have_http_status(:success)
       end
 
