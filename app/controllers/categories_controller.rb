@@ -12,7 +12,6 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    console
     @category = Category.new
   end
 
