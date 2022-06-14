@@ -33,12 +33,12 @@ gem 'net-imap'
 gem 'net-pop'
 # awsの画像設定
 gem 'fog-aws'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 #エラーを日本語化
 gem 'rails-i18n'
-#n1問題を見れる
+#n+1問題を見れる
 gem 'bullet'
-#rspecのdbをどうにかできる
+#テスト実行時にテストデータをクリアしてくれるgem
 gem 'database_cleaner'
 
 group :development, :test do
@@ -46,15 +46,13 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'rspec-rails'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'pry-byebug'
-  #保留  追加するとruby version 3.1が見つかんねええよと怒られる
-  # gem 'rubocop-airbnb'
 end
 
 group :development do
