@@ -14,7 +14,7 @@ RSpec.describe "Likes", type: :request do
   describe "#create" do
     it "データが作成されること" do
       expect {
-        patch post_path(new_post), params: { like: valid_attributes } #paramsはフォームで送られている情報
+        post posts_path, params: { like: valid_attributes } #paramsはフォームで送られている情報
       }.to change(Like, :count).by(1)
     end
   end
