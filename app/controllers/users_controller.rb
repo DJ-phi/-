@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]
 
   #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
-  before_action :authenticate_user, only: [ :index, :show, :edit, :update ] 
+  before_action :authenticate_user, only: [ :show, :edit, :update ] 
 
   #ログイン状態のページ制限, application_controller.rbに記述がある
   before_action :forbid_login_user, only: [ :new, :create, :login_form, :login ]
