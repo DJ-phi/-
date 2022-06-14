@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     end
 
     it "emailが重複しているとNG" do
-      #mここでセーブしないと重複したデータが作れない
+      # mここでセーブしないと重複したデータが作れない
       @user.save
       @user2 = build(:user)
       @user2.email = @user.email

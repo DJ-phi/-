@@ -8,7 +8,7 @@ FactoryBot.define do
     trait :for_create do
       id { 4 }
       name { "test" }
-      password { 123456 }
+      password { 123_456 }
       email { Faker::Internet.unique.free_email }
     end
 

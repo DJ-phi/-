@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def forbid_login_user
     if @current_user
-      #showに飛ばしたい時は@current_userが主流
+      # showに飛ばしたい時は@current_userが主流
       redirect_to user_path(@current_user)
     end
   end

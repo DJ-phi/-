@@ -31,7 +31,7 @@ RSpec.describe "Posts", type: :request do
     end
 
     it "いいねが取得できている" do
-    #TODO:終わってない
+      #TODO: 終わってない
     end
 
     # it "画像が取得ができている" do
@@ -111,7 +111,7 @@ RSpec.describe "Posts", type: :request do
     end
 
     it "いいねが取得できている" do
-    #TODO:終わってない
+      #TODO: 終わってない
     end
 
     # it "画像が取得ができている" do
@@ -150,9 +150,9 @@ RSpec.describe "Posts", type: :request do
     end
 
     context "無効なパラメーターの場合" do
-        it "レスポンスが200であること" do
+      it "レスポンスが200であること" do
         patch post_path(new_post), params: { post: unvalid_attributes }
-          expect(response.status).to eq 200
+        expect(response.status).to eq 200
       end
     end
   end

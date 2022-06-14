@@ -2,28 +2,28 @@ require 'rails_helper'
 
 RSpec.describe "Likes", type: :request do
   let!(:user) { create(:user) }
-  let!(:category) { create(:category)}
+  let!(:category) { create(:category) }
   let!(:new_post) { create(:post) }
-  let!(:like) { create(:like)}
+  let!(:like) { create(:like) }
   let!(:valid_attributes) { attributes_for(:like) }
 
   before do
     login
   end
-  
+
   describe "#create" do
     it "データが作成されること" do
-      expect {
-        post posts_path, params: { like: valid_attributes } #paramsはフォームで送られている情報
-      }.to change(Like, :count).by(1)
+      expect do
+        post posts_path, params: { like: valid_attributes } # paramsはフォームで送られている情報
+      end.to change(Like, :count).by(1)
     end
   end
 
   describe "#destroy" do
     it "データが削除されること" do
-      expect {
+      expect do
         delete post_path(new_post)
-      }.to change(Like, :count).by(-1)
+      end.to change(Like, :count).by(-1)
     end
   end
 end

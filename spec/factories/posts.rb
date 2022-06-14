@@ -10,17 +10,17 @@ FactoryBot.define do
     trait :for_create do
       id { 2 }
       memo { "プリン" }
-      price {1000 }
+      price { 1000 }
       user_id { 1 }
       category_id { 1 }
       # use_day { }
     end
 
     trait :un_update do
-      memo { }
-      price { }
-      user_id { }
-      category_id { }
+      memo {}
+      price {}
+      user_id {}
+      category_id {}
       # use_day { }
     end
 
