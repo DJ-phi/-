@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
   before_action :ensure_correct_category, only: [:edit, :update, :destroy]
 
   def index
+    console
     @categories = @current_user.categories
   end
 
@@ -16,11 +17,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    #複雑だったから解説入れ, Post.newで受け皿ができて
-    #category_paramsで送られた情報を格納されて@category.user_id = @current_user.idでnillを上書きしてセーブしている
-    #category.user_id = @current_user.idドライ化してset_post_user_idメソッドに変更
     @category = Category.new(category_params)
-    set_category_user_id
     if @category.save
       flash[:notice] = "投稿できました"
       redirect_to categories_path
@@ -50,15 +47,12 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :post_id)
+    # マージメソッドでuser_idを上書きしている
+    params.require(:category).permit(:name).merge(user_id: @current_user.id)
   end
 
   def set_category
     @category = Category.find(params[:id])
-  end
-
-  def set_category_user_id
-    @category.user_id = @current_user.id
   end
 
   def ensure_correct_category

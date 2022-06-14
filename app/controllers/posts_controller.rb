@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   before_action :ensure_correct_post, only: [:edit, :update, :destroy]
 
   def index
+    console
     #all以外に何かくっつける場合はallはいらないです
     @posts = @current_user.posts.eager_load_category.keyword(params[:keyword]).prices(params[:prices]).use_day(params[:use_day], params[:end_day])
     # .user_id(@current_user.id)
@@ -18,11 +19,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    #複雑だったから解説入れ, Post.newで受け皿ができて
-    #post_paramsで送られた情報を格納されて@post.user_id = @current_user.idでnillを上書きしてセーブしている
-    #post.user_id = @current_user.idドライ化してset_post_user_idメソッドに変更
     @post = Post.new(post_params)
-    set_post_user_id
     if @post.save
       flash[:notice] = "投稿できました"
       redirect_to posts_path
@@ -66,11 +63,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day, :image, :category_name)
-  end
-  
-  def set_post_user_id
-    @post.user_id = @current_user.id
+    # マージメソッドでuser_idを上書きしている
+    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day, :image, :category_name).merge(user_id: @current_user.id)
   end
 
   def ensure_correct_post
