@@ -114,6 +114,7 @@ RSpec.describe "Posts", type: :request do
       #TODO: 終わってない
     end
 
+    #TODO: 終わってない
     # it "画像が取得ができている" do
     #   post.images{ |image| expect(response.body).to include image.attachment(:post) }
     # end
