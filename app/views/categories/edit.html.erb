@@ -1,2 +1,11 @@
-<%= render "error_message", category: @category %>
-<%= render "form", category: @category %>
+<div class="main posts-new">
+  <div class="container">
+    <div class="form-heading">編集</div>
+    <div class="form posts-form">
+      <div class="form-body">
+        <%= render "error_message", category: @category %>
+        <%= render "form", category: @category %>
+      </div>
+    </div>
+  </div>
+</div>
