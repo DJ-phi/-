@@ -6,6 +6,9 @@ FactoryBot.define do
     user_id { 1 }
     category_id { 1 }
     use_day { "2022-06-01" }
+    after(:build) do |post|
+      post.image.attach(io: File.open('spec/fixtures/test_image.jpg'), filename: 'test_image.jpg', content_type: 'image/jpg')
+    end
 
     trait :for_create do
       id { 2 }
