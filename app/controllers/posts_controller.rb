@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
   before_action :authenticate_user
   #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
-  before_action :ensure_correct_post, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_post, only: [ :edit, :update, :destroy ]
 
   def index
     #all以外に何かくっつける場合はallはいらないです
