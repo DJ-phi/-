@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_one_attached :image #アクティブストレージを使うための記述
 
   #ばりでーしょん
+  validates :category_id, presence:true
   validates :price, numericality: { only_integer: true }
 
   #スコープ
