@@ -8,8 +8,7 @@
         <%= link_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？?" } %>
         <div class="post_btn">
           <%= link_to "新規投稿", new_post_path, class: "btn" %>
-          <% # TODO: 飛べるためにとりあえず追加 %>
-          <%= link_to "カテゴリー,一覧", new_category_path, class: "btn" %>
+          <%= link_to "カテゴリ一覧", new_category_path, class: "btn" %>
           <%= link_to "自分の投稿一覧", posts_path, class: "btn" %>
         </div>
       <% end %>

@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
   before_action :ensure_correct_category, only: [:edit, :update, :destroy]
 
   def index
-    console
     @categories = @current_user.categories
   end
 
