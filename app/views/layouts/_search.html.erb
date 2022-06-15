@@ -1,8 +1,8 @@
 <div class="search">
   <div class="keyword">
     <%= form_with url: posts_path, method: :get, local: true do |s| %>
-      <%= s.text_field :keyword,placeholder: "キーワード..." %>
-      <%= s.text_field :prices,placeholder: "値段..." %>
+      <%= s.text_field :keyword,placeholder: "キーワード..." , maxlength: "10" %>
+      <%= s.text_field :prices,placeholder: "値段..." , maxlength: "10" %>
       <%= s.date_field :use_day%>~
       <%= s.date_field :end_day%>
       <%= s.submit :search, class: "btn" %>

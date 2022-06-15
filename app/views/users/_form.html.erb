@@ -1,6 +1,6 @@
 <%= form_with model: user do |f| %>
   <%= f.label :name ,"ユーザー名" %><br>
-  <%= f.text_field :name, class: "user_form" %><br>
+  <%= f.text_field :name, class: "user_form" , maxlength: "10"%><br>
   <%= f.label :email ,"メールアドレス" %><br>
   <%= f.text_field :email, class: "user_form" %><br>
   <%= f.label :password ,"パスワード" %><br>
