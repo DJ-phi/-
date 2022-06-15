@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   resources:categories, except: [:show]
   resources:users, except: [:index]
   resources:posts, except: [:show]
+  get '*not_found', to: 'application#routing_error'
+  post '*not_found', to: 'application#routing_error'
 end
