@@ -16,6 +16,9 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @categories = @current_user.categories
+    #ここでidを選択する事によってラジオボタンが選択されているようになる
+    #仕組みは検証のvalueの値と一致していれば選択されるようになっている
+    @post.category_id = @categories.first.id
   end
 
   def create
