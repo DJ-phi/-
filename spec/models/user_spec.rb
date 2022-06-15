@@ -11,6 +11,10 @@ RSpec.describe User, type: :model do
       expect(@user.valid?).to eq(true)
     end
 
+    it "nameが被っていたらNG" do
+
+    end
+
     it "nameが空だとNG" do
       @user.name = ""
       expect(@user.valid?).to eq(false)
