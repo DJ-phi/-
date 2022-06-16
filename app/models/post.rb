@@ -5,14 +5,11 @@ class Post < ApplicationRecord
   has_one_attached :image #アクティブストレージを使うための記述
 
   #ばりでーしょん
-  validates :category_id, presence:true
+  validates :category_id, presence: true
   validates :price, numericality: { only_integer: true }
   validates :memo, presence: true, length: { maximum: 20 }
 
   #スコープ
-  #user_idを取り出すスコープ
-  scope :user_id, ->(user_id) { where(user_id: user_id) }
-  # @posts = @current_user.post
   #eager_loadスコープ,{Post.joins(:category)}でアソシエーションできるんだけどscopeだとPostを省略しないといけない
   #画像はしょうがないから弾く, image_attachmentとblob
   scope :eager_load_category, -> { eager_load(:category) }
