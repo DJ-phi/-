@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       #デフォで最初にcategory :nameを作ってあげる
-      Category.create(name: "無し", user_id: @user.id )
+      Category.create(name: "無し", user_id: @user.id)
       session[:user_id] = @user.id
       flash[:notice] = "ユーザー登録が完了しました"
       redirect_to user_path(@user.id)
