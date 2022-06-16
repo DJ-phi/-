@@ -10,7 +10,6 @@ RSpec.describe "Likes", type: :request do
     login
   end
 
-  #TODO: 終わってない
   #非同期はjsonを返すから.jsをつける必要があった
   describe "#create" do
     it "データが作成されること" do

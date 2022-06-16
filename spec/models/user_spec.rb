@@ -12,7 +12,15 @@ RSpec.describe User, type: :model do
     end
 
     it "nameが被っていたらNG" do
+      @user.save
+      @user2 = build(:user)
+      @user2.name = @user.name
+      expect(@user2.valid?).to eq(false)
+    end
 
+    it "nameの10文字制限" do
+      @user.name = "1234567891234"
+      expect(@user.valid?).to eq(false)
     end
 
     it "nameが空だとNG" do

@@ -43,7 +43,7 @@ RSpec.describe "Posts", type: :request do
     end
 
     # it "レコードの数を取得できている" do
-    #   expect(response.body).to include post.email
+    #   expect(response.body).to include new_post.count
     # end
 
     # it "値段の合計ができている" do
@@ -106,14 +106,10 @@ RSpec.describe "Posts", type: :request do
       expect(response.body).to include new_post.memo
     end
 
-    it "いいねが取得できている" do
-      #TODO: 終わってない
+    #TODO終わってない
+    it "画像が取得ができている" do
+      expect(response.body).to include url_for(new_post.image)
     end
-
-    #TODO: 終わってない
-    # it "画像が取得ができている" do
-    #   post.images{ |image| expect(response.body).to include image.attachment(:post) }
-    # end
 
     it "使った日が取得できている" do
       expect(response.body).to include new_post.use_day.to_s

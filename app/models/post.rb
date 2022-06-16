@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   #ばりでーしょん
   validates :category_id, presence:true
   validates :price, numericality: { only_integer: true }
+  validates :memo, presence: true, length: { maximum: 20 }
 
   #スコープ
   #user_idを取り出すスコープ

@@ -6,16 +6,16 @@
       <%= f.label :category_id, category.name %><br>
     <% end %>
     <p>↓ここに追加したいカテゴリーを入力してね↓</p><br>
-    <%= f.text_field :category_name, id: 'text_box' %>
+    <%= f.text_field :category_name, id: 'text_box', maxlength: "20", placeholder: "20文字以内" %>
     <%= link_to "カテゴリ追加ボタン", { controller: 'posts', action: 'new_category' ,remote: true }, { id: "link", class: "btn", onclick: "makeParams()" } %><br>
     <%= f.label :image, "画像" %><br>
     <%= f.file_field :image, id: "image" %><br>
     <%= f.label :use_day, "使った日" %><br>
     <%= f.date_field :use_day, id: "use_day" %><br>
     <%= f.label :memo ,"メモ" %><br>
-    <%= f.text_field :memo, id: "memo", maxlength: "20", class: "post_form" %><br>
+    <%= f.text_field :memo, id: "memo", maxlength: "20", class: "post_form", placeholder: "20文字以内" %><br>
     <%= f.label :price ,"¥価格" %><br>
-    <%= f.text_field :price, id: "price", maxlength: "15", class: "post_form" %><br>
+    <%= f.text_field :price, id: "price", maxlength: "10", class: "post_form" %><br>
     <%= f.submit "登録" %>
   <% end %>
 </div>

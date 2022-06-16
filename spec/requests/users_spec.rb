@@ -21,9 +21,12 @@ RSpec.describe "Users", type: :request do
 
   describe "#create" do
     context "有効なパラメーターの場合" do
-      it "categoryのデータ" do
-      #TODO: 終わってない
+      it "categoryのデータが生成される" do
+        expect {
+          post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
+        }.to change(Category, :count).by(1)
       end
+      
       it "データが作成されること" do
         expect {
           post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報

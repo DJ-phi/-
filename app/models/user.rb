@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   #{}があると
   #undefined method `to_sym' for {:presence=>true}:Hashエラー文が出てしまう
-  validates :name, presence:true, uniqueness: true
+  validates :name, presence:true, uniqueness: true, length: { maximum: 10 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
   validates :password, length: { minimum: 4, maximum: 10 }
 
