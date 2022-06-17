@@ -106,11 +106,6 @@ RSpec.describe "Posts", type: :request do
       expect(response.body).to include new_post.memo
     end
 
-    #TODO終わってない
-    it "画像が取得ができている" do
-      expect(response.body).to include url_for(new_post.image)
-    end
-
     it "使った日が取得できている" do
       expect(response.body).to include new_post.use_day.to_s
     end
