@@ -42,16 +42,26 @@ RSpec.describe "Posts", type: :request do
       expect(response.body).to include new_post.category.name
     end
 
-    # it "レコードの数を取得できている" do
-    #   expect(response.body).to include new_post.count
-    # end
-
-    # it "値段の合計ができている" do
-    #   expect(response.body).to include post.email
-    # end
-
     it "レスポンスステータスコードが200であること" do
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  # ここのテストはloginの後にcreateの処理をしないとレコードが作成されない
+  # なので上のテストと分ける必要があった
+  describe "#indexの合計" do
+    it "レコードの数を取得できている" do
+      login
+      Post.create(user_id: 1, category_id: 1, price: 0)
+      get posts_path
+      expect(response.body).to include "投稿数" + Post.count.to_s
+    end
+
+    it "値段の合計ができている" do
+      login
+      Post.create(user_id: 1, category_id: 1, price: 100)
+      get posts_path
+      expect(response.body).to include "合計金額¥" + Post.all.map(&:price).sum.to_s
     end
   end
 
