@@ -26,7 +26,7 @@
   <li>アクティブストレージ(画像投稿) S3</li>
   <li>いいね機能(ajax)</li>
   <li>post/newにあるcategory追加(ajax)</li>
-  <li>検索機能</li>
+  <li>検索機能(あいまい, 完全一致, 日付検索)</li>
 </ul>
 <h1>Rspec</h1>
 <li>modelテスト</li>
