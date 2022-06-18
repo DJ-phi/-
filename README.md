@@ -11,7 +11,7 @@
 
 <h1>使用環境</h1>
 <ul>
-  <l1>TDD開発</li>
+  <li>TDD開発</li>
   <li>M1</li>
   <li>Ruby 3.1.0</li>
   <li>Rails 6.1.4</li>
