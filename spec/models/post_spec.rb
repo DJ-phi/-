@@ -18,4 +18,26 @@ RSpec.describe Post, type: :model do
       expect(@post.valid?).to eq(false)
     end
   end
+
+  # TODO:追加未完成
+  describe "スコープ" do
+
+    it "keywordスコープで値が取れていること!!" do
+      expect(Post.keyword("御飯")).to include(@post)
+    end
+
+    it "完全一致検索" do
+      expect(Post.prices(100)).to include(@post)
+    end
+    
+    # TODO:未完成
+    it "間検索" do
+      @post2 = build(:post, :find_post1)
+      @post3 = build(:post, :find_post2)
+      @post4 = build(:post, :find_post3)
+      @posts = Post.use_day()
+      # items = Item.where(price: 15000..25000)
+      expect(@posts.count).to eq 3
+    end
+  end
 end
