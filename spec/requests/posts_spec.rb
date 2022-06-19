@@ -47,6 +47,35 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
+  # TODO追加未完成
+  # describe "検索機能" do
+  #   let!(:post_attributes1) { attributes_for(:find_post, :find_post1) }
+  #   let!(:post_attributes2) { attributes_for(:find_post, :find_post2) }
+  #   let!(:post_attributes3) { attributes_for(:find_post, :find_post3) }
+  #   let!(:post_new1) { create(:find_post, :find_post1) }
+  #   let!(:post_new2) { create(:find_post, :find_post2) }
+  #   let!(:post_new3) { create(:find_post, :find_post3) }
+
+  #   before do
+  #     login
+  #   end
+
+  #   it "曖昧検索" do
+  #     # binding.pry
+  #     # post posts_path, params: { post: new_valid_attributes } #paramsはフォームで送られている情報
+  #     get posts_path(keyword: "御飯")
+  #     expect(response.body).to include post_new1.to_s
+  #   end
+
+  #   it "完全一致検索" do
+  #     expect(Post.prices(100)).to include(new_post)
+  #   end
+
+  #   it "間検索" do
+      
+  #   end
+  end
+
   # ここのテストはloginの後にcreateの処理をしないとレコードが作成されない
   # なので上のテストと分ける必要があった
   describe "#indexの合計" do
@@ -54,14 +83,14 @@ RSpec.describe "Posts", type: :request do
       login
       Post.create(user_id: 1, category_id: 1, price: 0)
       get posts_path
-      expect(response.body).to include "投稿数" + Post.count.to_s
+      expect(response.body).to include "投稿数#{Post.count}"
     end
 
     it "値段の合計ができている" do
       login
       Post.create(user_id: 1, category_id: 1, price: 100)
       get posts_path
-      expect(response.body).to include "合計金額¥" + Post.all.map(&:price).sum.to_s
+      expect(response.body).to include "合計金額¥#{Post.all.map(&:price).sum}"
     end
   end
 

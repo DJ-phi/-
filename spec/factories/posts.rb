@@ -16,7 +16,6 @@ FactoryBot.define do
       price { 1000 }
       user_id { 1 }
       category_id { 1 }
-      # use_day { }
     end
 
     trait :un_update do
@@ -24,7 +23,6 @@ FactoryBot.define do
       price {}
       user_id {}
       category_id {}
-      # use_day { }
     end
 
     trait :for_update do
@@ -33,7 +31,32 @@ FactoryBot.define do
       price { 1000 }
       user_id { 1 }
       category_id { 1 }
-      use_day { "2022-06-01" }
     end
   end
+
+  factory :find_post, class: Post do
+    memo { "御飯" }
+    price { 100 }
+    user_id { 1 }
+    category_id { 1 }
+    use_day { "2022-06-01" }
+
+  #   trait :find_post1 do
+  #     memo { "すき家" }
+  #     price { 10111111 }
+  #     use_day { "2022-06-10" }
+  #   end
+
+  #   trait :find_post2 do
+  #     memo { "アイス" }
+  #     price { 200 }
+  #     use_day { "2022-06-20" }
+  #   end
+
+  #   trait :find_post3 do
+  #     memo { "お茶" }
+  #     price { 5000 }
+  #     use_day { "2022-06-30" }
+  #   end
+  # end
 end
