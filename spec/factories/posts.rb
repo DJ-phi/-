@@ -34,18 +34,21 @@ FactoryBot.define do
     end
 
     trait :find_post1 do
+      id { 123 }
       memo { "すき家" }
       price { 10111111 }
       use_day { "2022-06-10" }
     end
 
     trait :find_post2 do
+      id { 1234 }
       memo { "アイス" }
       price { 200 }
       use_day { "2022-06-20" }
     end
 
     trait :find_post3 do
+      id { 11234 }
       memo { "お茶" }
       price { 5000 }
       use_day { "2022-06-30" }
