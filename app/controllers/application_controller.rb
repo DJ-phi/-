@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     # ページを移動してもユーザー情報を保持し続けるために、sessionという特殊な変数を用います。
     # sessionに代入された値は、ブラウザ(InternetExplorer, GoogleChrome等)に保存されます。
     # sessionに値を代入すると、ブラウザはそれ以降のアクセスでsessionの値をRailsに送信します。
+    # session[:キー名]というのはこれに代入した情報を送信し続ける変数です
+    # (ここではユーザーの情報を送信することでページを移動しても情報が保持されログイン状態が続くという仕組み)
     @current_user = User.find_by(id: session[:user_id])
   end
 
