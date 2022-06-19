@@ -58,5 +58,5 @@ FactoryBot.define do
   #     price { 5000 }
   #     use_day { "2022-06-30" }
   #   end
-  # end
+  end
 end
