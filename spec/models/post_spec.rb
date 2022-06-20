@@ -19,7 +19,7 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  # TODO:追加未完成
+  # TODO: 追加未完成
   describe "スコープ" do
 
     it "keywordスコープで値が取れていること!!" do
@@ -29,15 +29,15 @@ RSpec.describe Post, type: :model do
     it "完全一致検索" do
       expect(Post.prices(100)).to include(@post)
     end
-    
-    # TODO:未完成
-    it "間検索" do
-      @post2 = build(:post, :find_post1)
-      @post3 = build(:post, :find_post2)
-      @post4 = build(:post, :find_post3)
-      @posts = Post.use_day()
-      # items = Item.where(price: 15000..25000)
-      expect(@posts.count).to eq 3
-    end
+
+    # TODO: 未完成
+    #   it "間検索" do
+    #     @post2 = build(:post, :find_post1)
+    #     @post3 = build(:post, :find_post2)
+    #     @post4 = build(:post, :find_post3)
+    #     @posts = Post.use_day
+    #     # items = Item.where(price: 15000..25000)
+    #     expect(@posts.count).to eq 3
+    #   end
   end
 end

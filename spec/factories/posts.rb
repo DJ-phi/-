@@ -33,49 +33,49 @@ FactoryBot.define do
       category_id { 1 }
     end
 
-    trait :find_post1 do
+    trait :test_post1 do
       id { 123 }
       memo { "すき家" }
-      price { 10111111 }
+      price { 10_111_111 }
       use_day { "2022-06-10" }
     end
 
-    trait :find_post2 do
+    trait :test_post2 do
       id { 1234 }
       memo { "アイス" }
       price { 200 }
       use_day { "2022-06-20" }
     end
 
-    trait :find_post3 do
-      id { 11234 }
+    trait :test_post3 do
+      id { 11_234 }
       memo { "お茶" }
       price { 5000 }
       use_day { "2022-06-30" }
     end
   end
 
-  # TODO:まだ使うか分からないから残し
-  # factory :find_post, class: Post do
+  # TODO: まだ使うか分からないから残し
+  # factory :test_post, class: Post do
   #   memo { "御飯" }
   #   price { 100 }
   #   user_id { 1 }
   #   category_id { 1 }
   #   use_day { "2022-06-01" }
 
-  #   trait :find_post1 do
+  #   trait :test_post1 do
   #     memo { "すき家" }
   #     price { 10111111 }
   #     use_day { "2022-06-10" }
   #   end
 
-  #   trait :find_post2 do
+  #   trait :test_post2 do
   #     memo { "アイス" }
   #     price { 200 }
   #     use_day { "2022-06-20" }
   #   end
 
-  #   trait :find_post3 do
+  #   trait :test_post3 do
   #     memo { "お茶" }
   #     price { 5000 }
   #     use_day { "2022-06-30" }
