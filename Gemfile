@@ -34,12 +34,14 @@ gem 'net-pop'
 # awsの画像設定
 gem 'fog-aws'
 gem 'aws-sdk-s3', require: false
-#エラーを日本語化
+# エラーを日本語化
 gem 'rails-i18n'
-#n+1問題を見れる
+# n+1問題を見れる
 gem 'bullet'
-#テスト実行時にテストデータをクリアしてくれるgem
+# テスト実行時にテストデータをクリアしてくれるgem
 gem 'database_cleaner'
+# seedの上位互換 紐付けたデータを作るのに必要
+gem 'seed-fu'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,7 +54,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  gem 'pry-byebug'
+  gem 'pry-byebug'  
 end
 
 group :development do
