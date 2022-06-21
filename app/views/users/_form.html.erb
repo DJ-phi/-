@@ -1,0 +1,9 @@
+<%= form_with model: user do |f| %>
+  <%= f.label :name ,"ユーザー名" %><br>
+  <%= f.text_field :name, class: "user_form" , maxlength: "10" , placeholder: "1文字以上,10文字以内" %><br>
+  <%= f.label :email ,"メールアドレス" %><br>
+  <%= f.text_field :email, class: "user_form" %><br>
+  <%= f.label :password ,"パスワード" %><br>
+  <%= f.password_field :password, placeholder: "4文字以上,10文字以内", class: "user_form" %><br>
+  <%= f.submit "登録" %>
+<% end %>

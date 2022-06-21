@@ -1,0 +1,29 @@
+<header>
+  <div class="header-logo">
+    <% if @current_user %>
+      <%= link_to "(▽◕ ᴥ ◕▽)○柴～。ねえ、知ってる？家計簿アプリ", user_path(@current_user) %>
+    <% else %>
+      <h1>(▽◕ ᴥ ◕▽)○柴～。ねえ、知ってる？家計簿アプリ</h1>
+    <% end %>  
+  </div>
+  <ul class="header-menus">
+    <% if @current_user %>
+      <li>
+        <%= link_to "一覧", posts_path %>
+      </li>
+      <li>
+        <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+      </li>
+      <li>
+        <%= link_to("ログアウト", "/logout", {method: "post"})%>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "新規作成", new_user_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", login_path %>
+      </li>
+    <% end %>
+  </ul>
+</header>
