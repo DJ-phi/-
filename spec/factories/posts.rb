@@ -10,8 +10,16 @@ FactoryBot.define do
       post.image.attach(io: File.open('spec/fixtures/test_image.jpg'), filename: 'test_image.jpg', content_type: 'image/jpg')
     end
 
-    trait :for_create do
+    trait :for_validation do
       id { 2 }
+      memo { "プリン" }
+      price { 1000 }
+      user_id { 2 }
+      category_id { 2 }
+    end
+
+    trait :for_create do
+      id { 3 }
       memo { "プリン" }
       price { 1000 }
       user_id { 1 }

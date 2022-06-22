@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
   let!(:user) { create(:user) }
+  let!(:user2) { create(:user, :for_validation) }
   let!(:category) { create(:category) }
+  let!(:category2) { create(:category, :for_validation) }
   #attributes_forはフォームに入力したい情報を作ってる
   #ハッシュになる
   #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
@@ -122,12 +124,15 @@ RSpec.describe "Categories", type: :request do
   end
 
   describe "アクセス制限" do 
-    context"ログインしていない場合" do
-      it "new_category_pathにいけないようになっていること" do
-        get new_category_path
-        expect(response).to_not have_http_status(:success)
+    context"ログインしている場合" do
+      it "ログインユーザーじゃない編集ページにいくとリダイレクトされること" do
+        login
+        get edit_category_path(2)
+        expect(response).to redirect_to(categories_path)
       end
+    end
 
+    context"ログインしていない場合" do
       it "制限のかかっているページににいくとログインページにリダイレクトされること" do
         get new_category_path
         expect(response).to redirect_to(login_path)

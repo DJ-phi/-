@@ -4,8 +4,13 @@ FactoryBot.define do
     id { 1 }
     user_id { 1 }
 
-    trait :for_create do
+    trait :for_validation do
       id { 2 }
+      user_id { 2 }
+      name { Faker::Name.unique.initials(number: 2) }
+    end
+
+    trait :for_create do
       user_id { 1 }
       name { Faker::Name.unique.initials(number: 2) }
     end
