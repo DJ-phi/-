@@ -48,33 +48,32 @@ RSpec.describe "Posts", type: :request do
   end
 
   # TODO追加未完成
-  # describe "検索機能" do
-  #   let!(:post_attributes1) { attributes_for(:post, :test_post1) }
-  #   let!(:post_attributes2) { attributes_for(:post, :test_post2) }
-  #   let!(:post_attributes3) { attributes_for(:post, :test_post3) }
-  #   let!(:post_new1) { create(:post, :test_post1) }
-  #   let!(:post_new2) { create(:post, :test_post2) }
-  #   let!(:post_new3) { create(:post, :test_post3) }
+  describe "検索機能" do
+    let!(:post_attributes1) { attributes_for(:post, :form_post1) }
+    let!(:post_attributes2) { attributes_for(:post, :form_post2) }
+    let!(:post_attributes3) { attributes_for(:post, :form_post3) }
+    let!(:post_new1) { create(:post, :test_post1) }
+    let!(:post_new2) { create(:post, :test_post2) }
+    let!(:post_new3) { create(:post, :test_post3) }
 
-  # before do
-  #   login
-  # end
+    before do
+      login
+    end
 
-  # it "曖昧検索" do
-  # binding.pry
-  # post posts_path, params: { post: new_valid_attributes } #paramsはフォームで送られている情報
-  #   get posts_path, params: { post: post_attributes1 }
-  #   expect(response.body).to include post_new1.to_s
-  # end
+    it "曖昧検索" do
+      get posts_path(post_attributes3)
+      expect(response.body).to include post_new3.memo
+      # binding.pry
+    end
 
-  # it "完全一致検索" do
-  #   expect(Post.prices(100)).to include(new_post)
-  # end
-
-  # it "間検索" do
+    it "完全一致検索" do
       
-  # end
-  # end
+    end
+
+    it "間検索" do
+        
+    end
+  end
 
   # ここのテストはloginの後にcreateの処理をしないとレコードが作成されない
   # なので上のテストと分ける必要があった
