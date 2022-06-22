@@ -52,17 +52,18 @@ RSpec.describe "Posts", type: :request do
     let!(:post_attributes1) { attributes_for(:post, :form_post1) }
     let!(:post_attributes2) { attributes_for(:post, :form_post2) }
     let!(:post_attributes3) { attributes_for(:post, :form_post3) }
-    let!(:post_new1) { create(:post, :test_post1) }
-    let!(:post_new2) { create(:post, :test_post2) }
-    let!(:post_new3) { create(:post, :test_post3) }
+    let!(:test_post1) { create(:post, :test_post1) }
+    let!(:test_post2) { create(:post, :test_post2) }
+    let!(:test_post3) { create(:post, :test_post3) }
 
     before do
       login
     end
 
     it "曖昧検索" do
-      get posts_path(post_attributes3)
-      expect(response.body).to include post_new3.memo
+      get posts_path(post_attributes2)
+      # binding.pry
+      expect(response.body).to include test_post2.memo
       # binding.pry
     end
 
