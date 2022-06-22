@@ -12,6 +12,7 @@ RSpec.describe "Posts", type: :request do
   let!(:category2) { create(:category, :for_ensure_correct) }
   let!(:new_post) { create(:post) }
   let!(:new_post2) { create(:post, :for_ensure_correct) }
+
   #attributes_forはフォームに入力したい情報を作ってる
   #ハッシュになる
   #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
@@ -64,9 +65,9 @@ RSpec.describe "Posts", type: :request do
     end
 
     it "曖昧検索" do
-      get posts_path(post_attributes2)
+      get posts_path(post_attributes1)
       # binding.pry
-      expect(response.body).to include test_post2.memo
+      expect(response.body).to include test_post1.memo
       # binding.pry
     end
 
@@ -205,6 +206,7 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "アクセス制限" do 
+    # let!(:new_post2) { create(:post, :for_ensure_correct) }
     context"ログインしている場合" do
       it "ログインユーザーじゃない編集ページにいくとリダイレクトされること" do
         login
