@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
+  let!(:user2) { create(:user, :for_validation) }
+
   #attributes_forはフォームに入力したい情報を作ってる
   #ハッシュになる
   #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
@@ -136,9 +138,14 @@ RSpec.describe "Users", type: :request do
         login
       end
 
-      it "制限されたページにいくと一覧ページにリダイレクトされていること" do
+      it "制限されたページにいくとshowリダイレクトされていること" do
         get new_user_path
-          expect(response).to redirect_to(user_path(user))
+        expect(response).to redirect_to(user_path(user))
+      end
+
+      it "ログインユーザー以外の編集ページにいくとshowリダイレクトされていること" do
+        get edit_user_path(2)
+        expect(response).to redirect_to(user_path(user))
       end
     end
 
