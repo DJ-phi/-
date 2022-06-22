@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
   let!(:user) { create(:user) }
-  let!(:user2) { create(:user, :for_validation) }
+  let!(:user2) { create(:user, :for_ensure_correct) }
   let!(:category) { create(:category) }
-  let!(:category2) { create(:category, :for_validation) }
+  let!(:category2) { create(:category, :for_ensure_correct) }
   #attributes_forはフォームに入力したい情報を作ってる
   #ハッシュになる
   #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
