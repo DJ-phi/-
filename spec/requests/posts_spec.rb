@@ -7,11 +7,8 @@ RSpec.describe "Posts", type: :request do
   #categoryはuserがないと作れないため先にuserを作る,postはuserとcategoryを作らないといけないためこの順番になる
   #user→categry→post
   let!(:user) { create(:user) }
-  let!(:user2) { create(:user, :for_ensure_correct) }
   let!(:category) { create(:category) }
-  let!(:category2) { create(:category, :for_ensure_correct) }
   let!(:new_post) { create(:post) }
-  let!(:new_post2) { create(:post, :for_ensure_correct) }
 
   #attributes_forはフォームに入力したい情報を作ってる
   #ハッシュになる
@@ -66,17 +63,24 @@ RSpec.describe "Posts", type: :request do
 
     it "曖昧検索" do
       get posts_path(post_attributes1)
-      # binding.pry
       expect(response.body).to include test_post1.memo
-      # binding.pry
+      expect(response.body).to_not include test_post2.memo
+      expect(response.body).to_not include test_post3.memo
     end
 
     it "完全一致検索" do
-      
+      get posts_path(post_attributes2)
+      expect(response.body).to include test_post2.price.to_s
+      # TODO:後ほど削除
+      # expect(response.body).to include test_post1.price.to_s
+      # expect(response.body).to_not include test_post3.price.to_s
     end
 
     it "間検索" do
-        
+      # 上のletでレコード3件作成, post_attributes3で2件取得できるフォームを作っているので
+      # includeは2であればok
+      get posts_path(post_attributes3)
+      expect(response.body).to include "投稿数" + ""
     end
   end
 
@@ -173,7 +177,7 @@ RSpec.describe "Posts", type: :request do
         expect(new_post.reload.memo).to eq new_post[:memo]
       end
 
-      it "更新したデータのindexにリダイレクトされること" do
+      it "updateしたらindexにリダイレクトされること" do
         patch post_path(new_post), params: { post: valid_attributes }
         new_post.reload
         expect(response).to redirect_to(posts_path)
@@ -206,7 +210,9 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "アクセス制限" do 
-    # let!(:new_post2) { create(:post, :for_ensure_correct) }
+    let!(:user2) { create(:user, :for_ensure_correct) }
+    let!(:category2) { create(:category, :for_ensure_correct) }
+    let!(:new_post2) { create(:post, :for_ensure_correct) }
     context"ログインしている場合" do
       it "ログインユーザーじゃない編集ページにいくとリダイレクトされること" do
         login

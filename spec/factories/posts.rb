@@ -52,36 +52,29 @@ FactoryBot.define do
     trait :test_post2 do
       id { 33 }
       memo { "アイス" }
-      price { 200 }
+      price { 5000 }
       use_day { "2022-06-20" }
     end
 
     trait :test_post3 do
       id { 44 }
       memo { "お茶" }
-      price { 5000 }
+      price { 100 }
       use_day { "2022-06-30" }
     end
 
     trait :form_post1 do
-      keyword { "すき家" }
-      prices { 5000 }
-      use_day { "2022-06-28" }
-      end_day { "2022-06-30" }
+      keyword { "すき" }
     end
 
     trait :form_post2 do
       keyword { "アイス" }
       prices { 5000 }
-      use_day { "2022-06-28" }
-      end_day { "2022-06-30" }
     end
 
     trait :form_post3 do
-      keyword { "お茶" }
-      prices { 5000 }
-      use_day { "2022-06-28" }
-      end_day { "2022-06-30" }
+      use_day { "2022-06-10" }
+      end_day { "2022-06-20" }
     end
   end
 end
