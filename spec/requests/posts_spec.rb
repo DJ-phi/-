@@ -48,7 +48,6 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
-  # TODO追加未完成
   describe "検索機能" do
     let!(:post_attributes1) { attributes_for(:post, :form_post1) }
     let!(:post_attributes2) { attributes_for(:post, :form_post2) }
