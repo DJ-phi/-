@@ -79,7 +79,7 @@ RSpec.describe "Posts", type: :request do
       # 上のletでレコード3件作成, post_attributes3で2件取得できるフォームを作っているので
       # includeは2であればok
       get posts_path(post_attributes3)
-      expect(response.body).to include "投稿数" + ""
+      expect(response.body).to include "投稿数" + "2"
     end
   end
 
