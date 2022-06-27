@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   end
 
   def ensure_correct_post
-    return unless @current_user.id != @post.user_id
+    return if @current_user.id != @post.user_id
 
     flash[:notice] = "権限がありません"
     redirect_to posts_path
