@@ -5,7 +5,7 @@ RSpec.describe Post, type: :model do
     create(:user)
     create(:category)
   end
-  
+
   let!(:post) { create(:post) }
 
   describe "バリデーション" do

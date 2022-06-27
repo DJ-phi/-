@@ -4,7 +4,7 @@ RSpec.describe Category, type: :model do
   before do
     create(:user)
   end
-  
+
   let!(:category) { create(:category) }
 
   describe "バリデーション" do

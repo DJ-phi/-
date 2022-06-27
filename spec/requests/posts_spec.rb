@@ -70,7 +70,7 @@ RSpec.describe "Posts", type: :request do
     it "完全一致検索" do
       get posts_path(post_attributes2)
       expect(response.body).to include test_post2.price.to_s
-      # TODO:後ほど削除
+      # TODO: 後ほど削除
       # expect(response.body).to include test_post1.price.to_s
       # expect(response.body).to_not include test_post3.price.to_s
     end
@@ -210,7 +210,7 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
-  describe "アクセス制限" do 
+  describe "アクセス制限" do
     let!(:user2) { create(:user, :for_ensure_correct) }
     let!(:category2) { create(:category, :for_ensure_correct) }
     let!(:new_post2) { create(:post, :for_ensure_correct) }
@@ -220,6 +220,15 @@ RSpec.describe "Posts", type: :request do
         get edit_post_path(2)
         expect(response).to redirect_to(posts_path)
       end
+
+      # TODO:未完成
+      # showを実装していないからのテスト
+      # it "詳細ページに行けないようになっていること" do
+      #   login
+      #   get post_path(new_post)
+        
+      #   expect(response).to eq 404
+      # end
     end
 
     context"ログインしていない場合" do
@@ -228,5 +237,9 @@ RSpec.describe "Posts", type: :request do
         expect(response).to redirect_to(login_path)
       end
     end
+  end
+
+  describe "#new_categoryメソッド" do
+
   end
 end

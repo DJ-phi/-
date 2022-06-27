@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
       create(:category)
       create(:post)
       create(:like)
-      #パターン2
+      # パターン2
       # _始まりの変数名は使わない変数であることを示す慣習みたいなものです。なお参照ができないわけではないです
       # _category = create(:category)
       # _post = create(:post)
