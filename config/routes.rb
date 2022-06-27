@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   #postルート
   get "posts/new_category" => "posts#new_category"
-  get "posts/search" => "posts#search"
 
   #いいねルート
   post 'like/:id' => 'likes#create', as: 'create_like'
