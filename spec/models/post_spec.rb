@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let!(:user) { create(:user) }
-  let!(:category) { create(:category)}
-  let!(:post) { create(:post)}
+  before do
+    create(:user)
+    create(:category)
+  end
+  
+  let!(:post) { create(:post) }
 
   describe "バリデーション" do
     it "[price]数字以外はバリデーションがかかること" do
@@ -32,10 +35,12 @@ RSpec.describe Post, type: :model do
   end
 
   describe "モデルのオプションdependent: :destroyのテスト" do
+    before do
+      create(:like)
+    end
+
     it "postを消したらlikeも消えること" do
-      like = create(:like)
-      post.destroy
-      expect(Like.first).to eq(nil)
+      expect { post.destroy }.to change(Like, :count).by(-1)
     end
   end
 end

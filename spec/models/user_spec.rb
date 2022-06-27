@@ -55,11 +55,27 @@ RSpec.describe User, type: :model do
   end
 
   describe "モデルのオプションdependent: :destroyのテスト" do
+    before do
+      create(:category)
+      create(:post)
+      create(:like)
+      #パターン2
+      # _始まりの変数名は使わない変数であることを示す慣習みたいなものです。なお参照ができないわけではないです
+      # _category = create(:category)
+      # _post = create(:post)
+      # _like = create(:like)
+    end
+    
     it "userを消したらpostも消えること" do
-      category = create(:category)
-      post = create(:post)
-      user.destroy
-      expect(Post.first).to eq(nil)
+      expect { user.destroy }.to change(Post, :count).by(-1)
+    end
+
+    it "userを消したらcategoryも消えること" do
+      expect { user.destroy }.to change(Category, :count).by(-1)
+    end
+
+    it "userを消したらlikeも消えること" do
+      expect { user.destroy }.to change(Like, :count).by(-1)
     end
   end
 end
