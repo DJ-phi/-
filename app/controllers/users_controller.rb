@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    return if @current_user.id != @user.id
+    return unless @current_user.id != @user.id
 
     flash[:notice] = "権限がありません"
     redirect_to user_path(@current_user)
