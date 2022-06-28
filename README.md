@@ -1,5 +1,4 @@
 # README
-<img width="1271" alt="スクリーンショット 2022-06-18 0 26 20" src="https://user-images.githubusercontent.com/94509379/174329460-1089d97f-05c3-4cb4-bc56-69b4b531c2f4.png">
 <h1>家計簿アプリ</h1>
 <p>
   ユーザーが使いやすい様に心掛けて作りました🙇‍♂️<br>
