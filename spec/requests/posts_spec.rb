@@ -240,6 +240,8 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "#new_categoryメソッド" do
+    it "" do
 
+    end
   end
 end

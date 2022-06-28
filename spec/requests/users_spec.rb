@@ -23,6 +23,7 @@ RSpec.describe "Users", type: :request do
 
   describe "#create" do
     context "有効なパラメーターの場合" do
+      # userを作成するとcategoryが一つ生成される仕様のため
       it "categoryのデータが生成される" do
         expect {
           post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
@@ -36,8 +37,8 @@ RSpec.describe "Users", type: :request do
       end
 
       it "データが作成されるとshowにリダイレクトされること" do
-          post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
-          expect(response).to redirect_to(user_path(User.last)) #User.lastにしないと通らないUser.lastは一番新しく作ったデータを参照
+        post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
+        expect(response).to redirect_to(user_path(User.last)) #User.lastにしないと通らないUser.lastは一番新しく作ったデータを参照
       end
     end
 
@@ -147,6 +148,10 @@ RSpec.describe "Users", type: :request do
         get edit_user_path(2)
         expect(response).to redirect_to(user_path(user))
       end
+
+      it "indexに行けないこと" do
+        # TODO:後ほど
+      end
     end
 
     context"ログインしていない場合" do
@@ -154,6 +159,32 @@ RSpec.describe "Users", type: :request do
         get posts_path
         expect(response).to redirect_to(login_path)
       end
+    end
+  end
+
+  describe "ログイン" do
+    context "有効なパラメータの場合" do
+      it "ログインに成功したらuser/showにリダイレクトされること" do
+        login
+        expect(response).to redirect_to(user_path(user))
+      end
+    end
+
+    context "無効なパラメータな場合" do
+      it "レスポンスステータスコードが200であること" do
+        login_params = { email: "", password: "" }
+        post login_path, params: login_params
+        expect(response.status).to eq 200
+      end
+    end
+  end
+
+  # TODO:テスト未完成
+  describe "ログアウト" do
+    it "ログアウトに成功したら" do
+      login
+      delete logout_path
+      expect(response).to redirect_to(login_path)
     end
   end
 end

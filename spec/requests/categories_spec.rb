@@ -130,6 +130,10 @@ RSpec.describe "Categories", type: :request do
         get edit_category_path(2)
         expect(response).to redirect_to(categories_path)
       end
+
+      it "categoryのshowに行けないこと" do
+        # TODO後ほど
+      end
     end
 
     context"ログインしていない場合" do
