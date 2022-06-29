@@ -9,7 +9,7 @@
   <ul class="header-menus">
     <% if @current_user %>
       <li>
-        <%= link_to "一覧", posts_path %>
+        <%= link_to "明細一覧", posts_path %>
       </li>
       <li>
         <%= link_to @current_user.name, user_path(@current_user) %>
