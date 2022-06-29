@@ -221,7 +221,7 @@ RSpec.describe "Posts", type: :request do
         expect(response).to redirect_to(posts_path)
       end
 
-      # TODO:未完成
+      # TODO: 未完成
       # showを実装していないからのテスト
       # it "詳細ページに行けないようになっていること" do
       #   login

@@ -55,7 +55,7 @@ class CategoriesController < ApplicationController
   end
 
   def ensure_correct_category
-    return unless @current_user.id != @category.user_id
+    return if @current_user.id == @category.user_id
 
     flash[:notice] = "権限がありません"
     redirect_to categories_path

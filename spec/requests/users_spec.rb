@@ -150,7 +150,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it "indexに行けないこと" do
-        # TODO:後ほど
+        # TODO: 後ほど
       end
     end
 
@@ -179,7 +179,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # TODO:テスト未完成
+  # TODO: テスト未完成
   describe "ログアウト" do
     it "ログアウトに成功したら" do
       login
