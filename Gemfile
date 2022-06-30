@@ -57,6 +57,8 @@ group :development, :test do
   gem 'pry-byebug'
   # ER図作るgem
   gem 'rails-erd'
+  # 壊れたrouteをテストできるgem
+  gem 'route_mechanic'
 end
 
 group :development do

@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
   let!(:user2) { create(:user, :for_ensure_correct) }
-
   #attributes_forはフォームに入力したい情報を作ってる
   #ハッシュになる
   #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
@@ -179,12 +178,17 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # TODO: テスト未完成
   describe "ログアウト" do
-    it "ログアウトに成功したら" do
+    it "ログアウトに成功したらリダイレクト先にいけてること" do
       login
-      delete logout_path
+      post logout_path
       expect(response).to redirect_to(login_path)
+    end
+
+    it "ログアウトに成功したレスポンスステータスコードが302であること" do
+      login
+      post logout_path
+      expect(response.status).to eq 302
     end
   end
 end
