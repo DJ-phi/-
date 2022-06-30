@@ -55,6 +55,8 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'pry-byebug'
+  # ER図作るgem
+  gem 'rails-erd'
 end
 
 group :development do
