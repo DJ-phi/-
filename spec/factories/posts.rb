@@ -45,7 +45,7 @@ FactoryBot.define do
     trait :test_post1 do
       id { 22 }
       memo { "すき家" }
-      price { 10 }
+      price { 20000 }
       use_day { "2022-06-10" }
     end
 

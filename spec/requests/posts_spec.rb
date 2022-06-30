@@ -70,9 +70,8 @@ RSpec.describe "Posts", type: :request do
     it "完全一致検索" do
       get posts_path(post_attributes2)
       expect(response.body).to include test_post2.price.to_s
-      # TODO: 後ほど削除
-      # expect(response.body).to include test_post1.price.to_s
-      # expect(response.body).to_not include test_post3.price.to_s
+      expect(response.body).to_not include test_post1.price.to_s
+      expect(response.body).to_not include test_post3.price.to_s
     end
 
     it "間検索" do
