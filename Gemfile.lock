@@ -233,12 +233,8 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp-examples (1.5.1)
     regexp_parser (2.5.0)
     rexml (3.2.5)
-    route_mechanic (0.2.1)
-      actionpack (>= 4.2, < 6.2)
-      regexp-examples (>= 1.5, < 2)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -354,7 +350,6 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.7)
   rails-erd
   rails-i18n
-  route_mechanic
   rspec-rails
   rubocop
   rubocop-rails

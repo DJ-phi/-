@@ -131,8 +131,12 @@ RSpec.describe "Categories", type: :request do
         expect(response).to redirect_to(categories_path)
       end
 
+      # shoeを実装していないから
       it "categoryのshowに行けないこと" do
-        # TODO後ほど
+        login
+        expect do
+          get category_path(category)
+        end .to raise_error(ActionController::RoutingError)
       end
     end
 

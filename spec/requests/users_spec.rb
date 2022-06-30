@@ -148,8 +148,12 @@ RSpec.describe "Users", type: :request do
         expect(response).to redirect_to(user_path(user))
       end
 
+      # indexを実装していないから
       it "indexに行けないこと" do
-        # TODO: 後ほど
+        login
+        expect do
+          get users_path
+        end .to raise_error(ActionController::RoutingError)
       end
     end
 

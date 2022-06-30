@@ -220,14 +220,13 @@ RSpec.describe "Posts", type: :request do
         expect(response).to redirect_to(posts_path)
       end
 
-      # TODO: 未完成
       # showを実装していないからのテスト
-      # it "詳細ページに行けないようになっていること" do
-      #   login
-      #   get post_path(new_post)
-        
-      #   expect(response).to eq 404
-      # end
+      it "詳細ページに行けないようになっていること" do
+        login
+        expect do
+          get post_path(new_post)
+        end .to raise_error(ActionController::RoutingError)
+      end
     end
 
     context"ログインしていない場合" do
@@ -239,8 +238,19 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "#new_categoryメソッド" do
-    it "" do
+    let!(:category_valid_attributes) { attributes_for(:category, :for_create) }
+    context "有効なパラメーターの場合" do
+      it "データが作成されること" do
+        expect {
+          post posts_path, params: { category: category_valid_attributes } #paramsはフォームで送られている情報
+        }.to change(Category, :count).by(1)
+      end
+    end
 
+    context "" do
+      it "" do
+        post posts_path, params: { category: category_valid_attributes }
+      end
     end
   end
 end
