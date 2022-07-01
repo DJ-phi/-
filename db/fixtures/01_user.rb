@@ -1,6 +1,6 @@
 User.seed do |s|
   s.id = 1
-  s.name = "テスト"
+  s.name = "猫さん"
   s.email = "test@gmail.com"
   s.password = 1234
   end
