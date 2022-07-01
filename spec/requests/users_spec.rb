@@ -128,7 +128,7 @@ RSpec.describe "Users", type: :request do
 
     it "indexにリダイレクトされること" do
       delete user_path(user)
-      expect(response).to redirect_to(users_path)
+      expect(response).to redirect_to(root_path)
     end
   end
   
