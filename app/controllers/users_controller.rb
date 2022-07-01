@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = "ユーザーを削除しました"
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def login_form
