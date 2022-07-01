@@ -5,19 +5,19 @@ Post.seed do |s|
   s.category_id = 1
   end
 
-  Post.seed do |s|
-    s.memo = "パン"
-    s.price = 300
-    s.user_id = 1
-    s.category_id = 1
-    end
+Post.seed do |s|
+  s.memo = "パン"
+  s.price = 300
+  s.user_id = 1
+  s.category_id = 1
+end
 
-    Post.seed do |s|
-      s.memo = "本"
-      s.price = 1000
-      s.user_id = 1
-      s.category_id = 1
-      end
+Post.seed do |s|
+  s.memo = "本"
+  s.price = 1000
+  s.user_id = 1
+  s.category_id = 1
+end
 
 # 複数の記述
 # 10.times do |n|
