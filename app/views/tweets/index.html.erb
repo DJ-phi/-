@@ -1,8 +1,11 @@
-<div class="main posts-index">
+<div class="main tweets_index">
   <div class="container">
     <% @tweets.each do |tweet| %>
       <div class="tweets_index_item">
-        <%= link_to post.content, edit_tweet_path %>
+        <%= tweet.content %>
+        <% if false %>
+          <%= link_to tweet.content, edit_tweet_path %>
+        <% end %>
       </div>
     <% end %>
   </div>
