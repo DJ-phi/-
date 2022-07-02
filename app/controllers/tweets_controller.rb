@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  # ruboで若干記述が変わっている
+  # %iを入れることによって,が省略できている（多分）
   before_action :set_tweet, only: %i[edit update destroy] # findをメソッド化している
 
   # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
