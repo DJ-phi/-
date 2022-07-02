@@ -3,6 +3,7 @@
     <div class="form-heading">みんなのつぶやき広場</div>
       <% @tweets.each do |tweet| %>
         <div class="tweets_index_item">
+          スレッド<%= tweet.id %> <br>
           投稿日: <%= tweet.created_at.to_s(:datetime_jp) %> <br>
           お名前:【<%= @current_user.name %>】<br>
           <%= tweet.content %>
@@ -13,3 +14,6 @@
     </div>
   </div>
 </div>
+<section>
+  <%= link_to "つぶやいてみる", new_tweet_path, class: "btn_04" %>
+</section>
