@@ -1,9 +1,25 @@
-<%= form_with model: post do |f| %>
-  <%= f.label :title ,"タイトル" %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :food ,"¥食事代" %><br>
-  <%= f.text_field :food %><br>
-  <%= f.label :traffic ,"¥交通費" %><br>
-  <%= f.text_field :traffic %><br>
-  <%= f.submit "登録" %>
-<% end %>
+<%= render "ajax", post: @post %>
+<script type="text/javascript">
+  const text_box = document.getElementById("text_box");
+  const image = document.getElementById("image");
+  const use_day = document.getElementById("use_day");
+  const memo = document.getElementById("memo");
+  const price = document.getElementById("price");
+  
+  function makeParams() {
+    let link = document.getElementById("link");
+    let memoParams = memo.value
+    let priceParams = price.value
+    let category_nameParams = text_box.value
+    let use_dayParams = use_day.value
+
+    let memoResult = "post[memo]=" + memoParams
+    let priceResult = "post[price]=" + priceParams
+    let category_nameResult = "category[name]=" + category_nameParams
+    let use_dayResult = "post[use_day]=" + use_dayParams
+
+    let result = "<%= posts_new_category_path %>" + "?" + memoResult +"&"+ priceResult +"&"+ category_nameResult +"&"+ use_dayResult
+
+    link.setAttribute('href',  encodeURI(result))
+  }
+</script>

@@ -3,6 +3,7 @@
     <div class="form-heading">新規作成</div>
     <div class="form posts-form">
       <div class="form-body">
+        <%= render "error_message", post: @post %>
         <%= render "form", post: @post %>
       </div>
     </div>

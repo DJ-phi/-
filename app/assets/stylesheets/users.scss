@@ -79,7 +79,7 @@
 }
 
 .user a {
-  color: #8899a6;
+  color: #0b0c0c;
   text-decoration: underline;
   font-weight: 200;
 }
@@ -162,8 +162,11 @@
   padding: 80px;
 }
 
-form input {
+.user_form {
   width: 100%;
+}
+
+form input {
   border: 1px solid #d8dadf;
   padding: 10px;
   color: #57575f;

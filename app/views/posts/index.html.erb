@@ -1,34 +1,42 @@
-<div class="post_body">
-  <h3 class="post_h3">投稿一覧</h3>
-  <table>
-    <thead>
+<h3 class="post_h3">明細一覧</h3>
+<%= render "layouts/search" %>
+<h4>現在の日にち<%= Date.current.strftime("%Y年 %m月 %d日")%>投稿数<%= @posts.size %> 件 </h4>
+<h4>合計金額¥<%= @posts.map(&:price).sum %> 円 </h4>
+<table>
+  <thead>
+    <tr>
+      <th>ブックマーク</th>
+      <th>画像</th>
+      <th>メモ</th>
+      <th>使った日</th>
+      <th>価格</th>
+      <th>カテゴリー</th>
+      <th>編集</th>
+      <th>消去</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
       <tr>
-        <th>タイトル</th>
-        <th>食費</th>
-        <th>交通費</th>
-        <th>使った日</th>
-        <th>合計額</th>
-        <th>確認</th>
-        <th>編集</th>
-        <th>消去</th>
+        <td id="post_<%= post.id %>">
+          <%= render "likes/like", post: post %>
+        </td>
+        <% if post.image.attached? %>
+          <td><%= image_tag post.image, class: "post_image" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td><%= post.memo %></td>
+        <td><%= post.use_day %></td>
+        <td><%= post.price %></td>
+        <td><%= post.category.name %></td>
+        <td><%= link_to "編集", [:edit, post] %></td>
+        <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.title %></td>
-          <td><%= post.food %></td>
-          <td><%= post.traffic %></td>
-          <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-          <td><%= post.total_price %></td>
-          <td><%= link_to "参照", post %></td>
-          <td><%= link_to "編集", [:edit, post] %></td>
-          <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  <div class="post_btn">
-    <%= link_to "新規登録", new_post_path, class: "btn" %>
-  </div>
+    <% end %>
+  </tbody>
+</table>
+<div class="category_btn">
+  <%= link_to "明細を登録", new_post_path, class: "btn" %>
+  <%= link_to "カテゴリ一覧", categories_path, class: "btn" %>
 </div>

@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
+  #homeルート
   root "home#top"
 
+  #userルート
   get "login" => "users#login_form"
   post "login" => "users#login"
   post "logout" => "users#logout"
 
-  resources:users
-  resources:posts
+  #postルート
+  get "posts/new_category" => "posts#new_category"
+
+  #いいねルート
+  post 'like/:id' => 'likes#create', as: 'create_like'
+  delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
+
+  resources:categories, except: [:show]
+  resources:users, except: [:index]
+  resources:posts, except: [:show]
 end
