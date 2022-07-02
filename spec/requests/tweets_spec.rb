@@ -2,18 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Tweets", type: :request do
   describe "GET /index" do
-
     it "returns http success" do
       get "/tweets/index"
       expect(response).to have_http_status(:success)
     end
 
     it "contentが取得されていること" do
-
     end
 
     it "userの名前が取得できていること" do
-
     end
   end
 
@@ -27,17 +24,14 @@ RSpec.describe "Tweets", type: :request do
   describe "#create" do
     context "有効なパラメータの場合" do
       it "データが作成されること" do
-
       end
 
       it "データが作成されるとリダイレクト先にいけてること" do
-
       end
     end
 
     context "無効なパラメーターの場合" do
       it "データが作成されない" do
-
       end
     end
   end
@@ -45,17 +39,14 @@ RSpec.describe "Tweets", type: :request do
   describe "#update" do
     context "有効なパラメータの場合" do
       it "データが作成されること" do
-
       end
 
       it "データが作成されるとリダイレクト先にいけてること" do
-
       end
     end
 
     context "無効なパラメーターの場合" do
       it "データが作成されない" do
-
       end
     end
   end
@@ -67,17 +58,14 @@ RSpec.describe "Tweets", type: :request do
     end
 
     it "contentが取得されていること" do
-
     end
 
     it "userの名前が取得できていること" do
-
     end
   end
 
   describe "#destroy" do
     it "データが削除されること" do
-
     end
   end
 
@@ -90,7 +78,6 @@ RSpec.describe "Tweets", type: :request do
 
     context "ログインしていない場合" do
       it "tweetページにいくとれダイレクトされること" do
-
       end
     end
   end
