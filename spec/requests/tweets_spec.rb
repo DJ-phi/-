@@ -60,21 +60,6 @@ RSpec.describe "Tweets", type: :request do
     end
   end
 
-  describe "#show" do
-    it "returns http success" do
-      get ""
-      expect(response).to have_http_status(:success)
-    end
-
-    it "contentが取得されていること" do
-
-    end
-
-    it "userの名前が取得できていること" do
-
-    end
-  end
-
   describe "#edit" do
     it "returns http success" do
       get ""
