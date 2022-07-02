@@ -136,7 +136,7 @@ RSpec.describe "Categories", type: :request do
         login
         expect do
           get category_path(category)
-        end .to raise_error(ActionController::RoutingError)
+        end.to raise_error(ActionController::RoutingError)
       end
     end
 

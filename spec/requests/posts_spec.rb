@@ -225,7 +225,7 @@ RSpec.describe "Posts", type: :request do
         login
         expect do
           get post_path(new_post)
-        end .to raise_error(ActionController::RoutingError)
+        end.to raise_error(ActionController::RoutingError)
       end
     end
 
@@ -237,19 +237,19 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
-  # TODO:未完成
+  # TODO: 未完成
   describe "#new_categoryメソッド" do
-  #   let!(:category_valid_attributes) { attributes_for(:category, :for_create) }
-  #   context "有効なパラメーターの場合" do
-  #     it "データが作成されること" do
-  #       expect {
-  #         post posts_path, params: { new_category: category_valid_attributes } #paramsはフォームで送られている情報
-  #       }.to change(Category, :count).by(1)
-  #     end
-  #   it "データが作成されること" do
-  #     expect { Category.new(name: "テスト", user_id: 1) }.to change(Category, :count).by(1)
-  #   end
-  # end
+    #   let!(:category_valid_attributes) { attributes_for(:category, :for_create) }
+    #   context "有効なパラメーターの場合" do
+    #     it "データが作成されること" do
+    #       expect {
+    #         post posts_path, params: { new_category: category_valid_attributes } #paramsはフォームで送られている情報
+    #       }.to change(Category, :count).by(1)
+    #     end
+    #   it "データが作成されること" do
+    #     expect { Category.new(name: "テスト", user_id: 1) }.to change(Category, :count).by(1)
+    #   end
+    # end
 
     context "" do
       it "" do
