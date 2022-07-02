@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :tweets, dependent: :destroy
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
