@@ -3,9 +3,11 @@
     <div class="form-heading">みんなのつぶやき広場</div>
       <% @tweets.each do |tweet| %>
         <div class="tweets_index_item">
+          投稿日: <%= tweet.created_at.to_s(:datetime_jp) %> <br>
+          お名前:【<%= @current_user.name %>】<br>
           <%= tweet.content %>
-          <%= link_to "【編集】", [:edit, tweet] %>
-          <%= link_to "【削除】", tweet, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+          <%= link_to "【編集】", [:edit, tweet] if @current_user.id == tweet.user_id %>
+          <%= link_to "【削除】", tweet, method: :delete, data: { confirm: "本当に削除しますか？" } if @current_user.id == tweet.user_id %>
         </div>
       <% end %>
     </div>
