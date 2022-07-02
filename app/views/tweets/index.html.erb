@@ -1,12 +1,14 @@
 <div class="main tweets_index">
   <div class="container">
-    <% @tweets.each do |tweet| %>
-      <div class="tweets_index_item">
-        <%= tweet.content %>
-        <% if false %>
-          <%= link_to tweet.content, edit_tweet_path %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="form-heading">みんなのつぶやき広場</div>
+      <% @tweets.each do |tweet| %>
+        <div class="tweets_index_item">
+          <%= tweet.content %>
+          <% if false %>
+            <%= link_to tweet.content, edit_tweet_path %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
