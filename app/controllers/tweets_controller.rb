@@ -22,15 +22,22 @@ class TweetsController < ApplicationController
   end
 
   def edit
-
+    
   end
 
   def update
-
+    if @tweet.update(tweet_params)
+      flash[:notice] = "更新しました"
+      redirect_to tweets_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @tweet.destroy
+    flash[:notice] = "削除しました"
+    redirect_to tweets_path
   end
 
   private

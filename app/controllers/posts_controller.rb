@@ -7,7 +7,6 @@ class PostsController < ApplicationController
   before_action :ensure_correct_post, only: [ :edit, :update, :destroy ]
 
   def index
-    # console
     #all以外に何かくっつける場合はallはいらないです
     #order(use_day: "DESC")で並び替え
     @posts = @current_user.posts.eager_load_category.keyword(params[:keyword]).prices(params[:prices]).use_day(params[:use_day], params[:end_day]).order(use_day: "DESC")
