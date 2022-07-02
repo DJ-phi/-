@@ -1,2 +1,9 @@
-<h1>Tweets#index</h1>
-<p>Find me in app/views/tweets/index.html.erb</p>
+<div class="main posts-index">
+  <div class="container">
+    <% @tweets.each do |tweet| %>
+      <div class="tweets_index_item">
+        <%= link_to post.content, edit_tweet_path %>
+      </div>
+    <% end %>
+  </div>
+</div>
