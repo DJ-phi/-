@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
 
+  before_action :set_tweet, only: [ :edit, :update, :destroy ] #findをメソッド化している
+
   def index
     console
     @tweets = Tweet.all.order(created_at: :desc)
@@ -32,6 +34,10 @@ class TweetsController < ApplicationController
   end
 
   private
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
   def tweet_params
     params.require(:tweet).permit(:content, :user_id).merge(user_id: @current_user.id)

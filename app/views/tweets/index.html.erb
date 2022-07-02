@@ -4,9 +4,7 @@
       <% @tweets.each do |tweet| %>
         <div class="tweets_index_item">
           <%= tweet.content %>
-          <% if false %>
-            <%= link_to tweet.content, edit_tweet_path %>
-          <% end %>
+          <%= link_to "【編集】", [:edit, tweet] %>
         </div>
       <% end %>
     </div>
