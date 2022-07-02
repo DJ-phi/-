@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
+
   #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
   before_action :authenticate_user
+  
   #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
   before_action :ensure_correct_post, only: [ :edit, :update, :destroy ]
 

@@ -1,6 +1,11 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only: %i[edit update destroy] # findをメソッド化している
 
-  before_action :set_tweet, only: [ :edit, :update, :destroy ] #findをメソッド化している
+  # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
+  before_action :authenticate_user
+
+  # 正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
+  before_action :ensure_correct_tweet, only: %i[edit update destroy]
 
   def index
     console
@@ -21,9 +26,7 @@ class TweetsController < ApplicationController
     end
   end
 
-  def edit
-    
-  end
+  def edit; end
 
   def update
     if @tweet.update(tweet_params)
@@ -48,5 +51,12 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params.require(:tweet).permit(:content, :user_id).merge(user_id: @current_user.id)
+  end
+
+  def ensure_correct_tweet
+    return if @current_user.id == @tweet.user_id
+
+    flash[:notice] = "権限がありません"
+    redirect_to tweets_path
   end
 end
