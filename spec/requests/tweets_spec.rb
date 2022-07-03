@@ -142,7 +142,7 @@ RSpec.describe "Tweets", type: :request do
     end
 
     context "ログインしていない場合" do
-      it "tweetページにいくとダイレクトされること" do
+      it "tweetページにいくとリダイレクトされること" do
         get tweets_path
         expect(response).to redirect_to(login_path)
       end
