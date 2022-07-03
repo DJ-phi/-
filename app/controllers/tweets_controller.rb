@@ -10,7 +10,6 @@ class TweetsController < ApplicationController
   before_action :ensure_correct_tweet, only: %i[edit update destroy]
 
   def index
-    console
     @tweets = Tweet.all.order(created_at: :desc)
   end
 
