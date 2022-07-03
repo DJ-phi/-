@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
+  let!(:category) { create(:category) }
+  
   before do
     create(:user)
   end
-
-  let!(:category) { create(:category) }
 
   describe "バリデーション" do
     it "[name]空だったらNG" do
