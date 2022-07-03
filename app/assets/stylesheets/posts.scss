@@ -13,7 +13,6 @@
 
 table {
   margin: auto;
-  padding-top: 60px;
 }
 
 .post_h3 {
@@ -34,6 +33,14 @@ table td {
 
 .post_btn {
   padding-top: 20px;
+  text-align: center;
+}
+
+.search {
+  text-align: center;
+}
+
+.count_record {
   text-align: center;
 }
 // new, edit
