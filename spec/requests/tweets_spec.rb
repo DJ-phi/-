@@ -43,10 +43,11 @@ RSpec.describe "Tweets", type: :request do
     end
 
     context "有効なパラメータの場合" do
+      #何故かここは{}じゃなくdo,endの作りにされた(rubo)
       it "データが作成されること" do
-        expect {
-          post tweets_path, params: { tweet: new_valid_attributes } #paramsはフォームで送られている情報
-        }.to change(Tweet, :count).by(1)
+        expect do
+          post tweets_path, params: { tweet: new_valid_attributes } # paramsはフォームで送られている情報
+        end.to change(Tweet, :count).by(1)
       end
 
       it "データが作成されるとリダイレクト先にいけてること" do
@@ -113,9 +114,9 @@ RSpec.describe "Tweets", type: :request do
     end
 
     it "データが削除されること" do
-      expect {
+      expect do
         delete tweet_path(tweet)
-      }.to change(Tweet, :count).by(-1)
+      end.to change(Tweet, :count).by(-1)
     end
 
     it "tweets/indexにリダイレクトされること" do

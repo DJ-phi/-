@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   let!(:user) { create(:user) }
   let!(:category) { create(:category) }
-  let!(:post) { create(:post)}
+  let!(:post) { create(:post) }
 
   describe "バリデーション" do
     it "[name]空だったらNG" do
