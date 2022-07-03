@@ -16,6 +16,10 @@
   password: 1234<br>
   ログインに成功したら明細の登録をしていただき挙動を確認ください
   
+# 気になったエラーをQiitaの記事に書きました
+  https://qiita.com/djedmphi/items/d2619e6634a79edcf7fc<br>
+  https://qiita.com/djedmphi/items/0a92423d20a212f38028
+  
 # デプロイ先
   Heroku
   
@@ -24,9 +28,10 @@
   2. 登録が完了しましたらマイページに移ります
   3. 明細を登録するで自分の出費を登録できます
   4. カテゴリ一覧でカテゴリが管理できます
+  5. つぶやき広場で悩みなど書けます
   
 # ER図
-  <img width="643" alt="スクリーンショット 2022-06-30 3 28 24" src="https://user-images.githubusercontent.com/94509379/176509854-b55cb4a3-e73b-4e45-877b-dcc0fa0ed7bd.png">
+  <img width="868" alt="スクリーンショット 2022-07-03 16 35 44" src="https://user-images.githubusercontent.com/94509379/177030032-b16348fe-3e6d-4f00-9c1d-e9683a4d79e6.png">
   
 # 目指した課題
   目標に対して迅速に作れることを意識して作りました<br>
@@ -46,7 +51,6 @@
   複雑なjsを書いてます<br>
   自分の使っているアプリにはない機能でposts/newから非同期でcategoryが追加できるのが強みです。<br>
   自分にとって傑作です<br>
-  <img width="581" alt="スクリーンショット 2022-06-30 0 17 34" src="https://user-images.githubusercontent.com/94509379/176475346-ba582a55-f8f1-44bf-b47e-2872f47409f3.png">
 ___
   **2. ログイン機能**
 
@@ -90,7 +94,7 @@ ___
  一覧ページでは合計額、件数が表示されるようにしています<br>
  使った出費の値段+画像+日付+メモ+カテゴリーの登録ができるようになってます<br>
  登録、編集、削除ができます<br>
- <img width="1264" alt="スクリーンショット 2022-06-30 0 37 05" src="https://user-images.githubusercontent.com/94509379/176477808-37b04831-38b9-464e-9c11-1182b5b11c26.png">
+ <img width="891" alt="スクリーンショット 2022-07-03 16 58 40" src="https://user-images.githubusercontent.com/94509379/177030768-5967b30b-4ce0-409b-b504-445b819ffe82.png">
 ___
   **2. ログイン機能(users)**
   
@@ -111,6 +115,12 @@ ___
   完全一致検索: 値段を検索できます　※完全一致した明細しか検索できません<br>
   間検索: 使った日付の間を検索できます<br>
   <img width="756" alt="スクリーンショット 2022-06-30 0 53 14" src="https://user-images.githubusercontent.com/94509379/176481223-96ebe737-e342-489b-abe5-6c2a6bdc12ca.png">
+___
+  **6. つぶやき機能**
+  
+  つぶやける広場を実装してみました<br>
+  2chみたいな作りにしました<br>
+  <img width="534" alt="スクリーンショット 2022-07-03 16 41 52" src="https://user-images.githubusercontent.com/94509379/177030247-168d1efc-998e-4ff4-a0fd-afdf1bdde91b.png">
 ___
 ## 使用環境
   - M1 mac
@@ -218,7 +228,27 @@ models/like.rb
  belongs_to :user
  belongs_to :post
 ```
+---
+  **tweetテーブル**
+  
+ ```
+ schema.rb
+ 
+ create_table "tweets", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+ ```
+ 
+ **アソシエーション**
 
+```
+models/tweet.rb
+
+belongs_to :user
+```
 
   
   
