@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
+  let!(:user) { create(:user) }
   let!(:category) { create(:category) }
-  
-  before do
-    create(:user)
-  end
+  let!(:post) { create(:post)}
 
   describe "バリデーション" do
     it "[name]空だったらNG" do
@@ -20,10 +18,6 @@ RSpec.describe Category, type: :model do
   end
 
   describe "モデルのオプションdependent: :destroyのテスト" do
-    before do
-      create(:post)
-    end
-
     it "categoryを消したらpostも消えること" do
       expect { category.destroy }.to change(Post, :count).by(-1)
     end
