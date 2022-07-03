@@ -133,7 +133,7 @@ RSpec.describe "Tweets", type: :request do
       end
 
       # showを実装していないから
-      it "categoryのshowに行けないこと" do
+      it "tweetのshowに行けないこと" do
         login
         expect do
           get tweet_path(tweet)
