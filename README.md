@@ -129,6 +129,7 @@ ___
   - RuboCop
   - AWS S3
   - Rails 6.1.4
+  - RSpec
   
 # テーブル設計
   **userテーブル**
