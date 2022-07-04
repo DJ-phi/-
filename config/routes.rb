@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   post 'like/:id' => 'likes#create', as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
 
+  # tweetのlike
+  post 'tweet_like/:id' => 'tweet_likes#create', as: 'create_tweet_like'
+  delete 'tweet_like/:id' => 'tweet_likes#destroy', as: 'destroy_tweet_like'
+
   resources:tweets, except: [:show]
   resources:categories, except: [:show]
   resources:users, except: [:index]
