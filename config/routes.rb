@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get "posts/new_category" => "posts#new_category"
 
   #いいねルート
-  post 'like/:id' => 'likes#create', as: 'create_like'
-  delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
+  post 'post_like/:id' => 'post_likes#create', as: 'create_post_like'
+  delete 'post_like/:id' => 'post_likes#destroy', as: 'destroy_post_like'
 
   # tweetのlike
   post 'tweet_like/:id' => 'tweet_likes#create', as: 'create_tweet_like'

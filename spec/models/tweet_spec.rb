@@ -18,4 +18,14 @@ RSpec.describe Tweet, type: :model do
       expect(tweet.valid?).to eq(false)
     end
   end
+
+  describe "モデルのオプションdependent: :destroyのテスト" do
+    before do
+      create(:tweet_like)
+    end
+
+    it "postを消したらlikeも消えること" do
+      expect { post.destroy }.to change(TweetLike, :count).by(-1)
+    end
+  end
 end
