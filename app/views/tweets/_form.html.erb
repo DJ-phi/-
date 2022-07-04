@@ -1,0 +1,5 @@
+<%= form_with model: tweet do |f| %>
+  <%= f.label :content ,"つぶやき" %><br>
+  <%= f.text_area :content , maxlength: "50", class: "tweet_form", placeholder: "50文字以内" %><br>
+  <%= f.submit "つぶやく" %>
+<% end %>

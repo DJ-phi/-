@@ -1,7 +1,9 @@
 <h3 class="post_h3">明細一覧</h3>
 <%= render "layouts/search" %>
-<h4>現在の日にち<%= Date.current.strftime("%Y年 %m月 %d日")%>投稿数<%= @posts.size %> 件 </h4>
-<h4>合計金額¥<%= @posts.map(&:price).sum %> 円 </h4>
+<div class="count_record">
+  <h4>現在の日にち<%= Date.current.strftime("%Y年 %m月 %d日")%>投稿数<%= @posts.size %> 件 </h4>
+  <h4>合計金額¥<%= @posts.map(&:price).sum %> 円 </h4>
+</div>
 <table>
   <thead>
     <tr>
@@ -36,7 +38,7 @@
     <% end %>
   </tbody>
 </table>
-<div class="category_btn">
+<div class="post_btn">
   <%= link_to "明細を登録", new_post_path, class: "btn" %>
   <%= link_to "カテゴリ一覧", categories_path, class: "btn" %>
 </div>

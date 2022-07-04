@@ -153,7 +153,7 @@ RSpec.describe "Users", type: :request do
         login
         expect do
           get users_path
-        end .to raise_error(ActionController::RoutingError)
+        end.to raise_error(ActionController::RoutingError)
       end
     end
 
