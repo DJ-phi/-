@@ -31,7 +31,8 @@
   5. つぶやき広場で悩みなど書けます
   
 # ER図
-  <img width="868" alt="スクリーンショット 2022-07-03 16 35 44" src="https://user-images.githubusercontent.com/94509379/177030032-b16348fe-3e6d-4f00-9c1d-e9683a4d79e6.png">
+
+<img width="955" alt="スクリーンショット 2022-07-05 2 52 25" src="https://user-images.githubusercontent.com/94509379/177200927-18e75d13-c283-4452-8103-0f6a68fc4126.png">
   
 # 目指した課題
   目標に対して迅速に作れることを意識して作りました<br>
@@ -155,7 +156,8 @@ models/post.rb
 
 has_many :posts, dependent: :destroy
 has_many :categories, dependent: :destroy
-has_many :likes, dependent: :destroy
+has_many :post_likes, dependent: :destroy
+has_many :tweet_likes, dependent: :destroy
 ```
 ---
   **categoryテーブル**
@@ -208,12 +210,12 @@ has_one_attached :image
 
 ```
 ---
-  **likeテーブル**
+  **Post_likeテーブル**
   
 ```
 schema.rb
 
-create_table "likes", force: :cascade do |t|
+create_table "post_likes", force: :cascade do |t|
   t.integer "user_id"
   t.integer "post_id"
   t.datetime "created_at", precision: 6, null: false
@@ -224,7 +226,7 @@ end
 **アソシエーション**
 
 ```
-models/like.rb
+models/post_like.rb
 
  belongs_to :user
  belongs_to :post
@@ -249,6 +251,26 @@ models/like.rb
 models/tweet.rb
 
 belongs_to :user
+```
+---
+  **tweet_like**
+
+```
+create_table "tweet_likes", force: :cascade do |t|
+  t.integer "user_id"
+  t.integer "tweet_id"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+end
+```
+
+ **アソシエーション**
+ 
+ ```
+models/post_like.rb
+
+ belongs_to :user
+ belongs_to :tweet
 ```
 
   
