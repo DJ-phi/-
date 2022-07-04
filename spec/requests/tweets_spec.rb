@@ -43,7 +43,7 @@ RSpec.describe "Tweets", type: :request do
     end
 
     context "有効なパラメータの場合" do
-      #何故かここは{}じゃなくdo,endの作りにされた(rubo)
+      # 何故かここは{}じゃなくdo,endの作りにされた(rubo)
       it "データが作成されること" do
         expect do
           post tweets_path, params: { tweet: new_valid_attributes } # paramsはフォームで送られている情報

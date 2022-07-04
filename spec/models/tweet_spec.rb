@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Tweet, type: :model do
-  let(:tweet) { create(:tweet) }
-
-  before do
-    create(:user)
-  end
+  let!(:user) { create(:user) }
+  let!(:tweet) { create(:tweet) }
+  let!(:tweet_like) { create(:tweet_like) }
 
   describe "バリデーション" do
     it "文字制限50文字以上" do
@@ -20,10 +18,6 @@ RSpec.describe Tweet, type: :model do
   end
 
   describe "モデルのオプションdependent: :destroyのテスト" do
-    before do
-      create(:tweet_like)
-    end
-
     it "postを消したらlikeも消えること" do
       expect { post.destroy }.to change(TweetLike, :count).by(-1)
     end
