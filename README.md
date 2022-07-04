@@ -16,7 +16,7 @@
   password: 1234<br>
   ログインに成功したら明細の登録をしていただき挙動を確認ください
   
-# 気になったエラーをQiitaの記事に書きました
+# 開発中で解決したエラーをQiitaの記事に書きました
   https://qiita.com/djedmphi/items/d2619e6634a79edcf7fc<br>
   https://qiita.com/djedmphi/items/0a92423d20a212f38028
   
