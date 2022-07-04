@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
   before_action :ensure_correct_tweet, only: %i[edit update destroy]
 
   def index
-    @tweets = Tweet.all.order(created_at: :desc)
+    @tweets = Tweet.all.eager_load(:user).order(created_at: :desc)
   end
 
   def new
