@@ -9,10 +9,10 @@
   自分自身、家計簿アプリを使用しており、自分でも開発してみたいという考えで開発をしてみました<br>
   開発してく中で理解力が深まりRubyが大好きになりました
   
-# アプリのurl
+# アプリのURL
   https://my--kakeibo.herokuapp.com/<br>
   ゲストデータが用意してあります<br>
-  email: test@gmail.com<br>
+  email: test@example.com<br>
   password: 1234<br>
   ログインに成功したら明細の登録をしていただき挙動を確認ください
   
