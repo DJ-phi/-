@@ -42,7 +42,8 @@ Heroku
 
 # ER図
 
-<img width="643" alt="スクリーンショット 2022-06-30 3 28 24" src="https://user-images.githubusercontent.com/94509379/176509854-b55cb4a3-e73b-4e45-877b-dcc0fa0ed7bd.png">
+<img width="948" alt="スクリーンショット 2022-07-06 13 23 44" src="https://user-images.githubusercontent.com/94509379/177467987-4f7ce40b-acd0-4523-8fdc-4df8535843ed.png">
+
 
 # 目指した課題
 
