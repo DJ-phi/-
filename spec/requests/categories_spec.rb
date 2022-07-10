@@ -12,7 +12,6 @@ RSpec.describe "Categories", type: :request do
   let!(:new_valid_attributes) { attributes_for(:category, :for_create) }
   let!(:unvalid_attributes) { attributes_for(:category, :un_update) }
   #                                             ↑ここを変え忘れると違うテーブルのデータが生成される
-
   describe "#index" do
     before do
       login
@@ -20,6 +19,7 @@ RSpec.describe "Categories", type: :request do
     end
 
     it"nameが表示されている" do
+      # binding.pry
       expect(response.body).to include category.name
     end
 

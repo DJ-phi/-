@@ -13,7 +13,7 @@ FactoryBot.define do
     end
 
     trait :for_create do
-      id { 44 }
+      id { 4 }
       name { "test" }
       password { 123_456 }
       email { Faker::Internet.unique.free_email }

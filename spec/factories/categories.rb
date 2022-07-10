@@ -11,7 +11,6 @@ FactoryBot.define do
     end
 
     trait :for_create do
-      id { 55 }
       user_id { 1 }
       name { Faker::Name.unique.initials(number: 2) }
     end
