@@ -21,7 +21,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td id="post_<%= post.id %>">
-          <%= render "likes/like", post: post %>
+          <%= render "post_likes/post_like", post: post %>
         </td>
         <% if post.image.attached? %>
           <td><%= image_tag post.image, class: "post_image" %></td>

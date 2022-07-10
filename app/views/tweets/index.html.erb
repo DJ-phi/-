@@ -7,6 +7,9 @@
           投稿日: <%= tweet.created_at.to_s(:datetime_jp) %> <br>
           お名前:【<%= tweet.user.name %>】<br>
           <%= tweet.content %>
+          <div id="tweet_<%= tweet.id %>">
+            <%= render "tweet_likes/tweet_like",tweet:tweet %><br>
+          </div>
           <%= link_to "【編集】", [:edit, tweet] if @current_user.id == tweet.user_id %>
           <%= link_to "【削除】", tweet, method: :delete, data: { confirm: "本当に削除しますか？" } if @current_user.id == tweet.user_id %>
         </div>

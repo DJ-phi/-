@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_02_070447) do
+ActiveRecord::Schema.define(version: 2022_07_04_173639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2022_07_02_070447) do
     t.integer "user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
+  create_table "post_likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 2022_07_02_070447) do
     t.integer "category_id"
     t.integer "price", default: 0
     t.date "use_day"
+  end
+
+  create_table "tweet_likes", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|

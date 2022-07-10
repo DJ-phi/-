@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user #リレーション, userは1の関係性
   belongs_to :category
-  has_many :likes, dependent: :destroy
+  has_many :post_likes, dependent: :destroy
   has_one_attached :image #アクティブストレージを使うための記述
 
   #ばりでーしょん

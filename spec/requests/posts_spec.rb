@@ -254,10 +254,10 @@ RSpec.describe "Posts", type: :request do
   #     end
   #   end
 
-    # context "" do
-    #   it "" do
-        # post posts_path, params: { category: category_valid_attributes }
-    #   end
-    # end
+  # context "" do
+  #   it "" do
+  # post posts_path, params: { category: category_valid_attributes }
+  #   end
+  # end
   # end
 end

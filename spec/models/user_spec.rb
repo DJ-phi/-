@@ -58,7 +58,9 @@ RSpec.describe User, type: :model do
     before do
       create(:category)
       create(:post)
-      create(:like)
+      create(:tweet)
+      create(:post_like)
+      # create(:tweet_like)
       # パターン2
       # _始まりの変数名は使わない変数であることを示す慣習みたいなものです。なお参照ができないわけではないです
       # _category = create(:category)
@@ -74,8 +76,13 @@ RSpec.describe User, type: :model do
       expect { user.destroy }.to change(Category, :count).by(-1)
     end
 
-    it "userを消したらlikeも消えること" do
-      expect { user.destroy }.to change(Like, :count).by(-1)
+    it "userを消したらpost_likeも消えること" do
+      expect { user.destroy }.to change(PostLike, :count).by(-1)
     end
+
+    # TODO:未完成
+    # it "userを消したらtweet_likeも消えること" do
+    #   expect { user.destroy }.to change(TweetLike, :count).by(-1)
+    # end
   end
 end

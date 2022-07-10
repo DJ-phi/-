@@ -36,11 +36,11 @@ RSpec.describe Post, type: :model do
 
   describe "モデルのオプションdependent: :destroyのテスト" do
     before do
-      create(:like)
+      create(:post_like)
     end
 
     it "postを消したらlikeも消えること" do
-      expect { post.destroy }.to change(Like, :count).by(-1)
+      expect { post.destroy }.to change(PostLike, :count).by(-1)
     end
   end
 end
