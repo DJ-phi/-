@@ -1,7 +1,6 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
-      <%# -------------------------------------------- %>
       <p><%= "フォロー数: #{@user.follower.count}" %></p>
       <p><%= "フォロワー数: #{@user.followed.count}" %></p>
       <% if @user != @current_user %>
@@ -11,32 +10,28 @@
           <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
         <% end %>
       <% end %>
-
-<h2>フォロー</h2>
-  <% @user.following_user.where.not(id: @current_user.id).each do |user| %>
-    <p>
-      <%= user.name %>
-      <% if @current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+      <h2>フォロー</h2>
+      <% @user.following_user.where.not(id: @current_user.id).each do |user| %>
+        <p>
+          <%= link_to user.name, user_path(user) %>
+          <% if @current_user.following?(user) %>
+            <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+          <% end %>
+        </p>
       <% end %>
-      <%= link_to "プロフィールに行く", user_path(user) %>
-    </p>
-  <% end %>
-<h2>フォロワー</h2>
-<% @user.follower_user.where.not(id: @current_user.id).each do |user| %>
-  <p>
-    <%= user.name %>
-    <% if @current_user.following?(user) %>
-      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-    <% else %>
-      <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-    <% end %>
-    <%= link_to "プロフィールに行く", user_path(user) %>
-  </p>
-<% end %>
-      <%# ---------------------------------------------------- %>
+      <h2>フォロワー</h2>
+      <% @user.follower_user.where.not(id: @current_user.id).each do |user| %>
+        <p>
+          <%= link_to user.name, user_path(user) %>
+          <% if @current_user.following?(user) %>
+            <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+          <% end %>
+        </p>
+      <% end %>
       <h2><%= @user.name %></h2>
       <p><%= @user.email if @current_user.id == @user.id %></p>
       <%= link_to "編集", edit_user_path if @current_user.id == @user.id %>
