@@ -18,7 +18,7 @@ RSpec.describe Tweet, type: :model do
     end
   end
 
-  # TODO:未完成
+  # TODO: 未完成
   describe "モデルのオプションdependent: :destroyのテスト" do
     before do
       # create(:tweet_like)
