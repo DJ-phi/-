@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Relationships", type: :request do
+  
+    # TODO:未完成
   describe "GET /followings" do
-    it "returns http success" do
-      get "/relationships/followings"
-      expect(response).to have_http_status(:success)
+    it "フォローできること" do
     end
   end
 
   describe "GET /followers" do
-    it "returns http success" do
-      get "/relationships/followers"
-      expect(response).to have_http_status(:success)
+    it "フォロ解除できること" do
     end
   end
-
 end
