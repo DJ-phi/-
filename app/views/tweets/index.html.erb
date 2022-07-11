@@ -6,6 +6,7 @@
           スレッド<%= tweet.id %> <br>
           投稿日: <%= tweet.created_at.to_s(:datetime_jp) %> <br>
           お名前:【<%= tweet.user.name %>】<br>
+          <%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %>
           <%= tweet.content %>
           <div id="tweet_<%= tweet.id %>">
             <%= render "tweet_likes/tweet_like",tweet:tweet %><br>
