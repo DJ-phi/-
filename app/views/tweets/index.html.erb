@@ -4,9 +4,8 @@
       <% @tweets.each do |tweet| %>
         <div class="tweets_index_item">
           スレッド<%= tweet.id %> <br>
-          投稿日: <%= tweet.created_at.to_s(:datetime_jp) %> <br>
-          お名前:【<%= tweet.user.name %>】<br>
-          <%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %>
+          投稿日: <%= tweet.created_at.to_s(:datetime_jp) %><br>
+          <%= link_to tweet.user.name, user_path(tweet.user.id) %><br>
           <%= tweet.content %>
           <div id="tweet_<%= tweet.id %>">
             <%= render "tweet_likes/tweet_like",tweet:tweet %><br>
