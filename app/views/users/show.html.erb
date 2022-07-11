@@ -1,6 +1,6 @@
 <div class="main user-show">
   <div class="container">
-    <div class="user">
+    <div class="follows"> 
       <p><%= "フォロー数: #{@user.follower.count}" %></p>
       <p><%= "フォロワー数: #{@user.followed.count}" %></p>
       <% if @user != @current_user %>
@@ -32,6 +32,8 @@
           <% end %>
         </p>
       <% end %>
+    </div>
+    <div class="user">
       <h2><%= @user.name %></h2>
       <p><%= @user.email if @current_user.id == @user.id %></p>
       <%= link_to "編集", edit_user_path if @current_user.id == @user.id %>
