@@ -18,13 +18,12 @@ RSpec.describe Tweet, type: :model do
     end
   end
 
-  # TODO: 未完成
   describe "モデルのオプションdependent: :destroyのテスト" do
     before do
-      # create(:tweet_like)
+      create(:tweet_like)
     end
     it "tweetを消したらlikeも消えること" do
-      # expect { tweet.destroy }.to change(TweetLike, :count).by(-1)
+      expect { tweet.destroy }.to change(TweetLike, :count).by(-1)
     end
   end
 end

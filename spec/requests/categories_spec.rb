@@ -19,7 +19,6 @@ RSpec.describe "Categories", type: :request do
     end
 
     it"nameが表示されている" do
-      # binding.pry
       expect(response.body).to include category.name
     end
 
