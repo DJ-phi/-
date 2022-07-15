@@ -1,25 +1,38 @@
 <%= render "ajax", post: @post %>
+<%# ここの関数の処理はストロングパラメーターに通すパラメーターを作っている %>
 <script type="text/javascript">
+  // 全てのfieldにidを付与させて、ここで定数に格納
   const text_box = document.getElementById("text_box");
   const image = document.getElementById("image");
   const use_day = document.getElementById("use_day");
   const memo = document.getElementById("memo");
   const price = document.getElementById("price");
   
+  // onclickにmakeParamsと命名してこの処理が動く
   function makeParams() {
-    let link = document.getElementById("link");
+    // 入力した値をvalueで出力して変数に格納
     let memoParams = memo.value
     let priceParams = price.value
     let category_nameParams = text_box.value
     let use_dayParams = use_day.value
 
+    // 出力した値を結合
+    // なぜ"post[memo]="かというとlabelでつけたname属性をrails側が変換している
+    // このような変換をしないとストロングパラメーターが動かない
     let memoResult = "post[memo]=" + memoParams
     let priceResult = "post[price]=" + priceParams
     let category_nameResult = "category[name]=" + category_nameParams
     let use_dayResult = "post[use_day]=" + use_dayParams
 
-    let result = "<%= posts_new_category_path %>" + "?" + memoResult +"&"+ priceResult +"&"+ category_nameResult +"&"+ use_dayResult
+    // resultで最終的に通るパラメータに組み立ている
+    // get通信で複数のパラメーターを作りたい場合"&"を使う
+    // ？は、URLとクエリストリングの区切りを示す記号です
 
-    link.setAttribute('href',  encodeURI(result))
+    let result = "<%= posts_new_category_path %>" + "?" + memoResult + "&" + priceResult + "&" + category_nameResult + "&" + use_dayResult
+    let link = document.getElementById("link");
+
+    // リンクをセーブしている ()の中身でhrefを書き換え、encodeURIで使えるurlに変換される
+    // 本来urlに日本語が使えない、encodeURIを使うことによってコードに変換されている
+    link.setAttribute('href', encodeURI(result))
   }
 </script>
