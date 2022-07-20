@@ -6,7 +6,7 @@ RSpec.describe TweetLike, type: :model do
 
   describe '正常値と異常値の確認' do
     it "自分のtweetにlikeできる" do
-      expect(TweetLike.new(user: user, tweet: tweet).save). to eq true
+      expect(TweetLike.new(user:, tweet:).save).to eq true
     end
   end
 end

@@ -9,6 +9,7 @@
   </thead>
   <tbody>
     <% @categories.each do |category| %>
+      <tr>
         <td><%= category.name %></td>
         <td><%= link_to "編集", [:edit, category] %></td>
         <td><%= link_to "削除", category, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :tweet do
+    id { 1 }
     content { "MyText" }
     user_id { 1 }
 
