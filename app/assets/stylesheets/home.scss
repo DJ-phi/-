@@ -56,17 +56,28 @@ body {
 }
 
 /* ヘッダー ================================ */
-header {
-  height: 65px;
+header, footer {
   width: 100%;
   background-color: rgba(34, 49, 52, 0.9);
 }
 
+header {
+  height: 65px;
+}
+
 footer  {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: rgba(34, 49, 52, 0.9);
+  text-align: center;
 }
 
 footer h1 {
+  color: #f5f8fa;
+}
+
+footer h3 {
   color: #f5f8fa;
 }
 
@@ -132,21 +143,19 @@ footer h1 {
 // トップページ
 
 .top-wrapper {
-  padding: 350px;
-  background-image: url(https://i.pinimg.com/originals/61/49/ef/6149ef88a29d58e0006f4e1c1f3ef8ee.png);
+  // padding: 350px;
+  background-image: url("https://user-images.githubusercontent.com/94509379/177614697-b0f80922-51a8-48d7-932e-da1775861c5c.png");
   background-size: cover;
   color: white;
   text-align: center;
-}
-
-.top-wrapper h1 {
-  opacity: 0.7;
-  font-size: 45px;
-  letter-spacing: 5px;
-}
-
-.top-wrapper p {
-  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
 }
 
 .btn-wrapper {

@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user, only: [:index, :show, :edit, :update]
-  before_action :forbid_login_user, only: [:new, :create, :login_form, :login]
-  # before_action :ensure_correct_user, only: [:edit, :update] #動作確認がしたいので後ほど解放
+  #@user = User.find(params[:id])をメソッド化している
+  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
 
-  def index
-    @users = User.all
-  end
+  #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
+  before_action :authenticate_user, only: [ :show, :edit, :update ] 
+
+  #ログイン状態のページ制限, application_controller.rbに記述がある
+  before_action :forbid_login_user, only: [ :new, :create, :login_form, :login ]
+
+  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
+  before_action :ensure_correct_user, only: [ :edit, :update, :destroy ] 
 
   def new
     @user = User.new
@@ -16,6 +19,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      #デフォで最初にcategory :nameを作ってあげる
+      Category.create(name: "無し", user_id: @user.id)
       session[:user_id] = @user.id
       flash[:notice] = "ユーザー登録が完了しました"
       redirect_to user_path(@user.id)
@@ -42,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = "ユーザーを削除しました"
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def login_form
@@ -55,7 +60,7 @@ class UsersController < ApplicationController
       password: params[:password]
     )
     if @user 
-      session[:user_id] = @user.id  #ここに追加
+      session[:user_id] = @user.id #ここに追加
       flash[:notice] = "ログインしました"
       redirect_to user_path(@user.id)
     else
@@ -81,11 +86,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password)
   end
 
-  # 動作確認するので後ほど解放
-  # def ensure_correct_user
-  #   if @current_user.id != params[:id].to_i
-  #     flash[:notice] = "権限がありません"
-  #     redirect_to users_path 
-  #   end            
-  # end
+  def ensure_correct_user
+    return if @current_user.id == @user.id
+
+    flash[:notice] = "権限がありません"
+    redirect_to user_path(@current_user)
+  end
 end

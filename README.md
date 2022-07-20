@@ -41,7 +41,8 @@ Heroku
 4. カテゴリ一覧でカテゴリが管理できます。
 
 # ER図
-<img width="1169" alt="スクリーンショット 2022-07-12 1 46 56" src="https://user-images.githubusercontent.com/94509379/178315991-919353fe-f8dd-40a1-8ecf-9916dfdb05a6.png">
+
+<img width="948" alt="スクリーンショット 2022-07-06 13 23 44" src="https://user-images.githubusercontent.com/94509379/177467987-4f7ce40b-acd0-4523-8fdc-4df8535843ed.png">
 
 
 # 目指した課題
@@ -134,10 +135,6 @@ AWSの使用が今後必ず訪れると分かったのでローカル、heroku�
 - 日付検索: 使った日付の間を検索できます。
 
 <img width="756" alt="スクリーンショット 2022-06-30 0 53 14" src="https://user-images.githubusercontent.com/94509379/176481223-96ebe737-e342-489b-abe5-6c2a6bdc12ca.png">
-
-## フォロー機能
-フォロー、フォロー解除ができます。<br>
-実装できるか、お試しでやってみた結果、実装できたので急遽入れました。<br>
 
 ## 使用環境
 
@@ -235,6 +232,7 @@ has_one_attached :image
 ```
 schema.rb
 
+create_table "likes", force: :cascade do |t|
 create_table "post_likes", force: :cascade do |t|
 t.integer "user_id"
 t.integer "post_id"
@@ -287,6 +285,8 @@ t.integer "user_id"
 t.integer "tweet_id"
 end
 ```
+---
+**tweet_like**
 
 **アソシエーション**
 

@@ -10,9 +10,9 @@
         <% end %>
         <%= form_with model: @user do |f| %>
           <%= f.label :email ,"メールアドレス" %><br>
-          <%= f.text_field :email %><br>
+          <%= f.text_field :email, class: "user_form" %><br>
           <%= f.label :password ,"パスワード" %><br>
-          <%= f.password_field :password %><br>
+          <%= f.password_field :password, class: "user_form" %><br>
           <%= f.submit "ログインする" %>
         <% end %>
       </div>

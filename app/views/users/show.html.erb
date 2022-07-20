@@ -2,17 +2,76 @@
   <div class="container">
     <div class="user">
       <h2><%= @user.name %></h2>
-      <p><%= @user.email %></p>
-      <% # TODO: 完成後に削除 %>
-      <p><%= @user.password%></p>
-      <%= link_to "編集", edit_user_path %>
-      <%= link_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？?" } %>
-      <% # TODO: 動作確認が必要なので後ほど追加 %>
-      <% if  false %>
-        <% if @user.id == @current_user.id %>
-          <%= link_to "編集", edit_user_path %>
+      <p><%= @user.email if @current_user.id == @user.id %></p>
+      <%= link_to "編集", edit_user_path if @current_user.id == @user.id %>
+      <%= link_to "退会", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？?" } if @current_user.id == @user.id %>
+      <div class="post_btn">
+        <%= link_to "明細を登録", new_post_path, class: "btn" %>
+        <%= link_to "カテゴリ一覧", categories_path, class: "btn" %>
+        <%= link_to "自分の明細一覧", posts_path, class: "btn" %>
+        <%= link_to "つぶやく", tweets_path, class: "btn" %>
+      </div>
+    </div>
+    <div class="follows"> 
+      <p><%= "フォロー数: #{@user.follower.count}" %></p>
+      <p><%= "フォロワー数: #{@user.followed.count}" %></p>
+      <% if @user != @current_user %>
+        <% if @current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
+        <% else %>
+          <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
         <% end %>
       <% end %>
+      <div class="followed">
+        <h2>フォロー</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>フォローする、外す</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.following_user.where.not(id: @current_user.id).each do |user| %>
+              <tr>
+                <td><%= link_to user.name, user_path(user) %></td>
+                <td>
+                  <% if @current_user.following?(user) %>
+                    <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+                  <% else %>
+                    <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="follower">
+        <h2>フォロワー</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>フォローする、外す</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.follower_user.where.not(id: @current_user.id).each do |user| %>
+              <tr>
+                <td><%= link_to user.name, user_path(user) %></td>
+                <td>
+                  <% if @current_user.following?(user) %>
+                    <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+                  <% else %>
+                    <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="main tweets_index">
+  <div class="container">
+    <div class="form-heading">みんなのつぶやき広場</div>
+      <% @tweets.each do |tweet| %>
+        <div class="tweets_index_item">
+          スレッド<%= tweet.id %> <br>
+          投稿日: <%= tweet.created_at.to_s(:datetime_jp) %><br>
+          <%= link_to tweet.user.name, user_path(tweet.user.id) %><br>
+          <%= tweet.content %>
+          <div id="tweet_<%= tweet.id %>">
+            <%= render "tweet_likes/tweet_like",tweet:tweet %><br>
+          </div>
+          <%= link_to "【編集】", [:edit, tweet] if @current_user.id == tweet.user_id %>
+          <%= link_to "【削除】", tweet, method: :delete, data: { confirm: "本当に削除しますか？" } if @current_user.id == tweet.user_id %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<section>
+  <%= link_to "つぶやいてみる", new_tweet_path, class: "btn_04" %>
+</section>
