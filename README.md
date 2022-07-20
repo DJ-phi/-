@@ -41,12 +41,8 @@ Heroku
 4. カテゴリ一覧でカテゴリが管理できます。
 
 # ER図
-<<<<<<< HEAD
 
 <img width="948" alt="スクリーンショット 2022-07-06 13 23 44" src="https://user-images.githubusercontent.com/94509379/177467987-4f7ce40b-acd0-4523-8fdc-4df8535843ed.png">
-=======
-<img width="1169" alt="スクリーンショット 2022-07-12 1 46 56" src="https://user-images.githubusercontent.com/94509379/178315991-919353fe-f8dd-40a1-8ecf-9916dfdb05a6.png">
->>>>>>> 4f070827692b1d05b3865e7cc06e9a2fe0a8f71f
 
 
 # 目指した課題
@@ -140,13 +136,6 @@ AWSの使用が今後必ず訪れると分かったのでローカル、heroku�
 
 <img width="756" alt="スクリーンショット 2022-06-30 0 53 14" src="https://user-images.githubusercontent.com/94509379/176481223-96ebe737-e342-489b-abe5-6c2a6bdc12ca.png">
 
-<<<<<<< HEAD
-=======
-## フォロー機能
-フォロー、フォロー解除ができます。<br>
-実装できるか、お試しでやってみた結果、実装できたので急遽入れました。<br>
-
->>>>>>> 4f070827692b1d05b3865e7cc06e9a2fe0a8f71f
 ## 使用環境
 
 - M1 mac
@@ -243,17 +232,12 @@ has_one_attached :image
 ```
 schema.rb
 
-<<<<<<< HEAD
 create_table "likes", force: :cascade do |t|
-=======
 create_table "post_likes", force: :cascade do |t|
->>>>>>> 4f070827692b1d05b3865e7cc06e9a2fe0a8f71f
 t.integer "user_id"
 t.integer "post_id"
 t.datetime "created_at", precision: 6, null: false
 t.datetime "updated_at", precision: 6, null: false
-<<<<<<< HEAD
-=======
 end
 ```
 
@@ -275,7 +259,6 @@ create_table "tweets", force: :cascade do |t|
 t.integer "user_id"
 t.datetime "created_at", precision: 6, null: false
 t.datetime "updated_at", precision: 6, null: false
->>>>>>> 4f070827692b1d05b3865e7cc06e9a2fe0a8f71f
 end
 ```
 
@@ -295,57 +278,16 @@ validates :content, length: { maximum: 50 }, presence: true
 ```
 schema.rb
 
-<<<<<<< HEAD
-belongs_to :user
-belongs_to :post
-```
----
-**tweetテーブル**
-
-```
-create_table "tweets", force: :cascade do |t|
-t.integer "user_id"
-t.datetime "created_at", precision: 6, null: false
-t.datetime "updated_at", precision: 6, null: false
-end
-```
-
-**アソシエーション**
-
-```
- belongs_to :user
- has_many :tweet_likes, dependent: :destroy
-
- validates :content, length: { maximum: 50 }, presence: true
-=======
 create_table "tweet_likes", force: :cascade do |t|
 t.datetime "created_at", precision: 6, null: false
 t.datetime "updated_at", precision: 6, null: false
 t.integer "user_id"
 t.integer "tweet_id"
 end
->>>>>>> 4f070827692b1d05b3865e7cc06e9a2fe0a8f71f
 ```
 ---
 **tweet_like**
 
-<<<<<<< HEAD
-```
-create_table "tweet_likes", force: :cascade do |t|
-t.datetime "created_at", precision: 6, null: false
-t.datetime "updated_at", precision: 6, null: false
-t.integer "user_id"
-t.integer "tweet_id"
-end
-```
-
-**アソシエーション**
-
-```
-belongs_to :user
-belongs_to :tweet
-```
-=======
 **アソシエーション**
 
 ```
@@ -377,4 +319,3 @@ models/relationship.rb
 belongs_to :follower, class_name: "User"
 belongs_to :followed, class_name: "User"
 ```
->>>>>>> 4f070827692b1d05b3865e7cc06e9a2fe0a8f71f
