@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    console
+    # console
   end
 
   def edit
