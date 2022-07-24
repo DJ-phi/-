@@ -65,6 +65,7 @@ Heroku
 複雑なjsを書いてます。
 自分の使っているアプリにはない機能でposts/newから非同期でcategoryが追加できるのが強みです。
 自分にとって傑作です。
+
 <img width="581" alt="スクリーンショット 2022-06-30 0 17 34" src="https://user-images.githubusercontent.com/94509379/176475346-ba582a55-f8f1-44bf-b47e-2872f47409f3.png">
 
 ## ログイン機能
