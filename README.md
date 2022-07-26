@@ -24,8 +24,12 @@
 
 ゲストデータが用意してあります。
 
-email: test@gmail.com
+email: test@example.com
 password: 1234
+
+Git cloneした場合
+ターミナルに以下のコマンドでゲストデータが作れます
+$ rails db:seed_fu
 
 ログインに成功したら明細の登録をしていただき挙動を確認ください。
 
@@ -66,7 +70,7 @@ Heroku
 自分の使っているアプリにはない機能でposts/newから非同期でcategoryが追加できるのが強みです。
 自分にとって傑作です。
 
-<img width="581" alt="スクリーンショット 2022-06-30 0 17 34" src="https://user-images.githubusercontent.com/94509379/176475346-ba582a55-f8f1-44bf-b47e-2872f47409f3.png">
+<img width="1347" alt="スクリーンショット 2022-07-26 15 23 26" src="https://user-images.githubusercontent.com/94509379/180937819-9a4e8896-8f7d-47a2-9e6a-6a8e1e21c463.png">
 
 ## ログイン機能
 
@@ -81,14 +85,7 @@ deviseが如何に便利か思い知らされました。
 whereがない分、コードがとても見やすいです。
 何月何日からの間検索ができます。
 
-```
-models/post.rb
-
-  scope :eager_load_category, -> { eager_load(:category) }
-  scope :keyword, ->(keyword) { where('memo LIKE ?', "%#{keyword}%") if keyword.present? }
-  scope :prices, ->(price) { where('price = ? ', price) if price.present? }
-  scope :use_day, ->(use_day, end_day) { where("use_day BETWEEN ? AND ? ", use_day.to_s, end_day.to_s) if use_day.present? && end_day.present? }
-```
+<img width="881" alt="スクリーンショット 2022-07-26 15 20 10" src="https://user-images.githubusercontent.com/94509379/180937479-0ec94e1d-905f-4005-a685-ec894a6b6d41.png">
 
 ## TDD開発
 
