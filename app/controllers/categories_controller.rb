@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [ :edit, :update, :destroy ] #findをメソッド化している
+  before_action :set_category, only: %i[edit update destroy] # findをメソッド化している
 
-  #ログイン状態じゃないと見れないページ
+  # ログイン状態じゃないと見れないページ
   before_action :authenticate_user
 
-  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
-  before_action :ensure_correct_category, only: [:edit, :update, :destroy]
+  # 正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
+  before_action :ensure_correct_category, only: %i[edit update destroy]
 
   def index
     @categories = @current_user.categories
@@ -25,8 +25,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
