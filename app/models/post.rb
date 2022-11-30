@@ -21,6 +21,8 @@ class Post < ApplicationRecord
   scope :prices, ->(price) { where('price = ? ', price) if price.present? }
 
   # 元は"#{use_day}", "#{end_day}"だったがruboの警告でto_sに変更
+  # ruboで変わり果てた姿になったから元のコードを置いとく
+  # scope :use_day, ->(use_day, end_day) {where("use_day BETWEEN ? AND ? ", use_day.to_s, end_day.to_s) if use_day.present? && end_day.present? }
   scope :use_day, lambda { |use_day, end_day|
                     if use_day.present? && end_day.present?
                       where("use_day BETWEEN ? AND ? ", use_day.to_s, end_day.to_s)
