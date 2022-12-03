@@ -16,7 +16,6 @@ AllCops:
   # 除外したい場所
   # インデントいじるとエラーになる
   Exclude:
-    - "spec/**/*"
     - 'config.ru'
     - 'bin/**'
     - 'lib/**'
