@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-
   # TODO: 未完成
   # let!(:user)
 

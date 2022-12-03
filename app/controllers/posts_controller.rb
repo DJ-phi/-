@@ -1,24 +1,25 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[edit update destroy] # findをメソッド化している
 
-  before_action :set_post, only: [ :edit, :update, :destroy ] #findをメソッド化している
-
-  #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
+  # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
   before_action :authenticate_user
-  
-  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
-  before_action :ensure_correct_post, only: [ :edit, :update, :destroy ]
+
+  # 正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
+  before_action :ensure_correct_post, only: %i[edit update destroy]
 
   def index
-    #all以外に何かくっつける場合はallはいらないです
-    #order(use_day: "DESC")で並び替え
-    @posts = @current_user.posts.eager_load_category.keyword(params[:keyword]).prices(params[:prices]).use_day(params[:use_day], params[:end_day]).order(use_day: "DESC")
+    # all以外に何かくっつける場合はallはいらないです
+    # order(use_day: "DESC")で並び替え
+    @posts = @current_user.posts.eager_load_category.keyword(params[:keyword]).prices(params[:prices]).use_day(
+      params[:use_day], params[:end_day]
+    ).order(use_day: "DESC")
   end
 
   def new
     @post = Post.new
     @categories = @current_user.categories
-    #ここでidを選択する事によってラジオボタンが選択されているようになる
-    #仕組みは検証のvalueの値と一致していれば選択されるようになっている
+    # ここでidを選択する事によってラジオボタンが選択されているようになる
+    # 仕組みは検証のvalueの値と一致していれば選択されるようになっている
     @post.category_id = @categories.first.id
   end
 
@@ -52,14 +53,14 @@ class PostsController < ApplicationController
   end
 
   def new_category
-    #Category.newは受け皿, paramsはフォームで送った文を取得, ストロングパラメータは許可したいカラムのみ
-    #今回だとuser_idはログインしてるidで登録したいので弾く
+    # Category.newは受け皿, paramsはフォームで送った文を取得, ストロングパラメータは許可したいカラムのみ
+    # 今回だとuser_idはログインしてるidで登録したいので弾く
     @category = Category.new(params.require(:category).permit(:name))
     @category.user_id = @current_user.id
     @category.save
     @post = Post.new(params.require(:post).permit(:memo, :price, :use_day))
   end
-  
+
   private
 
   def set_post
@@ -68,7 +69,8 @@ class PostsController < ApplicationController
 
   def post_params
     # マージメソッドでuser_idを上書きしている
-    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day, :image).merge(user_id: @current_user.id)
+    params.require(:post).permit(:memo, :user_id, :category_id, :price, :use_day,
+                                 :image).merge(user_id: @current_user.id)
   end
 
   def ensure_correct_post

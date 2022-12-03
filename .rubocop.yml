@@ -1,17 +1,21 @@
-# 将来的には対応する規約の読込
-inherit_from: .rubocop_todo.yml
-
 # 追加した規約ファイル読込
 require:
   - rubocop-rails
 
+# ダブルクォーテーション除外
+Style/StringLiterals:
+  Enabled: false
+
 AllCops:
+  # NewCops: enableを追加することで、RuboCopのバージョンがあがった際に追加されたCopを自動で有効にできます
+  NewCops: enable
+
   # Rubyバージョン指定
   TargetRubyVersion: 3.1.0
-  # 除外
+
+  # 除外したい場所
+  # インデントいじるとエラーになる
   Exclude:
-    # TODO: 後ほど解放
-    # - "spec/**/*"
     - 'config.ru'
     - 'bin/**'
     - 'lib/**'

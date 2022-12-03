@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
+  # @user = User.find(params[:id])をメソッド化している
+  before_action :set_user, only: %i[show edit update destroy]
 
-  #@user = User.find(params[:id])をメソッド化している
-  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
+  # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
+  before_action :authenticate_user, only: %i[show edit update]
 
-  #ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
-  before_action :authenticate_user, only: [ :show, :edit, :update ] 
+  # ログイン状態のページ制限, application_controller.rbに記述がある
+  before_action :forbid_login_user, only: %i[new create login_form login]
 
-  #ログイン状態のページ制限, application_controller.rbに記述がある
-  before_action :forbid_login_user, only: [ :new, :create, :login_form, :login ]
-
-  #正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
-  before_action :ensure_correct_user, only: [ :edit, :update, :destroy ] 
+  # 正しいユーザーかを確かめるメソッド ログインしてるIDとひとしくないと編集できない様にしてる
+  before_action :ensure_correct_user, only: %i[edit update destroy]
 
   def new
     @user = User.new
@@ -19,7 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #デフォで最初にcategory :nameを作ってあげる
+      # デフォで最初にcategory :nameを作ってあげる
       Category.create(name: "無し", user_id: @user.id)
       session[:user_id] = @user.id
       flash[:notice] = "ユーザー登録が完了しました"
@@ -29,12 +28,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    # console
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -51,17 +47,15 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def login_form
-
-  end
+  def login_form; end
 
   def login
     @user = User.find_by(
       email: params[:email],
       password: params[:password]
     )
-    if @user 
-      session[:user_id] = @user.id #ここに追加
+    if @user
+      session[:user_id] = @user.id # ここに追加
       flash[:notice] = "ログインしました"
       redirect_to user_path(@user.id)
     else

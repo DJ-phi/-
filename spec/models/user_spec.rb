@@ -43,12 +43,12 @@ RSpec.describe User, type: :model do
       expect(user.valid?).to eq(false)
     end
 
-    it"passwordが4文字以下だったらNG" do
+    it "passwordが4文字以下だったらNG" do
       user.password = "123"
       expect(user.valid?).to eq(false)
     end
 
-    it"passwordが10文字以上だったらNG" do
+    it "passwordが10文字以上だったらNG" do
       user.password = "1234567891011"
       expect(user.valid?).to eq(false)
     end
@@ -67,7 +67,7 @@ RSpec.describe User, type: :model do
       # _post = create(:post)
       # _like = create(:like)
     end
-    
+
     it "userを消したらpostも消えること" do
       expect { user.destroy }.to change(Post, :count).by(-1)
     end
