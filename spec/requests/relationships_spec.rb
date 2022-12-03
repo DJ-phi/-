@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Relationships", type: :request do
-  # TODO:未完成
+  # TODO: 未完成
   # let!(:user) { create(:user) }
 
   # before do

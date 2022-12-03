@@ -7,7 +7,8 @@ FactoryBot.define do
     category_id { 1 }
     use_day { "2022-06-01" }
     after(:build) do |post|
-      post.image.attach(io: File.open('spec/fixtures/test_image.jpg'), filename: 'test_image.jpg', content_type: 'image/jpg')
+      post.image.attach(io: File.open('spec/fixtures/test_image.jpg'), filename: 'test_image.jpg',
+                        content_type: 'image/jpg')
     end
 
     trait :for_ensure_correct do
@@ -45,7 +46,7 @@ FactoryBot.define do
     trait :test_post1 do
       id { 22 }
       memo { "すき家" }
-      price { 20000 }
+      price { 20_000 }
       use_day { "2022-06-10" }
     end
 

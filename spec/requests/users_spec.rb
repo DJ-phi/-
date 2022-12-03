@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   let!(:user) { create(:user) }
   let!(:user2) { create(:user, :for_ensure_correct) }
-  #attributes_forはフォームに入力したい情報を作ってる
-  #ハッシュになる
-  #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
-  let!(:valid_attributes) { attributes_for(:user, :for_create) } 
+  # attributes_forはフォームに入力したい情報を作ってる
+  # ハッシュになる
+  # 例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
+  let!(:valid_attributes) { attributes_for(:user, :for_create) }
   let!(:new_valid_attributes) { attributes_for(:user, :for_update) }
   let!(:unvalid_attributes) { attributes_for(:user, :un_update) }
 
@@ -24,25 +24,25 @@ RSpec.describe "Users", type: :request do
     context "有効なパラメーターの場合" do
       # userを作成するとcategoryが一つ生成される仕様のため
       it "categoryのデータが生成される" do
-        expect {
-          post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
-        }.to change(Category, :count).by(1)
+        expect do
+          post users_path, params: { user: valid_attributes } # paramsはフォームで送られている情報
+        end.to change(Category, :count).by(1)
       end
-      
+
       it "データが作成されること" do
-        expect {
-          post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
-        }.to change(User, :count).by(1)
+        expect do
+          post users_path, params: { user: valid_attributes } # paramsはフォームで送られている情報
+        end.to change(User, :count).by(1)
       end
 
       it "データが作成されるとshowにリダイレクトされること" do
-        post users_path, params: { user: valid_attributes } #paramsはフォームで送られている情報
-        expect(response).to redirect_to(user_path(User.last)) #User.lastにしないと通らないUser.lastは一番新しく作ったデータを参照
+        post users_path, params: { user: valid_attributes } # paramsはフォームで送られている情報
+        expect(response).to redirect_to(user_path(User.last)) # User.lastにしないと通らないUser.lastは一番新しく作ったデータを参照
       end
     end
 
     context "無効なパラメーターの場合" do
-      #createの場合postになる
+      # createの場合postになる
       it "レスポンスが200であること" do
         post users_path, params: { user: unvalid_attributes }
         expect(response.status).to eq 200
@@ -53,7 +53,7 @@ RSpec.describe "Users", type: :request do
   describe "#show" do
     before do
       login
-      get user_path(user.id) 
+      get user_path(user.id)
     end
 
     it "名前が取得できていること" do
@@ -72,7 +72,7 @@ RSpec.describe "Users", type: :request do
   describe "#edit" do
     before do
       login
-      get edit_user_path(user.id) 
+      get edit_user_path(user.id)
     end
 
     it "名前が取得できていること" do
@@ -94,7 +94,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context "有効なパラメーターの場合" do
-      #patchはupdate
+      # patchはupdate
       it "データが更新されること" do
         patch user_path(user), params: { user: new_valid_attributes }
         expect(user.reload.name).to eq new_valid_attributes[:name]
@@ -119,11 +119,11 @@ RSpec.describe "Users", type: :request do
     before do
       login
     end
-    
+
     it "データが削除されること" do
-      expect {
+      expect do
         delete user_path(user)
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
     end
 
     it "indexにリダイレクトされること" do
@@ -131,7 +131,7 @@ RSpec.describe "Users", type: :request do
       expect(response).to redirect_to(root_path)
     end
   end
-  
+
   describe "アクセス制限" do
     context "ログインしている場合" do
       before do
@@ -157,7 +157,7 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context"ログインしていない場合" do
+    context "ログインしていない場合" do
       it "制限にかかったページにいくとログインページにリダイレクトされること" do
         get posts_path
         expect(response).to redirect_to(login_path)

@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
-
-  #アソシエーションしていると外部キーがないとダメな為他のテーブルも作る必要がある
-  #先にuserを作らないとバリデーションエラーになる
-  #categoryはuserがないと作れないため先にuserを作る,postはuserとcategoryを作らないといけないためこの順番になる
-  #user→categry→post
+  # アソシエーションしていると外部キーがないとダメな為他のテーブルも作る必要がある
+  # 先にuserを作らないとバリデーションエラーになる
+  # categoryはuserがないと作れないため先にuserを作る,postはuserとcategoryを作らないといけないためこの順番になる
+  # user→categry→post
   let!(:user) { create(:user) }
   let!(:category) { create(:category) }
   let!(:new_post) { create(:post) }
 
-  #attributes_forはフォームに入力したい情報を作ってる
-  #ハッシュになる
-  #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
+  # attributes_forはフォームに入力したい情報を作ってる
+  # ハッシュになる
+  # 例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
   let!(:valid_attributes) { attributes_for(:post, :for_update) }
   let!(:new_valid_attributes) { attributes_for(:post, :for_create) }
   let!(:unvalid_attributes) { attributes_for(:post, :un_update) }
@@ -120,13 +119,13 @@ RSpec.describe "Posts", type: :request do
 
     context "有効なパラメーターの場合" do
       it "データが作成されること" do
-        expect {
-          post posts_path, params: { post: new_valid_attributes } #paramsはフォームで送られている情報
-        }.to change(Post, :count).by(1)
+        expect do
+          post posts_path, params: { post: new_valid_attributes } # paramsはフォームで送られている情報
+        end.to change(Post, :count).by(1)
       end
 
       it "データが作成されるとposts/indexにリダイレクトすること" do
-        post posts_path, params: { post: new_valid_attributes } #paramsはフォームで送られている情報
+        post posts_path, params: { post: new_valid_attributes } # paramsはフォームで送られている情報
         expect(response).to redirect_to(posts_path)
       end
     end
@@ -198,9 +197,9 @@ RSpec.describe "Posts", type: :request do
     end
 
     it "データが削除されること" do
-      expect {
+      expect do
         delete post_path(new_post)
-      }.to change(Post, :count).by(-1)
+      end.to change(Post, :count).by(-1)
     end
 
     it "posts/indexにリダイレクトされること" do
@@ -213,7 +212,7 @@ RSpec.describe "Posts", type: :request do
     let!(:user2) { create(:user, :for_ensure_correct) }
     let!(:category2) { create(:category, :for_ensure_correct) }
     let!(:new_post2) { create(:post, :for_ensure_correct) }
-    context"ログインしている場合" do
+    context "ログインしている場合" do
       it "ログインユーザーじゃない編集ページにいくとリダイレクトされること" do
         login
         get edit_post_path(2)
@@ -229,7 +228,7 @@ RSpec.describe "Posts", type: :request do
       end
     end
 
-    context"ログインしていない場合" do
+    context "ログインしていない場合" do
       it "ログインページにリダイレクトされること" do
         get new_post_path
         expect(response).to redirect_to(login_path)
@@ -244,7 +243,7 @@ RSpec.describe "Posts", type: :request do
   #   before do
   #     login
   #   end
-    
+
   #   context "有効なパラメーターの場合" do
   #     it "データが作成されること" do
   #       binding.pry

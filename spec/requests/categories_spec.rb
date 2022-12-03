@@ -5,9 +5,9 @@ RSpec.describe "Categories", type: :request do
   let!(:user2) { create(:user, :for_ensure_correct) }
   let!(:category) { create(:category) }
   let!(:category2) { create(:category, :for_ensure_correct) }
-  #attributes_forはフォームに入力したい情報を作ってる
-  #ハッシュになる
-  #例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
+  # attributes_forはフォームに入力したい情報を作ってる
+  # ハッシュになる
+  # 例, 中身post :create, params: { post: {:name=>"test", :email=>"test2@test.com", :password=>"password"} }
   let!(:valid_attributes) { attributes_for(:category, :for_update) }
   let!(:new_valid_attributes) { attributes_for(:category, :for_create) }
   let!(:unvalid_attributes) { attributes_for(:category, :un_update) }
@@ -18,7 +18,7 @@ RSpec.describe "Categories", type: :request do
       get categories_path
     end
 
-    it"nameが表示されている" do
+    it "nameが表示されている" do
       expect(response.body).to include category.name
     end
 
@@ -45,13 +45,13 @@ RSpec.describe "Categories", type: :request do
 
     context "有効なパラメーターの場合" do
       it "データが作成されること" do
-        expect {
-          post categories_path, params: { category: valid_attributes } #paramsはフォームで送られている情報
-        }.to change(Category, :count).by(1)
+        expect do
+          post categories_path, params: { category: valid_attributes } # paramsはフォームで送られている情報
+        end.to change(Category, :count).by(1)
       end
 
       it "データが作成されるとposts/indexにリダイレクトすること" do
-        post categories_path, params: { category: valid_attributes } #paramsはフォームで送られている情報
+        post categories_path, params: { category: valid_attributes } # paramsはフォームで送られている情報
         expect(response).to redirect_to(categories_path)
       end
     end
@@ -91,7 +91,7 @@ RSpec.describe "Categories", type: :request do
       end
 
       it "更新したデータのindexにリダイレクトされること" do
-        patch category_path(category), params: {category: new_valid_attributes }
+        patch category_path(category), params: { category: new_valid_attributes }
         category.reload
         expect(response).to redirect_to(categories_path)
       end
@@ -111,9 +111,9 @@ RSpec.describe "Categories", type: :request do
     end
 
     it "データが削除されること" do
-      expect {
+      expect do
         delete category_path(category)
-      }.to change(Category, :count).by(-1)
+      end.to change(Category, :count).by(-1)
     end
 
     it "categories/indexにリダイレクトされること" do
@@ -122,8 +122,8 @@ RSpec.describe "Categories", type: :request do
     end
   end
 
-  describe "アクセス制限" do 
-    context"ログインしている場合" do
+  describe "アクセス制限" do
+    context "ログインしている場合" do
       it "ログインユーザーじゃない編集ページにいくとリダイレクトされること" do
         login
         get edit_category_path(2)
@@ -139,7 +139,7 @@ RSpec.describe "Categories", type: :request do
       end
     end
 
-    context"ログインしていない場合" do
+    context "ログインしていない場合" do
       it "制限のかかっているページににいくとログインページにリダイレクトされること" do
         get new_category_path
         expect(response).to redirect_to(login_path)

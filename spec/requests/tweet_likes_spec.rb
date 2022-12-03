@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "TweetLikes", type: :request do
   let!(:user) { create(:user) }
-  let!(:tweet) { create(:tweet)}
+  let!(:tweet) { create(:tweet) }
 
   before do
     login
