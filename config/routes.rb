@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   #homeルート
-  root "home#top"
+  namespace :home do
+    root "tops#top"
+  end
 
   #userルート
   get "login" => "users#login_form"
