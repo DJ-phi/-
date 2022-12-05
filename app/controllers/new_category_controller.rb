@@ -1,4 +1,4 @@
-class Posts::NewCategoryController < ApplicationController
+class NewCategoryController < ApplicationController
   
   # TODO: 恐らく削除
   def new_category

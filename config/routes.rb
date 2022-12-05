@@ -30,5 +30,5 @@ Rails.application.routes.draw do
   resources:posts, except: [:show]
   # TODO: 後ほど変更
   # postルート
-  get "posts/new_category" => "posts/new_category#new_category"
+  get "posts/new_category" => "new_category#new_category"
 end

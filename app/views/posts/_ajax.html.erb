@@ -8,7 +8,7 @@
     <p>↓ここに追加したいカテゴリーを入力してね↓</p><br>
     <%= f.text_field :category_name, id: 'text_box', maxlength: "20", placeholder: "20文字以内" %>
     <%# TODO: 後ほど変更 controllerオプションのとこ %>
-    <%= link_to "カテゴリ追加ボタン", { controller: 'posts/new_category', action: 'new_category' ,remote: true }, { id: "link", class: "btn", onclick: "makeParams()" } %><br>
+    <%= link_to "カテゴリ追加ボタン", { controller: 'new_category', action: 'new_category' ,remote: true }, { id: "link", class: "btn", onclick: "makeParams()" } %><br>
     <%= f.label :image, "画像" %><br>
     <%= f.file_field :image, id: "image" %><br>
     <%= f.label :use_day, "使った日" %><br>
