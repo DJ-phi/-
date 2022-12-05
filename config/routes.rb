@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   end
 
   #userルート
-  get "login" => "users#login_form"
-  post "login" => "users#login"
-  post "logout" => "users#logout"
+  get "login" => "user_login#login_form"
+  post "login" => "user_login#login"
+  post "logout" => "user_login#logout"
 
   #いいねルート
   post 'post_like/:id' => 'post_likes#create', as: 'create_post_like'
