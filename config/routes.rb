@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # "コントローラ名#メソッド名"
   #homeルート
   namespace :home do
     root "tops#top"
@@ -9,9 +10,6 @@ Rails.application.routes.draw do
   get "login" => "users#login_form"
   post "login" => "users#login"
   post "logout" => "users#logout"
-
-  #postルート
-  get "posts/new_category" => "posts#new_category"
 
   #いいねルート
   post 'post_like/:id' => 'post_likes#create', as: 'create_post_like'
@@ -28,5 +26,9 @@ Rails.application.routes.draw do
   resources:tweets, except: [:show]
   resources:categories, except: [:show]
   resources:users, except: [:index]
+
   resources:posts, except: [:show]
+  # TODO: 後ほど変更
+  # postルート
+  get "posts/new_category" => "posts/new_category#new_category"
 end
