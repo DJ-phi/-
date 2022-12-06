@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #homeルート
-  root "home#top"
+  root "home#index"
 
   #userルート
   get "login" => "users#login_form"

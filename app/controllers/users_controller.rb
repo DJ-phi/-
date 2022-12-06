@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by(
       email: params[:email],
-      password: params[:password]
+      password_digest: params[:password]
     )
     if @user
       session[:user_id] = @user.id # ここに追加
