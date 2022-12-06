@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   delete 'tweet_like/:id' => 'tweet_likes#destroy', as: 'destroy_tweet_like'
 
   # フォロー
-  post 'follow/:id' => 'relationships#follow', as: 'follow' 
-  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' 
+  post 'follow/:id' => 'relationships#create', as: 'follow' 
+  post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' 
 
   resources:tweets, except: [:show]
   resources:categories, except: [:show]
