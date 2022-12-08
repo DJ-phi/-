@@ -3,10 +3,16 @@ Rails.application.routes.draw do
   #homeルート
   root "home#index"
 
+  # ログイン処理を分ける前のルート
+  # 現状は動いているがエラーになった場合いつでも使えるようにコメントアウト
   #userルート
-  get "login" => "users#login_form"
-  post "login" => "users#login"
-  post "logout" => "users#logout"
+  # get "login" => "users#login_form"
+  # post "login" => "users#login"
+  # post "logout" => "users#logout"
+
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  post "logout" => "sessions#destroy"
 
   #postルート
   get "posts/new_category" => "posts#new_category"
