@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
-  before_action :authenticate_user, only: %i[show edit update]
+  before_action :authenticate_user, only: %i[show edit update following, followers]
 
   # ログイン状態のページ制限, application_controller.rbに記述がある
   before_action :forbid_login_user, only: %i[new create login_form login]
@@ -45,6 +45,21 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:notice] = "ユーザーを削除しました"
     redirect_to root_path
+  end
+
+  # フォローページの処理
+  def following
+    @title = "フォロー"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
   end
 
   # ログイン処理を分ける前のコード

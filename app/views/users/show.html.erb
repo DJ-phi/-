@@ -13,66 +13,10 @@
         <%= link_to "つぶやく", tweets_path, class: "btn" %>
       </div>
     </div>
-    <div class="follows"> 
-      <p><%= "フォロー数: #{@user.follower.count}" %></p>
-      <p><%= "フォロワー数: #{@user.followed.count}" %></p>
-      <% if @user != @current_user %>
-        <% if @current_user.following?(@user) %>
-          <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
-        <% else %>
-          <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
-        <% end %>
-      <% end %>
-      <div class="followed">
-        <h2>フォロー</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>名前</th>
-              <th>フォローする、外す</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.following_user.where.not(id: @current_user.id).each do |user| %>
-              <tr>
-                <td><%= link_to user.name, user_path(user) %></td>
-                <td>
-                  <% if @current_user.following?(user) %>
-                    <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-                  <% else %>
-                    <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="follower">
-        <h2>フォロワー</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>名前</th>
-              <th>フォローする、外す</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.follower_user.where.not(id: @current_user.id).each do |user| %>
-              <tr>
-                <td><%= link_to user.name, user_path(user) %></td>
-                <td>
-                  <% if @current_user.following?(user) %>
-                    <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-                  <% else %>
-                    <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <%= render 'follow_form' %>
     </div>
   </div>
 </div>

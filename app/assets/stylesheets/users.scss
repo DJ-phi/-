@@ -194,3 +194,40 @@ input {
   padding: 10px;
   letter-spacing: 2px;
 }
+
+// フォローのcss
+
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0 35px;
+  a {
+    float: left;
+    padding: 0 10px;
+    
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  a {
+    padding: 0px;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}

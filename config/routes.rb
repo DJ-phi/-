@@ -26,11 +26,16 @@ Rails.application.routes.draw do
   delete 'tweet_like/:id' => 'tweet_likes#destroy', as: 'destroy_tweet_like'
 
   # フォロー
-  post 'follow/:id' => 'relationships#create', as: 'follow' 
-  post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' 
+  # post 'follow/:id' => 'relationships#create', as: 'follow' 
+  # post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' 
 
   resources:tweets, except: [:show]
   resources:categories, except: [:show]
-  resources:users, except: [:index]
+  resources:users, except: [:index] do
+    member do
+      get :following, :followers
+    end
+  end
   resources:posts, except: [:show]
+  resources:relationships, only: [:create, :destroy]
 end

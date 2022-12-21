@@ -1,0 +1,18 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "プロフィールを見る", @user %></span>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+      <h3><%= @title %></h3>
+        <div class="user_avatars">
+          <% @users.each do |user| %>
+            <%= link_to user.name, user %><br>
+          <% end %>
+        </div>
+    </section>
+  </aside>
+</div>

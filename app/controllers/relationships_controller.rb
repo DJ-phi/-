@@ -1,14 +1,13 @@
 class RelationshipsController < ApplicationController
-  # request.referer 遷移する前のURL（HTTPリファラ）を取得し、リダイレクトさせています。
-  # フォロー処理
   def create
-    @current_user.follow(params[:id])
-    redirect_to request.referer
+    user = User.find(params[:followed_id])
+    @current_user.follow(user)
+    redirect_to user
   end
 
-  # フォロー解除処理
   def destroy
-    @current_user.unfollow(params[:id])
-    redirect_to request.referer
+    user = Relationship.find(params[:id]).followed
+    @current_user.unfollow(user)
+    redirect_to user
   end
 end
