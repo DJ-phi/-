@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
-  before_action :authenticate_user, only: %i[show edit update following, followers]
+  before_action :authenticate_user, only: %i[show edit update following followers]
 
   # ログイン状態のページ制限, application_controller.rbに記述がある
   before_action :forbid_login_user, only: %i[new create login_form login]
