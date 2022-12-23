@@ -24,8 +24,12 @@
 
 ゲストデータが用意してあります。
 
-email: test@gmail.com
+email: test@example.com
 password: 1234
+
+Git cloneした場合
+ターミナルに以下のコマンドでゲストデータが作れます
+$ rails db:seed_fu
 
 ログインに成功したら明細の登録をしていただき挙動を確認ください。
 
@@ -42,8 +46,7 @@ Heroku
 
 # ER図
 
-<img width="948" alt="スクリーンショット 2022-07-06 13 23 44" src="https://user-images.githubusercontent.com/94509379/177467987-4f7ce40b-acd0-4523-8fdc-4df8535843ed.png">
-
+<img width="1180" alt="スクリーンショット 2022-07-23 13 50 05" src="https://user-images.githubusercontent.com/94509379/180590929-b948a174-3083-4f81-981e-415b2de54398.png">
 
 # 目指した課題
 
@@ -66,7 +69,8 @@ Heroku
 複雑なjsを書いてます。
 自分の使っているアプリにはない機能でposts/newから非同期でcategoryが追加できるのが強みです。
 自分にとって傑作です。
-<img width="581" alt="スクリーンショット 2022-06-30 0 17 34" src="https://user-images.githubusercontent.com/94509379/176475346-ba582a55-f8f1-44bf-b47e-2872f47409f3.png">
+
+<img width="1347" alt="スクリーンショット 2022-07-26 15 23 26" src="https://user-images.githubusercontent.com/94509379/180937819-9a4e8896-8f7d-47a2-9e6a-6a8e1e21c463.png">
 
 ## ログイン機能
 
@@ -81,14 +85,7 @@ deviseが如何に便利か思い知らされました。
 whereがない分、コードがとても見やすいです。
 何月何日からの間検索ができます。
 
-```
-models/post.rb
-
-  scope :eager_load_category, -> { eager_load(:category) }
-  scope :keyword, ->(keyword) { where('memo LIKE ?', "%#{keyword}%") if keyword.present? }
-  scope :prices, ->(price) { where('price = ? ', price) if price.present? }
-  scope :use_day, ->(use_day, end_day) { where("use_day BETWEEN ? AND ? ", use_day.to_s, end_day.to_s) if use_day.present? && end_day.present? }
-```
+<img width="881" alt="スクリーンショット 2022-07-26 15 20 10" src="https://user-images.githubusercontent.com/94509379/180937479-0ec94e1d-905f-4005-a685-ec894a6b6d41.png">
 
 ## TDD開発
 
@@ -226,7 +223,7 @@ models/post.rb
 
 belongs_to :user
 belongs_to :category
-has_many :likes, dependent: :destroy
+has_many :post_likes, dependent: :destroy
 has_one_attached :image
 
 ```
@@ -238,6 +235,7 @@ has_one_attached :image
 schema.rb
 
 create_table "likes", force: :cascade do |t|
+create_table "post_likes", force: :cascade do |t|
 t.integer "user_id"
 t.integer "post_id"
 t.datetime "created_at", precision: 6, null: false
@@ -248,7 +246,7 @@ end
 **アソシエーション**
 
 ```
-models/like.rb
+models/post_like.rb
 
 belongs_to :user
 belongs_to :post
@@ -257,6 +255,8 @@ belongs_to :post
 **tweetテーブル**
 
 ```
+schema.rb
+
 create_table "tweets", force: :cascade do |t|
 t.integer "user_id"
 t.datetime "created_at", precision: 6, null: false
@@ -267,15 +267,19 @@ end
 **アソシエーション**
 
 ```
- belongs_to :user
- has_many :tweet_likes, dependent: :destroy
+models/tweet.rb
 
- validates :content, length: { maximum: 50 }, presence: true
+belongs_to :user
+has_many :tweet_likes, dependent: :destroy
+
+validates :content, length: { maximum: 50 }, presence: true
 ```
 ---
 **tweet_like**
 
 ```
+schema.rb
+
 create_table "tweet_likes", force: :cascade do |t|
 t.datetime "created_at", precision: 6, null: false
 t.datetime "updated_at", precision: 6, null: false
@@ -283,10 +287,37 @@ t.integer "user_id"
 t.integer "tweet_id"
 end
 ```
+---
+**tweet_like**
 
 **アソシエーション**
 
 ```
+models/tweet_like.rb
+
 belongs_to :user
 belongs_to :tweet
+```
+---
+**Relationship(中間テーブル)**
+
+```
+schema.rb
+
+create_table "relationships", force: :cascade do |t|
+t.integer "follower_id"
+t.integer "followed_id"
+t.datetime "created_at", precision: 6, null: false
+t.datetime "updated_at", precision: 6, null: false
+end
+
+```
+
+**アソシエーション**
+
+```
+models/relationship.rb
+
+belongs_to :follower, class_name: "User"
+belongs_to :followed, class_name: "User"
 ```
