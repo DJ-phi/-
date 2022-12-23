@@ -136,6 +136,11 @@ AWSの使用が今後必ず訪れると分かったのでローカル、heroku�
 Railsチュートリアルを参考にして実装しました。
 <img width="628" alt="スクリーンショット 2022-12-23 23 41 47" src="https://user-images.githubusercontent.com/94509379/209354030-71e35849-1216-4b58-9f5f-654794c8d10d.png">
 
+## つぶやき機能
+2chみたいな感覚のつぶやきを作りました。
+
+<img width="1342" alt="スクリーンショット 2022-12-24 0 04 45" src="https://user-images.githubusercontent.com/94509379/209356979-0cbfb215-3229-4e59-a494-b87c16bc6417.png">
+
 ## 使用環境
 
 - M1 mac
