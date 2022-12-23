@@ -133,6 +133,11 @@ AWSの使用が今後必ず訪れると分かったのでローカル、heroku�
 
 <img width="756" alt="スクリーンショット 2022-06-30 0 53 14" src="https://user-images.githubusercontent.com/94509379/176481223-96ebe737-e342-489b-abe5-6c2a6bdc12ca.png">
 
+## フォロー/フォロー解除機能
+ユーザーのフォロー/フォロー解除ができます。
+Railsチュートリアルを参考にして実装しました。
+<img width="628" alt="スクリーンショット 2022-12-23 23 41 47" src="https://user-images.githubusercontent.com/94509379/209354030-71e35849-1216-4b58-9f5f-654794c8d10d.png">
+
 ## 使用環境
 
 - M1 mac
@@ -299,11 +304,13 @@ belongs_to :tweet
 ```
 schema.rb
 
-create_table "relationships", force: :cascade do |t|
 t.integer "follower_id"
-t.integer "followed_id"
-t.datetime "created_at", precision: 6, null: false
-t.datetime "updated_at", precision: 6, null: false
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
 end
 
 ```
