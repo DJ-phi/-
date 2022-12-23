@@ -15,11 +15,9 @@ class SessionsController < ApplicationController
     end
 
     # 正常処理
-    if @user
       session[:user_id] = @user.id # ここに追加
       flash[:notice] = "ログインしました"
       redirect_to user_path(@user.id)
-    end
   end
 
   def destroy
