@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 10 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
   validates :password_digest, length: { minimum: 4, maximum: 10 }
-
+  
   # リレーション,postsが多の関係性,dependent: :destroyはそのモデル(user)が削除されたら、紐づいているモデル(posts)も削除するというもの
   has_many :posts, dependent: :destroy
   has_many :categories, dependent: :destroy
