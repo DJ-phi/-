@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2022_12_03_111651) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["id"], name: "index_users_on_id"
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
