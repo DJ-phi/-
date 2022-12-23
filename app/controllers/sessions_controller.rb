@@ -6,14 +6,19 @@ class SessionsController < ApplicationController
       email: params[:email],
       password_digest: params[:password]
     )
+    # 例外処理
+    if @user.nil?
+      @error_message = "メールアドレスまたはパスワードが間違っています"
+      @email = params[:email]
+      render :new
+      return
+    end
+
+    # 正常処理
     if @user
       session[:user_id] = @user.id # ここに追加
       flash[:notice] = "ログインしました"
       redirect_to user_path(@user.id)
-    else
-      @error_message = "メールアドレスまたはパスワードが間違っています"
-      @email = params[:email]
-      render :new
     end
   end
 
