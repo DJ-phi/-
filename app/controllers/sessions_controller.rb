@@ -15,9 +15,9 @@ class SessionsController < ApplicationController
     end
 
     # 正常処理
-      session[:user_id] = @user.id # ここに追加
-      flash[:notice] = "ログインしました"
-      redirect_to user_path(@user.id)
+    session[:user_id] = @user.id # ここに追加
+    flash[:notice] = "ログインしました"
+    redirect_to user_path(@user.id)
   end
 
   def destroy
