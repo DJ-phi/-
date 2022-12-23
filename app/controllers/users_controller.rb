@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   # ログイン状態じゃないと見れないページ, application_controller.rbに記述がある
-  before_action :authenticate_user, only: %i[show edit update]
+  before_action :authenticate_user, only: %i[show edit update following followers]
 
   # ログイン状態のページ制限, application_controller.rbに記述がある
   before_action :forbid_login_user, only: %i[new create login_form login]
@@ -47,29 +47,46 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def login_form; end
-
-  def login
-    @user = User.find_by(
-      email: params[:email],
-      password: params[:password]
-    )
-    if @user
-      session[:user_id] = @user.id # ここに追加
-      flash[:notice] = "ログインしました"
-      redirect_to user_path(@user.id)
-    else
-      @error_message = "メールアドレスまたはパスワードが間違っています"
-      @email = params[:email]
-      render :login_form
-    end
+  # フォローページの処理
+  def following
+    @title = "フォロー"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
   end
 
-  def logout
-    session[:user_id] = nil
-    flash[:notice] = "ログアウトしました"
-    redirect_to login_path
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
   end
+
+  # ログイン処理を分ける前のコード
+  # 現状は動いているがエラーになった場合いつでも使えるようにコメントアウト
+  # def login_form; end
+
+  # def login
+  #   @user = User.find_by(
+  #     email: params[:email],
+  #     password_digest: params[:password]
+  #   )
+  #   if @user
+  #     session[:user_id] = @user.id # ここに追加
+  #     flash[:notice] = "ログインしました"
+  #     redirect_to user_path(@user.id)
+  #   else
+  #     @error_message = "メールアドレスまたはパスワードが間違っています"
+  #     @email = params[:email]
+  #     render :login_form
+  #   end
+  # end
+
+  # def logout
+  #   session[:user_id] = nil
+  #   flash[:notice] = "ログアウトしました"
+  #   redirect_to login_path
+  # end
 
   private
 
