@@ -136,6 +136,11 @@ AWSの使用が今後必ず訪れると分かったのでローカル、heroku�
 
 <img width="756" alt="スクリーンショット 2022-06-30 0 53 14" src="https://user-images.githubusercontent.com/94509379/176481223-96ebe737-e342-489b-abe5-6c2a6bdc12ca.png">
 
+## フォロー/フォロー解除機能
+ユーザーのフォロー/フォロー解除ができます。
+Railsチュートリアルを参考にして実装しました。
+<img width="628" alt="スクリーンショット 2022-12-23 23 41 47" src="https://user-images.githubusercontent.com/94509379/209354030-71e35849-1216-4b58-9f5f-654794c8d10d.png">
+
 ## 使用環境
 
 - M1 mac
