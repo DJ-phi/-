@@ -72,6 +72,11 @@ Heroku
 
 <img width="1347" alt="スクリーンショット 2022-07-26 15 23 26" src="https://user-images.githubusercontent.com/94509379/180937819-9a4e8896-8f7d-47a2-9e6a-6a8e1e21c463.png">
 
+## RSpec
+110以上のテストを書きました。
+
+<img width="1223" alt="スクリーンショット 2022-12-24 21 13 07" src="https://user-images.githubusercontent.com/94509379/209435911-b4bf79d7-a0bc-4446-9083-a47609951398.png">
+
 ## ログイン機能
 
 ログインの理解力を深めったかったのでdevideじゃない実装をしてみました!!
