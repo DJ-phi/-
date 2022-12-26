@@ -136,7 +136,7 @@ AWSの使用が今後必ず訪れると分かったのでローカル、heroku�
 
 <img width="141" alt="スクリーンショット 2022-06-30 0 50 51" src="https://user-images.githubusercontent.com/94509379/176480773-35b18f2f-31fa-4973-a8bb-55551e48c3bc.png">
 
-## フォロー/フォロー解除機能
+## フォロー/フォロー解除機能 非同期処理(ajax)
 ユーザーのフォロー/フォロー解除ができます。
 Railsチュートリアルを参考にして実装しました。
 <img width="628" alt="スクリーンショット 2022-12-23 23 41 47" src="https://user-images.githubusercontent.com/94509379/209354030-71e35849-1216-4b58-9f5f-654794c8d10d.png">
